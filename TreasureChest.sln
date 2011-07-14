@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 10.00
 # Visual Studio 2008
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TreasureChest", "TreasureChest\TreasureChest.csproj", "{04783022-4F7A-4821-AC21-73C959DBFFA4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TreasureChestUnitTests", "TreasureChestUnitTests\TreasureChestUnitTests.csproj", "{4841E773-7762-4C02-BB9A-EE9190EE571A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,6 +15,10 @@ Global
 		{04783022-4F7A-4821-AC21-73C959DBFFA4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{04783022-4F7A-4821-AC21-73C959DBFFA4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{04783022-4F7A-4821-AC21-73C959DBFFA4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4841E773-7762-4C02-BB9A-EE9190EE571A}.Debug|Any CPU.ActiveCfg = Release|Any CPU
+		{4841E773-7762-4C02-BB9A-EE9190EE571A}.Debug|Any CPU.Build.0 = Release|Any CPU
+		{4841E773-7762-4C02-BB9A-EE9190EE571A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4841E773-7762-4C02-BB9A-EE9190EE571A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
