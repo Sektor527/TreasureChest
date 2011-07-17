@@ -4,7 +4,7 @@ using TreasureChest;
 namespace TreasureChestUnitTests
 {
 	[TestFixture]
-	public class ConsumerTests
+	public class SessionTests
 	{
 		[Test]
 		public void AddConsumer()
