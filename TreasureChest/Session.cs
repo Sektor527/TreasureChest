@@ -9,11 +9,13 @@ namespace TreasureChest
 	{
 		public DateTime Date { get; set; }
 		public List<Consumer> Consumers { get; private set; }
-	
-		public Session()
+
+		public Session() : this(DateTime.Today) { }
+
+		public Session(DateTime date)
 		{
 			Consumers = new List<Consumer>();
-			Date = DateTime.Today;
+			Date = date;
 		}
 
 		public void Add(Consumer c)
