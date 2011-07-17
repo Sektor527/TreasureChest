@@ -9,11 +9,21 @@ using System.Windows.Forms;
 
 namespace TreasureChest
 {
-	public partial class FormMain : Form
+	partial class FormMain : Form
 	{
-		public FormMain()
+		private List<Session> _sessions;
+
+		public FormMain(List<Session> sessions)
 		{
 			InitializeComponent();
+
+			_sessions = sessions;
+		}
+
+		private void btnSessions_Click(object sender, EventArgs e)
+		{
+			FormSessions form = new FormSessions(ref _sessions);
+			form.ShowDialog();
 		}
 	}
 }

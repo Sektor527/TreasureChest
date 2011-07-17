@@ -7,7 +7,7 @@ namespace TreasureChestUnitTests
 	public class ConsumerTests
 	{
 		[Test]
-		public void ConsumerInSession()
+		public void AddConsumer()
 		{
 			Session s = new Session();
 			Consumer c = new Consumer("Bart");
@@ -21,6 +21,25 @@ namespace TreasureChestUnitTests
 			s.Add(c);
 			Assert.AreEqual(1, s.Consumers.Count);
 			Assert.Contains(c, s.Consumers);
+		}
+
+		[Test]
+		public void RemoveConsumer()
+		{
+			Session s = new Session();
+			Consumer c1 = new Consumer("Bart");
+			Consumer c2 = new Consumer("Jo");
+
+			s.Add(c1);
+			
+			// Remove non-added consumer
+			s.Remove(c2);
+			Assert.AreEqual(1, s.Consumers.Count);
+			Assert.Contains(c1, s.Consumers);
+
+			// Normal case
+			s.Remove(c1);
+			Assert.AreEqual(0, s.Consumers.Count);
 		}
 	}
 }

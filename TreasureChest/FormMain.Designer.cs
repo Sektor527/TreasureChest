@@ -28,13 +28,25 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
+			this.btnSessions = new System.Windows.Forms.Button();
 			this.SuspendLayout();
+			// 
+			// btnSessions
+			// 
+			this.btnSessions.Location = new System.Drawing.Point(92, 21);
+			this.btnSessions.Name = "btnSessions";
+			this.btnSessions.Size = new System.Drawing.Size(75, 23);
+			this.btnSessions.TabIndex = 0;
+			this.btnSessions.Text = "Sessions";
+			this.btnSessions.UseVisualStyleBackColor = true;
+			this.btnSessions.Click += new System.EventHandler(this.btnSessions_Click);
 			// 
 			// FormMain
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(284, 264);
+			this.Controls.Add(this.btnSessions);
 			this.Name = "FormMain";
 			this.Text = "Treasure Chest";
 			this.ResumeLayout(false);
@@ -42,6 +54,8 @@
 		}
 
 		#endregion
+
+		private System.Windows.Forms.Button btnSessions;
 	}
 }
 
