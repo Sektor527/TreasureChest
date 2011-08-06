@@ -23,6 +23,7 @@ namespace TreasureChest
 
 		private void btnAdd_Click(object sender, EventArgs e)
 		{
+			// Update list
 			int lastCount = _inventory.Count();
 
 			_inventory.Add(1, txtProductName.Text, float.Parse(txtProductPrice.Text, CultureInfo.InvariantCulture), (int)numProductCount.Value);
@@ -41,6 +42,13 @@ namespace TreasureChest
 			}
 
 			lstInventory.Columns[0].Width = -1;
-		}
+
+			// Rest fields
+			txtProductName.Text = "";
+			txtProductPrice.Text = "";
+			numProductCount.Value = 1;
+
+			txtProductName.Focus();
+			}
 	}
 }
