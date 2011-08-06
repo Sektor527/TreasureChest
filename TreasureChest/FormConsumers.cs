@@ -16,6 +16,11 @@ namespace TreasureChest
 			InitializeComponent();
 		}
 
+		private void FormConsumers_Load(object sender, EventArgs e)
+		{
+			UpdateCredits();
+		}
+
 		private void btnDeposit_Click(object sender, EventArgs e)
 		{
 			if (!string.IsNullOrEmpty(txtWim.Text))
@@ -73,6 +78,19 @@ namespace TreasureChest
 					Consumer.Christof.Deposit(amount);
 				txtChristof.Text = "";
 			}
+
+			UpdateCredits();
+		}
+
+		private void UpdateCredits()
+		{
+			lblWim.Text = Consumer.Wim.Credit.ToString();
+			lblBart.Text = Consumer.Bart.Credit.ToString();
+			lblJo.Text = Consumer.Jo.Credit.ToString();
+			lblKoen.Text = Consumer.Koen.Credit.ToString();
+			lblFrederik.Text = Consumer.Frederik.Credit.ToString();
+			lblChristoph.Text = Consumer.Christoph.Credit.ToString();
+			lblChristof.Text = Consumer.Christof.Credit.ToString();
 		}
 	}
 }

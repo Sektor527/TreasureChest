@@ -44,6 +44,13 @@
 			this.txtChristoph = new System.Windows.Forms.TextBox();
 			this.label7 = new System.Windows.Forms.Label();
 			this.txtChristof = new System.Windows.Forms.TextBox();
+			this.lblWim = new System.Windows.Forms.Label();
+			this.lblBart = new System.Windows.Forms.Label();
+			this.lblJo = new System.Windows.Forms.Label();
+			this.lblKoen = new System.Windows.Forms.Label();
+			this.lblFrederik = new System.Windows.Forms.Label();
+			this.lblChristoph = new System.Windows.Forms.Label();
+			this.lblChristof = new System.Windows.Forms.Label();
 			this.SuspendLayout();
 			// 
 			// txtWim
@@ -178,6 +185,69 @@
 			this.txtChristof.Size = new System.Drawing.Size(100, 20);
 			this.txtChristof.TabIndex = 14;
 			// 
+			// lblWim
+			// 
+			this.lblWim.AutoSize = true;
+			this.lblWim.Location = new System.Drawing.Point(176, 13);
+			this.lblWim.Name = "lblWim";
+			this.lblWim.Size = new System.Drawing.Size(35, 13);
+			this.lblWim.TabIndex = 16;
+			this.lblWim.Text = "label8";
+			// 
+			// lblBart
+			// 
+			this.lblBart.AutoSize = true;
+			this.lblBart.Location = new System.Drawing.Point(176, 39);
+			this.lblBart.Name = "lblBart";
+			this.lblBart.Size = new System.Drawing.Size(35, 13);
+			this.lblBart.TabIndex = 17;
+			this.lblBart.Text = "label9";
+			// 
+			// lblJo
+			// 
+			this.lblJo.AutoSize = true;
+			this.lblJo.Location = new System.Drawing.Point(176, 65);
+			this.lblJo.Name = "lblJo";
+			this.lblJo.Size = new System.Drawing.Size(41, 13);
+			this.lblJo.TabIndex = 18;
+			this.lblJo.Text = "label10";
+			// 
+			// lblKoen
+			// 
+			this.lblKoen.AutoSize = true;
+			this.lblKoen.Location = new System.Drawing.Point(176, 91);
+			this.lblKoen.Name = "lblKoen";
+			this.lblKoen.Size = new System.Drawing.Size(41, 13);
+			this.lblKoen.TabIndex = 19;
+			this.lblKoen.Text = "label11";
+			// 
+			// lblFrederik
+			// 
+			this.lblFrederik.AutoSize = true;
+			this.lblFrederik.Location = new System.Drawing.Point(176, 117);
+			this.lblFrederik.Name = "lblFrederik";
+			this.lblFrederik.Size = new System.Drawing.Size(41, 13);
+			this.lblFrederik.TabIndex = 20;
+			this.lblFrederik.Text = "label12";
+			// 
+			// lblChristoph
+			// 
+			this.lblChristoph.AutoSize = true;
+			this.lblChristoph.Location = new System.Drawing.Point(176, 143);
+			this.lblChristoph.Name = "lblChristoph";
+			this.lblChristoph.Size = new System.Drawing.Size(41, 13);
+			this.lblChristoph.TabIndex = 21;
+			this.lblChristoph.Text = "label13";
+			// 
+			// lblChristof
+			// 
+			this.lblChristof.AutoSize = true;
+			this.lblChristof.Location = new System.Drawing.Point(176, 169);
+			this.lblChristof.Name = "lblChristof";
+			this.lblChristof.Size = new System.Drawing.Size(41, 13);
+			this.lblChristof.TabIndex = 22;
+			this.lblChristof.Text = "label14";
+			// 
 			// FormConsumers
 			// 
 			this.AcceptButton = this.btnDeposit;
@@ -185,6 +255,13 @@
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.CancelButton = this.btnClose;
 			this.ClientSize = new System.Drawing.Size(284, 264);
+			this.Controls.Add(this.lblChristof);
+			this.Controls.Add(this.lblChristoph);
+			this.Controls.Add(this.lblFrederik);
+			this.Controls.Add(this.lblKoen);
+			this.Controls.Add(this.lblJo);
+			this.Controls.Add(this.lblBart);
+			this.Controls.Add(this.lblWim);
 			this.Controls.Add(this.label7);
 			this.Controls.Add(this.txtChristof);
 			this.Controls.Add(this.label6);
@@ -203,6 +280,7 @@
 			this.Controls.Add(this.txtWim);
 			this.Name = "FormConsumers";
 			this.Text = "FormConsumers";
+			this.Load += new System.EventHandler(this.FormConsumers_Load);
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -226,5 +304,12 @@
 		private System.Windows.Forms.TextBox txtChristoph;
 		private System.Windows.Forms.Label label7;
 		private System.Windows.Forms.TextBox txtChristof;
+		private System.Windows.Forms.Label lblWim;
+		private System.Windows.Forms.Label lblBart;
+		private System.Windows.Forms.Label lblJo;
+		private System.Windows.Forms.Label lblKoen;
+		private System.Windows.Forms.Label lblFrederik;
+		private System.Windows.Forms.Label lblChristoph;
+		private System.Windows.Forms.Label lblChristof;
 	}
 }
