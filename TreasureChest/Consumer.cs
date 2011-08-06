@@ -8,10 +8,21 @@ namespace TreasureChest
 	class Consumer
 	{
 		public string Name { get; set; }
+		public float Credit { get; set; }
 
 		public Consumer(string name)
 		{
 			Name = name;
+		}
+
+		public void Deposit(float amount)
+		{
+			Credit += amount;
+		}
+
+		public void Withdraw(float amount)
+		{
+			Credit -= amount;
 		}
 
 		public static readonly Consumer Wim = new Consumer("Wim");
