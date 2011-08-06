@@ -25,5 +25,11 @@ namespace TreasureChest
 			FormSessions form = new FormSessions(ref _sessions);
 			form.ShowDialog();
 		}
+
+		private void btnInventory_Click(object sender, EventArgs e)
+		{
+			FormInventory form = new FormInventory();
+			form.ShowDialog();
+		}
 	}
 }
