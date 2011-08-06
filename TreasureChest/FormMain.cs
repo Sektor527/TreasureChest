@@ -33,5 +33,11 @@ namespace TreasureChest
 			FormInventory form = new FormInventory(_inventory);
 			form.ShowDialog();
 		}
+
+		private void btnConsumers_Click(object sender, EventArgs e)
+		{
+			FormConsumers form = new FormConsumers();
+			form.ShowDialog();
+		}
 	}
 }
