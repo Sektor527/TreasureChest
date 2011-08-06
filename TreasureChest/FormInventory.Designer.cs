@@ -51,7 +51,7 @@
 			this.lstInventory.Name = "lstInventory";
 			this.lstInventory.Scrollable = false;
 			this.lstInventory.Size = new System.Drawing.Size(420, 284);
-			this.lstInventory.TabIndex = 0;
+			this.lstInventory.TabIndex = 4;
 			this.lstInventory.UseCompatibleStateImageBehavior = false;
 			this.lstInventory.View = System.Windows.Forms.View.Details;
 			// 
@@ -65,10 +65,10 @@
 			// 
 			// btnAdd
 			// 
-			this.btnAdd.Location = new System.Drawing.Point(12, 302);
+			this.btnAdd.Location = new System.Drawing.Point(276, 302);
 			this.btnAdd.Name = "btnAdd";
 			this.btnAdd.Size = new System.Drawing.Size(75, 23);
-			this.btnAdd.TabIndex = 1;
+			this.btnAdd.TabIndex = 3;
 			this.btnAdd.Text = "Add";
 			this.btnAdd.UseVisualStyleBackColor = true;
 			this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
@@ -79,36 +79,42 @@
 			this.btnClose.Location = new System.Drawing.Point(357, 302);
 			this.btnClose.Name = "btnClose";
 			this.btnClose.Size = new System.Drawing.Size(75, 23);
-			this.btnClose.TabIndex = 2;
+			this.btnClose.TabIndex = 5;
 			this.btnClose.Text = "Close";
 			this.btnClose.UseVisualStyleBackColor = true;
 			// 
 			// txtProductName
 			// 
-			this.txtProductName.Location = new System.Drawing.Point(93, 304);
+			this.txtProductName.Location = new System.Drawing.Point(12, 304);
 			this.txtProductName.Name = "txtProductName";
 			this.txtProductName.Size = new System.Drawing.Size(144, 20);
-			this.txtProductName.TabIndex = 3;
+			this.txtProductName.TabIndex = 0;
 			// 
 			// txtProductPrice
 			// 
-			this.txtProductPrice.Location = new System.Drawing.Point(243, 304);
+			this.txtProductPrice.Location = new System.Drawing.Point(162, 304);
 			this.txtProductPrice.Name = "txtProductPrice";
 			this.txtProductPrice.Size = new System.Drawing.Size(56, 20);
-			this.txtProductPrice.TabIndex = 4;
+			this.txtProductPrice.TabIndex = 1;
 			// 
 			// numProductCount
 			// 
-			this.numProductCount.Location = new System.Drawing.Point(305, 305);
+			this.numProductCount.Location = new System.Drawing.Point(224, 305);
 			this.numProductCount.Name = "numProductCount";
 			this.numProductCount.Size = new System.Drawing.Size(46, 20);
-			this.numProductCount.TabIndex = 5;
+			this.numProductCount.TabIndex = 2;
+			this.numProductCount.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
 			// 
 			// FormInventory
 			// 
-			this.AcceptButton = this.btnClose;
+			this.AcceptButton = this.btnAdd;
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.CancelButton = this.btnClose;
 			this.ClientSize = new System.Drawing.Size(444, 337);
 			this.Controls.Add(this.numProductCount);
 			this.Controls.Add(this.txtProductPrice);
