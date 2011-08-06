@@ -29,6 +29,8 @@
 		private void InitializeComponent()
 		{
 			this.lstInventory = new System.Windows.Forms.ListView();
+			this.columnHeader1 = new System.Windows.Forms.ColumnHeader();
+			this.columnHeader2 = new System.Windows.Forms.ColumnHeader();
 			this.btnAdd = new System.Windows.Forms.Button();
 			this.btnClose = new System.Windows.Forms.Button();
 			this.txtProductName = new System.Windows.Forms.TextBox();
@@ -39,11 +41,27 @@
 			// 
 			// lstInventory
 			// 
+			this.lstInventory.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader1,
+            this.columnHeader2});
+			this.lstInventory.FullRowSelect = true;
+			this.lstInventory.GridLines = true;
+			this.lstInventory.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
 			this.lstInventory.Location = new System.Drawing.Point(12, 12);
 			this.lstInventory.Name = "lstInventory";
+			this.lstInventory.Scrollable = false;
 			this.lstInventory.Size = new System.Drawing.Size(420, 284);
 			this.lstInventory.TabIndex = 0;
 			this.lstInventory.UseCompatibleStateImageBehavior = false;
+			this.lstInventory.View = System.Windows.Forms.View.Details;
+			// 
+			// columnHeader1
+			// 
+			this.columnHeader1.Width = 25;
+			// 
+			// columnHeader2
+			// 
+			this.columnHeader2.Width = 356;
 			// 
 			// btnAdd
 			// 
@@ -53,6 +71,7 @@
 			this.btnAdd.TabIndex = 1;
 			this.btnAdd.Text = "Add";
 			this.btnAdd.UseVisualStyleBackColor = true;
+			this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
 			// 
 			// btnClose
 			// 
@@ -113,5 +132,7 @@
 		private System.Windows.Forms.TextBox txtProductName;
 		private System.Windows.Forms.TextBox txtProductPrice;
 		private System.Windows.Forms.NumericUpDown numProductCount;
+		private System.Windows.Forms.ColumnHeader columnHeader1;
+		private System.Windows.Forms.ColumnHeader columnHeader2;
 	}
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
@@ -18,6 +19,28 @@ namespace TreasureChest
 			InitializeComponent();
 
 			_inventory = inventory;
+		}
+
+		private void btnAdd_Click(object sender, EventArgs e)
+		{
+			int lastCount = _inventory.Count();
+
+			_inventory.Add(1, txtProductName.Text, float.Parse(txtProductPrice.Text, CultureInfo.InvariantCulture), (int)numProductCount.Value);
+
+			int newCount = _inventory.Count();
+
+			for (int i = lastCount; i < newCount; ++i)
+			{
+				string name;
+				float price;
+
+				_inventory.Get(i, out name, out price);
+
+				ListViewItem item = new ListViewItem(new string[] { name, price.ToString(CultureInfo.InvariantCulture) });
+				lstInventory.Items.Add(item);
+			}
+
+			lstInventory.Columns[0].Width = -1;
 		}
 	}
 }
