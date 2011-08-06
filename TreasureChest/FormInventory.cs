@@ -9,11 +9,15 @@ using System.Windows.Forms;
 
 namespace TreasureChest
 {
-	public partial class FormInventory : Form
+	internal partial class FormInventory : Form
 	{
-		public FormInventory()
+		private Inventory _inventory;
+
+		public FormInventory(Inventory inventory)
 		{
 			InitializeComponent();
+
+			_inventory = inventory;
 		}
 	}
 }

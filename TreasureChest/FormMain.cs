@@ -12,12 +12,14 @@ namespace TreasureChest
 	partial class FormMain : Form
 	{
 		private List<Session> _sessions;
+		private Inventory _inventory;
 
-		public FormMain(List<Session> sessions)
+		public FormMain(List<Session> sessions, Inventory inventory)
 		{
 			InitializeComponent();
 
 			_sessions = sessions;
+			_inventory = inventory;
 		}
 
 		private void btnSessions_Click(object sender, EventArgs e)
@@ -28,7 +30,7 @@ namespace TreasureChest
 
 		private void btnInventory_Click(object sender, EventArgs e)
 		{
-			FormInventory form = new FormInventory();
+			FormInventory form = new FormInventory(_inventory);
 			form.ShowDialog();
 		}
 	}
