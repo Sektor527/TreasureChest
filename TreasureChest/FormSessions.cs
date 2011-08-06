@@ -13,7 +13,7 @@ namespace TreasureChest
 	{
 		private List<Session> _sessions;
 
-		public FormSessions(ref List<Session> sessions)
+		public FormSessions(List<Session> sessions)
 		{
 			InitializeComponent();
 

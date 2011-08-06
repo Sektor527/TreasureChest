@@ -24,7 +24,7 @@ namespace TreasureChest
 
 		private void btnSessions_Click(object sender, EventArgs e)
 		{
-			FormSessions form = new FormSessions(ref _sessions);
+			FormSessions form = new FormSessions(_sessions);
 			form.ShowDialog();
 		}
 
