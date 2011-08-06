@@ -21,6 +21,14 @@ namespace TreasureChest
 			_inventory = inventory;
 		}
 
+		private void FormInventory_Load(object sender, EventArgs e)
+		{
+			for (int i = 0; i < _inventory.Count(); ++i)
+				AddListViewItem(i);
+
+			lstInventory.Columns[0].Width = -1;
+		}
+
 		private void btnAdd_Click(object sender, EventArgs e)
 		{
 			// Update list

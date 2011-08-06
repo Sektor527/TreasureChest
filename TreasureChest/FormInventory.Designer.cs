@@ -124,6 +124,7 @@
 			this.Controls.Add(this.lstInventory);
 			this.Name = "FormInventory";
 			this.Text = "FormInventory";
+			this.Load += new System.EventHandler(this.FormInventory_Load);
 			((System.ComponentModel.ISupportInitialize)(this.numProductCount)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
