@@ -31,15 +31,7 @@ namespace TreasureChest
 			int newCount = _inventory.Count();
 
 			for (int i = lastCount; i < newCount; ++i)
-			{
-				string name;
-				float price;
-
-				_inventory.Get(i, out name, out price);
-
-				ListViewItem item = new ListViewItem(new string[] { name, price.ToString(CultureInfo.InvariantCulture) });
-				lstInventory.Items.Add(item);
-			}
+				AddListViewItem(i);
 
 			lstInventory.Columns[0].Width = -1;
 
@@ -49,6 +41,17 @@ namespace TreasureChest
 			numProductCount.Value = 1;
 
 			txtProductName.Focus();
-			}
+		}
+
+		private void AddListViewItem(int index)
+		{
+			string name;
+			float price;
+
+			_inventory.Get(index, out name, out price);
+
+			ListViewItem item = new ListViewItem(new string[] { name, price.ToString(CultureInfo.InvariantCulture) });
+			lstInventory.Items.Add(item);
+		}
 	}
 }
