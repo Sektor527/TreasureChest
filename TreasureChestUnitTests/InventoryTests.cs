@@ -8,7 +8,31 @@ namespace TreasureChestUnitTests
 	public class InventoryTests
 	{
 		[Test]
-		public void FillInventory()
+		public void InventorySorting()
+		{
+			Inventory i = new Inventory();
+
+			i.Add(1, "Lays Peper & Zout", 3.20f);
+			i.Add(1, "Hopus", 2.40f, 2);
+
+			string name;
+			float price;
+
+			i.Get(0, out name, out price);
+			Assert.AreEqual("Hopus", name);
+			Assert.IsTrue(AreEqualFloat(1.20f, price));
+
+			i.Get(1, out name, out price);
+			Assert.AreEqual("Hopus", name);
+			Assert.IsTrue(AreEqualFloat(1.20f, price));
+
+			i.Get(2, out name, out price);
+			Assert.AreEqual("Lays Peper & Zout", name);
+			Assert.IsTrue(AreEqualFloat(3.20f, price));
+		}
+
+		[Test]
+		public void Counts()
 		{
 			Inventory i = new Inventory();
 
@@ -20,12 +44,21 @@ namespace TreasureChestUnitTests
 			Assert.AreEqual(1, i.Count("Lays Peper & Zout"));
 			Assert.AreEqual(6, i.Count("Hopus"));
 
+			// Non-existing Counts
+			Assert.AreEqual(0, i.Count("Grimbergen kaas"));
+		}
+
+		[Test]
+		public void Prices()
+		{
+			Inventory i = new Inventory();
+
+			i.Add(1, "Lays Peper & Zout", 3.20f);
+			i.Add(1, "Hopus", 7.20f, 6);
+
 			// Prices
 			Assert.IsTrue(AreEqualFloat(3.20f, i.Price("Lays Peper & Zout")));
 			Assert.IsTrue(AreEqualFloat(1.20f, i.Price("Hopus")));
-			
-			// Non-existing Counts
-			Assert.AreEqual(0, i.Count("Grimbergen kaas"));
 
 			// Non-existing Prices
 			Assert.IsTrue(AreEqualFloat(0f, i.Price("Grimbergen kaas")));

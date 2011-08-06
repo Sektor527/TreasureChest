@@ -43,6 +43,12 @@ namespace TreasureChest
 			_inventory.Sort(new InventorySorter());
 		}
 
+		public void Get(int index, out string name, out float price)
+		{
+			name = _inventory[index].Name;
+			price = _inventory[index].UnitPrice;
+		}
+
 		public int Count()
 		{
 			return _inventory.Count;
