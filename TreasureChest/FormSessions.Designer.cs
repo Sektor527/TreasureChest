@@ -40,7 +40,13 @@
 			this.chkConsumerJo = new System.Windows.Forms.CheckBox();
 			this.chkConsumerBart = new System.Windows.Forms.CheckBox();
 			this.dateTimePicker = new System.Windows.Forms.DateTimePicker();
+			this.groupBox2 = new System.Windows.Forms.GroupBox();
+			this.lstConsumed = new System.Windows.Forms.ListBox();
+			this.lstConsumable = new System.Windows.Forms.ListBox();
+			this.button1 = new System.Windows.Forms.Button();
+			this.button2 = new System.Windows.Forms.Button();
 			this.groupBox1.SuspendLayout();
+			this.groupBox2.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// lstSessions
@@ -99,7 +105,7 @@
 			this.groupBox1.Controls.Add(this.chkConsumerWim);
 			this.groupBox1.Location = new System.Drawing.Point(114, 38);
 			this.groupBox1.Name = "groupBox1";
-			this.groupBox1.Size = new System.Drawing.Size(101, 186);
+			this.groupBox1.Size = new System.Drawing.Size(101, 214);
 			this.groupBox1.TabIndex = 4;
 			this.groupBox1.TabStop = false;
 			this.groupBox1.Text = "Consumers";
@@ -174,15 +180,67 @@
 			// 
 			this.dateTimePicker.Location = new System.Drawing.Point(114, 12);
 			this.dateTimePicker.Name = "dateTimePicker";
-			this.dateTimePicker.Size = new System.Drawing.Size(196, 20);
+			this.dateTimePicker.Size = new System.Drawing.Size(422, 20);
 			this.dateTimePicker.TabIndex = 5;
 			this.dateTimePicker.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
+			// 
+			// groupBox2
+			// 
+			this.groupBox2.Controls.Add(this.button2);
+			this.groupBox2.Controls.Add(this.button1);
+			this.groupBox2.Controls.Add(this.lstConsumable);
+			this.groupBox2.Controls.Add(this.lstConsumed);
+			this.groupBox2.Location = new System.Drawing.Point(221, 38);
+			this.groupBox2.Name = "groupBox2";
+			this.groupBox2.Size = new System.Drawing.Size(315, 214);
+			this.groupBox2.TabIndex = 6;
+			this.groupBox2.TabStop = false;
+			this.groupBox2.Text = "Inventory";
+			// 
+			// lstConsumed
+			// 
+			this.lstConsumed.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+									| System.Windows.Forms.AnchorStyles.Left)));
+			this.lstConsumed.FormattingEnabled = true;
+			this.lstConsumed.Location = new System.Drawing.Point(6, 19);
+			this.lstConsumed.Name = "lstConsumed";
+			this.lstConsumed.Size = new System.Drawing.Size(120, 186);
+			this.lstConsumed.TabIndex = 0;
+			// 
+			// lstConsumable
+			// 
+			this.lstConsumable.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+									| System.Windows.Forms.AnchorStyles.Left)));
+			this.lstConsumable.FormattingEnabled = true;
+			this.lstConsumable.Location = new System.Drawing.Point(189, 19);
+			this.lstConsumable.Name = "lstConsumable";
+			this.lstConsumable.Size = new System.Drawing.Size(120, 186);
+			this.lstConsumable.TabIndex = 1;
+			// 
+			// button1
+			// 
+			this.button1.Location = new System.Drawing.Point(132, 42);
+			this.button1.Name = "button1";
+			this.button1.Size = new System.Drawing.Size(51, 23);
+			this.button1.TabIndex = 2;
+			this.button1.Text = "<<";
+			this.button1.UseVisualStyleBackColor = true;
+			// 
+			// button2
+			// 
+			this.button2.Location = new System.Drawing.Point(132, 71);
+			this.button2.Name = "button2";
+			this.button2.Size = new System.Drawing.Size(51, 23);
+			this.button2.TabIndex = 3;
+			this.button2.Text = ">>";
+			this.button2.UseVisualStyleBackColor = true;
 			// 
 			// FormSessions
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(484, 264);
+			this.ClientSize = new System.Drawing.Size(548, 264);
+			this.Controls.Add(this.groupBox2);
 			this.Controls.Add(this.dateTimePicker);
 			this.Controls.Add(this.groupBox1);
 			this.Controls.Add(this.btnAddSession);
@@ -193,6 +251,7 @@
 			this.Load += new System.EventHandler(this.FormSessions_Load);
 			this.groupBox1.ResumeLayout(false);
 			this.groupBox1.PerformLayout();
+			this.groupBox2.ResumeLayout(false);
 			this.ResumeLayout(false);
 
 		}
@@ -211,5 +270,10 @@
 		private System.Windows.Forms.CheckBox chkConsumerJo;
 		private System.Windows.Forms.CheckBox chkConsumerBart;
 		private System.Windows.Forms.DateTimePicker dateTimePicker;
+		private System.Windows.Forms.GroupBox groupBox2;
+		private System.Windows.Forms.ListBox lstConsumable;
+		private System.Windows.Forms.ListBox lstConsumed;
+		private System.Windows.Forms.Button button2;
+		private System.Windows.Forms.Button button1;
 	}
 }
