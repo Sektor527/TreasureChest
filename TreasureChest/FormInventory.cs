@@ -51,13 +51,10 @@ namespace TreasureChest
 
 		private void AddListViewItem(int index)
 		{
-			string name;
-			float price;
+			Item item = _inventory.Get(index);
 
-			_inventory.Get(index, out name, out price);
-
-			ListViewItem item = new ListViewItem(new string[] { name, price.ToString(CultureInfo.InvariantCulture) });
-			lstInventory.Items.Add(item);
+			ListViewItem lvitem = new ListViewItem(new string[] { item.Name, item.UnitPrice.ToString(CultureInfo.InvariantCulture) });
+			lstInventory.Items.Add(lvitem);
 		}
 	}
 }

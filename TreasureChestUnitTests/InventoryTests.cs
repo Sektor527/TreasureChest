@@ -15,20 +15,19 @@ namespace TreasureChestUnitTests
 			i.Add(1, "Lays Peper & Zout", 3.20f);
 			i.Add(1, "Hopus", 2.40f, 2);
 
-			string name;
-			float price;
+			Item item;
 
-			i.Get(0, out name, out price);
-			Assert.AreEqual("Hopus", name);
-			Assert.IsTrue(AreEqualFloat(1.20f, price));
+			item = i.Get(0);
+			Assert.AreEqual("Hopus", item.Name);
+			Assert.IsTrue(AreEqualFloat(1.20f, item.UnitPrice));
 
-			i.Get(1, out name, out price);
-			Assert.AreEqual("Hopus", name);
-			Assert.IsTrue(AreEqualFloat(1.20f, price));
+			item = i.Get(1);
+			Assert.AreEqual("Hopus", item.Name);
+			Assert.IsTrue(AreEqualFloat(1.20f, item.UnitPrice));
 
-			i.Get(2, out name, out price);
-			Assert.AreEqual("Lays Peper & Zout", name);
-			Assert.IsTrue(AreEqualFloat(3.20f, price));
+			item = i.Get(2);
+			Assert.AreEqual("Lays Peper & Zout", item.Name);
+			Assert.IsTrue(AreEqualFloat(3.20f, item.UnitPrice));
 		}
 
 		[Test]

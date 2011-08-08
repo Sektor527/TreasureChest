@@ -6,6 +6,12 @@ using System.Text;
 
 namespace TreasureChest
 {
+	struct Item
+	{
+		internal string Name;
+		internal float UnitPrice;
+	}
+
 	class Inventory
 	{
 		private class InventorySorter : IComparer<Item>
@@ -17,12 +23,6 @@ namespace TreasureChest
 
 				return -x.UnitPrice.CompareTo(y.UnitPrice);
 			}
-		}
-
-		private struct Item
-		{
-			internal string Name;
-			internal float UnitPrice;
 		}
 
 		private readonly List<Item> _inventory = new List<Item>();
@@ -43,10 +43,26 @@ namespace TreasureChest
 			_inventory.Sort(new InventorySorter());
 		}
 
-		public void Get(int index, out string name, out float price)
+		public void Add(Item item)
 		{
-			name = _inventory[index].Name;
-			price = _inventory[index].UnitPrice;
+			_inventory.Add(item);
+			_inventory.Sort(new InventorySorter());
+		}
+
+		public Item Get(string name)
+		{
+			for (int i = 0; i < _inventory.Count; ++i)
+			{
+				if (_inventory[i].Name == name)
+					return _inventory[i];
+			}
+
+			return new Item {Name = name, UnitPrice = 0f};
+		}
+
+		public Item Get(int index)
+		{
+			return _inventory[index];
 		}
 
 		public int Count()
