@@ -32,13 +32,11 @@ namespace TreasureChest
 		private void btnAdd_Click(object sender, EventArgs e)
 		{
 			// Update list
-			int lastCount = _inventory.Count();
-
 			_inventory.Add(1, txtProductName.Text, float.Parse(txtProductPrice.Text, CultureInfo.InvariantCulture), (int)numProductCount.Value);
 
-			int newCount = _inventory.Count();
-
-			for (int i = lastCount; i < newCount; ++i)
+			// Update interface
+			lstInventory.Items.Clear();
+			for (int i = 0; i < _inventory.Count(); ++i)
 				AddListViewItem(i);
 
 			lstInventory.Columns[0].Width = -1;
