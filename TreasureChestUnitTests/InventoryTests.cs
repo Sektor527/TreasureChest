@@ -80,6 +80,23 @@ namespace TreasureChestUnitTests
 			Assert.IsTrue(AreEqualFloat(5.00f, i.Price("Hopus")));
 		}
 
+		[Test]
+		public void Consume()
+		{
+			Inventory i = new Inventory();
+
+			i.Add(2, "Hopus", 3.00f);
+			i.Add(1, "Lays Peper & Zout", 3.20f);
+
+			Item item1 = i.Consume("Hopus");
+			Assert.AreEqual(2, i.Count());
+			Assert.AreEqual("Hopus", item1.Name);
+
+			Item item2 = i.Consume(0);
+			Assert.AreEqual(1, i.Count());
+			Assert.AreEqual("Hopus", item2.Name);
+		}
+
 		private bool AreEqualFloat(float expected, float actual)
 		{
 			float epsilon = 0.00005f;

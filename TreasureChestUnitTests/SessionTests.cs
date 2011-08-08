@@ -71,5 +71,33 @@ namespace TreasureChestUnitTests
 			Assert.Greater(future.CompareTo(present_2), 0);
 			Assert.AreEqual(future.CompareTo(future), 0);
 		}
+
+		[Test]
+		public void ConsumeFrom()
+		{
+			Session s = new Session();
+			Inventory i = new Inventory();
+			i.Add(1, "Hopus", 3f);
+
+			s.ConsumeFrom(i, "Hopus");
+
+			Assert.AreEqual(0, i.Count());
+			Assert.AreEqual(1, s.ConsumedItems.Count());
+			Assert.AreEqual("Hopus", s.ConsumedItems.Get(0).Name);
+		}
+
+		[Test]
+		public void UnconsumeTo()
+		{
+			Session s = new Session();
+			Inventory i = new Inventory();
+			s.ConsumedItems.Add(1, "Hopus", 3f);
+
+			s.UnconsumeTo(i, "Hopus");
+
+			Assert.AreEqual(0, s.ConsumedItems.Count());
+			Assert.AreEqual(1, i.Count());
+			Assert.AreEqual("Hopus", i.Get(0).Name);
+		}
 	}
 }

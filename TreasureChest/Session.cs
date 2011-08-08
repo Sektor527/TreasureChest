@@ -9,12 +9,14 @@ namespace TreasureChest
 	{
 		public DateTime Date { get; set; }
 		public List<Consumer> Consumers { get; private set; }
+		public Inventory ConsumedItems { get; private set; }
 
 		public Session() : this(DateTime.Today) { }
 
 		public Session(DateTime date)
 		{
 			Consumers = new List<Consumer>();
+			ConsumedItems = new Inventory();
 			Date = date;
 		}
 
@@ -30,6 +32,18 @@ namespace TreasureChest
 			if (!Consumers.Contains(c)) return;
 
 			Consumers.Remove(c);
+		}
+
+		public void ConsumeFrom(Inventory i, string name)
+		{
+			Item item = i.Consume(name);
+			ConsumedItems.Add(item);
+		}
+
+		public void UnconsumeTo(Inventory i, string name)
+		{
+			Item item = ConsumedItems.Consume(name);
+			i.Add(item);
 		}
 
 		public override string ToString()

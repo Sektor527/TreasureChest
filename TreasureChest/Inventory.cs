@@ -65,6 +65,20 @@ namespace TreasureChest
 			return _inventory[index];
 		}
 
+		public Item Consume(string name)
+		{
+			Item item = Get(name);
+			_inventory.Remove(item);
+			return item;
+		}
+
+		public Item Consume(int index)
+		{
+			Item item = Get(index);
+			_inventory.Remove(item);
+			return item;
+		}
+
 		public int Count()
 		{
 			return _inventory.Count;
