@@ -35,7 +35,7 @@
 			// 
 			// btnSessions
 			// 
-			this.btnSessions.Location = new System.Drawing.Point(105, 121);
+			this.btnSessions.Location = new System.Drawing.Point(105, 150);
 			this.btnSessions.Name = "btnSessions";
 			this.btnSessions.Size = new System.Drawing.Size(75, 23);
 			this.btnSessions.TabIndex = 0;
@@ -45,7 +45,7 @@
 			// 
 			// btnInventory
 			// 
-			this.btnInventory.Location = new System.Drawing.Point(105, 150);
+			this.btnInventory.Location = new System.Drawing.Point(105, 121);
 			this.btnInventory.Name = "btnInventory";
 			this.btnInventory.Size = new System.Drawing.Size(75, 23);
 			this.btnInventory.TabIndex = 1;
