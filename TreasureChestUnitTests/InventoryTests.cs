@@ -95,6 +95,14 @@ namespace TreasureChestUnitTests
 			Item item2 = i.Consume(0);
 			Assert.AreEqual(1, i.Count());
 			Assert.AreEqual("Hopus", item2.Name);
+
+			Item item3 = i.Consume(i.Get("Lays Peper & Zout"));
+			Assert.AreEqual(0, i.Count());
+			Assert.AreEqual("Lays Peper & Zout", item3.Name);
+
+			Item item4 = i.Consume(new Item {Name = "Something", UnitPrice = 1f});
+			Assert.AreEqual(0, i.Count());
+			Assert.AreEqual(null, item4.Name);
 		}
 
 		private bool AreEqualFloat(float expected, float actual)

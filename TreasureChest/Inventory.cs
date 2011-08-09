@@ -79,6 +79,14 @@ namespace TreasureChest
 			return item;
 		}
 
+		public Item Consume(Item item)
+		{
+			if (!_inventory.Contains(item)) return new Item();
+
+			_inventory.Remove(item);
+			return item;
+		}
+
 		public int Count()
 		{
 			return _inventory.Count;
