@@ -74,7 +74,7 @@
 			this.btnDeposit.Location = new System.Drawing.Point(12, 229);
 			this.btnDeposit.Name = "btnDeposit";
 			this.btnDeposit.Size = new System.Drawing.Size(75, 23);
-			this.btnDeposit.TabIndex = 2;
+			this.btnDeposit.TabIndex = 7;
 			this.btnDeposit.Text = "Deposit";
 			this.btnDeposit.UseVisualStyleBackColor = true;
 			this.btnDeposit.Click += new System.EventHandler(this.btnDeposit_Click);
@@ -85,7 +85,7 @@
 			this.btnClose.Location = new System.Drawing.Point(197, 229);
 			this.btnClose.Name = "btnClose";
 			this.btnClose.Size = new System.Drawing.Size(75, 23);
-			this.btnClose.TabIndex = 3;
+			this.btnClose.TabIndex = 8;
 			this.btnClose.Text = "Close";
 			this.btnClose.UseVisualStyleBackColor = true;
 			// 
@@ -103,7 +103,7 @@
 			this.txtBart.Location = new System.Drawing.Point(70, 36);
 			this.txtBart.Name = "txtBart";
 			this.txtBart.Size = new System.Drawing.Size(100, 20);
-			this.txtBart.TabIndex = 4;
+			this.txtBart.TabIndex = 1;
 			// 
 			// label3
 			// 
@@ -119,7 +119,7 @@
 			this.txtJo.Location = new System.Drawing.Point(70, 62);
 			this.txtJo.Name = "txtJo";
 			this.txtJo.Size = new System.Drawing.Size(100, 20);
-			this.txtJo.TabIndex = 6;
+			this.txtJo.TabIndex = 2;
 			// 
 			// label4
 			// 
@@ -135,7 +135,7 @@
 			this.txtKoen.Location = new System.Drawing.Point(70, 88);
 			this.txtKoen.Name = "txtKoen";
 			this.txtKoen.Size = new System.Drawing.Size(100, 20);
-			this.txtKoen.TabIndex = 8;
+			this.txtKoen.TabIndex = 3;
 			// 
 			// label5
 			// 
@@ -151,7 +151,7 @@
 			this.txtFrederik.Location = new System.Drawing.Point(70, 114);
 			this.txtFrederik.Name = "txtFrederik";
 			this.txtFrederik.Size = new System.Drawing.Size(100, 20);
-			this.txtFrederik.TabIndex = 10;
+			this.txtFrederik.TabIndex = 4;
 			// 
 			// label6
 			// 
@@ -167,7 +167,7 @@
 			this.txtChristoph.Location = new System.Drawing.Point(70, 140);
 			this.txtChristoph.Name = "txtChristoph";
 			this.txtChristoph.Size = new System.Drawing.Size(100, 20);
-			this.txtChristoph.TabIndex = 12;
+			this.txtChristoph.TabIndex = 5;
 			// 
 			// label7
 			// 
@@ -183,7 +183,7 @@
 			this.txtChristof.Location = new System.Drawing.Point(70, 166);
 			this.txtChristof.Name = "txtChristof";
 			this.txtChristof.Size = new System.Drawing.Size(100, 20);
-			this.txtChristof.TabIndex = 14;
+			this.txtChristof.TabIndex = 6;
 			// 
 			// lblWim
 			// 
