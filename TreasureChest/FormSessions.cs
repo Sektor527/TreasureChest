@@ -12,13 +12,16 @@ namespace TreasureChest
 	partial class FormSessions : Form
 	{
 		private List<Session> _sessions;
+		private Inventory _stash;
 
-		public FormSessions(List<Session> sessions)
+		public FormSessions(List<Session> sessions, Inventory stash)
 		{
 			InitializeComponent();
 
 			_sessions = sessions;
 			_sessions.Sort();
+
+			_stash = stash;
 		}
 
 		private void FormSessions_Load(object sender, EventArgs e)
@@ -36,11 +39,13 @@ namespace TreasureChest
 			if (s == null)
 			{
 				groupBox1.Enabled = false;
+				groupBox2.Enabled = false;
 				dateTimePicker.Enabled = false;
 				return;
 			}
 
 			groupBox1.Enabled = true;
+			groupBox2.Enabled = true;
 			dateTimePicker.Enabled = true;
 
 			chkConsumerWim.Checked = s.Consumers.Contains(Consumer.Wim);
@@ -52,6 +57,21 @@ namespace TreasureChest
 			chkConsumerChristof.Checked = s.Consumers.Contains(Consumer.Christof);
 
 			dateTimePicker.Value = s.Date;
+
+			lstConsumable.Items.Clear();
+			lstConsumed.Items.Clear();
+
+			for (int i = 0; i < _stash.Count(); ++i)
+			{
+				Item item = _stash.Get(i);
+				lstConsumable.Items.Add(item);
+			}
+
+			for (int i = 0; i < s.ConsumedItems.Count(); ++i)
+			{
+				Item item = s.ConsumedItems.Get(i);
+				lstConsumed.Items.Add(item);
+			}
 		}
 
 		private void btnAddSession_Click(object sender, EventArgs e)
@@ -116,6 +136,30 @@ namespace TreasureChest
 				if (sender == chkConsumerChristoph) s.Remove(Consumer.Christoph);
 				if (sender == chkConsumerFrederik) s.Remove(Consumer.Frederik);
 			}
+		}
+
+		private void btnConsume_Click(object sender, EventArgs e)
+		{
+			Session s = lstSessions.SelectedItem as Session;
+
+			Item item = (Item) lstConsumable.SelectedItem;
+			_stash.Consume(item);
+			lstConsumable.Items.Remove(lstConsumable.SelectedItem);
+
+			s.ConsumedItems.Add(item);
+			lstConsumed.Items.Add(item);
+		}
+
+		private void btnUnconsume_Click(object sender, EventArgs e)
+		{
+			Session s = lstSessions.SelectedItem as Session;
+
+			Item item = (Item)lstConsumed.SelectedItem;
+			s.ConsumedItems.Consume(item);
+			lstConsumed.Items.Remove(lstConsumed.SelectedItem);
+
+			_stash.Add(item);
+			lstConsumable.Items.Add(item);
 		}
 	}
 }
