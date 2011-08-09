@@ -10,6 +10,11 @@ namespace TreasureChest
 	{
 		internal string Name;
 		internal float UnitPrice;
+
+		public override string ToString()
+		{
+			return Name;
+		}
 	}
 
 	class Inventory
