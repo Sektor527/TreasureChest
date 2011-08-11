@@ -15,6 +15,15 @@ namespace TreasureChest
 		{
 			return Name;
 		}
+
+		public override bool Equals(object obj)
+		{
+			if (obj == null) return false;
+			if (obj.GetType() != typeof(Item)) return false;
+
+
+			return Name.Equals(((Item) obj).Name) && UnitPrice.Equals(((Item) obj).UnitPrice);
+		}
 	}
 
 	class Inventory
@@ -62,7 +71,7 @@ namespace TreasureChest
 					return _inventory[i];
 			}
 
-			return new Item {Name = name, UnitPrice = 0f};
+			return new Item { Name = name, UnitPrice = 0f };
 		}
 
 		public Item Get(int index)

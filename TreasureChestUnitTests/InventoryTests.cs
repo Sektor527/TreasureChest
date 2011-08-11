@@ -105,6 +105,48 @@ namespace TreasureChestUnitTests
 			Assert.AreEqual(null, item4.Name);
 		}
 
+		[Test]
+		public void ItemEqualityPrices()
+		{
+			Item item1 = new Item {Name = "Item", UnitPrice = 1.2f};
+			Item item2 = new Item {Name = "Item", UnitPrice = 1.2f};
+			Item item3 = new Item {Name = "Item", UnitPrice = 1.19f};
+
+			Assert.AreEqual(item1, item1);
+			Assert.AreEqual(item2, item2);
+			Assert.AreEqual(item3, item3);
+
+			Assert.AreEqual(item1, item2);
+			Assert.AreEqual(item2, item1);
+
+			Assert.AreNotEqual(item1, item3);
+			Assert.AreNotEqual(item3, item1);
+
+			Assert.AreNotEqual(item2, item3);
+			Assert.AreNotEqual(item3, item2);
+		}
+
+		[Test]
+		public void ItemEqualityNames()
+		{
+			Item item1 = new Item { Name = "Item", UnitPrice = 1f };
+			Item item2 = new Item { Name = "Item", UnitPrice = 1f };
+			Item item3 = new Item { Name = "Other item", UnitPrice = 1f };
+
+			Assert.AreEqual(item1, item1);
+			Assert.AreEqual(item2, item2);
+			Assert.AreEqual(item3, item3);
+
+			Assert.AreEqual(item1, item2);
+			Assert.AreEqual(item2, item1);
+
+			Assert.AreNotEqual(item1, item3);
+			Assert.AreNotEqual(item3, item1);
+
+			Assert.AreNotEqual(item2, item3);
+			Assert.AreNotEqual(item3, item2);
+		}
+
 		private bool AreEqualFloat(float expected, float actual)
 		{
 			float epsilon = 0.00005f;
