@@ -85,12 +85,25 @@ namespace TreasureChest
 		private void UpdateCredits()
 		{
 			lblWim.Text = Consumer.Wim.Credit.ToString();
+			lblWim.ForeColor = Consumer.Wim.Credit <= 0 ? Color.Red : Color.Black;
+
 			lblBart.Text = Consumer.Bart.Credit.ToString();
+			lblBart.ForeColor = Consumer.Bart.Credit <= 0 ? Color.Red : Color.Black;
+
 			lblJo.Text = Consumer.Jo.Credit.ToString();
+			lblJo.ForeColor = Consumer.Jo.Credit <= 0 ? Color.Red : Color.Black;
+
 			lblKoen.Text = Consumer.Koen.Credit.ToString();
+			lblKoen.ForeColor = Consumer.Koen.Credit <= 0 ? Color.Red : Color.Black;
+
 			lblFrederik.Text = Consumer.Frederik.Credit.ToString();
+			lblFrederik.ForeColor = Consumer.Frederik.Credit <= 0 ? Color.Red : Color.Black;
+
 			lblChristoph.Text = Consumer.Christoph.Credit.ToString();
+			lblChristoph.ForeColor = Consumer.Christoph.Credit <= 0 ? Color.Red : Color.Black;
+
 			lblChristof.Text = Consumer.Christof.Credit.ToString();
+			lblChristof.ForeColor = Consumer.Christof.Credit <= 0 ? Color.Red : Color.Black;
 		}
 	}
 }
