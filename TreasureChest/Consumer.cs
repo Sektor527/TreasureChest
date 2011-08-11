@@ -25,6 +25,21 @@ namespace TreasureChest
 			Credit -= amount;
 		}
 
+		public override int GetHashCode()
+		{
+			return Name.GetHashCode();
+		}
+
+		public override string ToString()
+		{
+			return Name;
+		}
+
+		public override bool Equals(object obj)
+		{
+			return GetHashCode() == obj.GetHashCode();
+		}
+
 		public static readonly Consumer Wim = new Consumer("Wim");
 		public static readonly Consumer Frederik = new Consumer("Frederik");
 		public static readonly Consumer Jo = new Consumer("Jo");

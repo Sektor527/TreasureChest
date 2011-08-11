@@ -55,5 +55,15 @@ namespace TreasureChest
 		{
 			return Date.CompareTo(other.Date);
 		}
+
+		public override int GetHashCode()
+		{
+			return Date.GetHashCode();
+		}
+
+		public override bool Equals(object obj)
+		{
+			return GetHashCode() == obj.GetHashCode();
+		}
 	}
 }
