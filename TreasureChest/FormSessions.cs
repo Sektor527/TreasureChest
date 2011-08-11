@@ -148,6 +148,9 @@ namespace TreasureChest
 
 			s.ConsumedItems.Add(item);
 			lstConsumed.Items.Add(item);
+
+			foreach (Consumer c in s.Consumers)
+				c.Withdraw(item.UnitPrice / s.Consumers.Count);
 		}
 
 		private void btnUnconsume_Click(object sender, EventArgs e)
@@ -160,6 +163,9 @@ namespace TreasureChest
 
 			_stash.Add(item);
 			lstConsumable.Items.Add(item);
+
+			foreach (Consumer c in s.Consumers)
+				c.Deposit(item.UnitPrice / s.Consumers.Count);
 		}
 	}
 }
