@@ -140,6 +140,8 @@ namespace TreasureChest
 
 		private void btnConsume_Click(object sender, EventArgs e)
 		{
+			if (lstConsumable.SelectedItem == null) return;
+
 			Session s = lstSessions.SelectedItem as Session;
 
 			Item item = (Item) lstConsumable.SelectedItem;
@@ -155,6 +157,8 @@ namespace TreasureChest
 
 		private void btnUnconsume_Click(object sender, EventArgs e)
 		{
+			if (lstConsumed.SelectedItem == null) return;
+
 			Session s = lstSessions.SelectedItem as Session;
 
 			Item item = (Item)lstConsumed.SelectedItem;
