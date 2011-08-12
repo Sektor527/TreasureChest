@@ -140,36 +140,52 @@ namespace TreasureChest
 
 		private void btnConsume_Click(object sender, EventArgs e)
 		{
-			if (lstConsumable.SelectedItem == null) return;
+			if (lstConsumable.SelectedItems.Count == 0) return;
 
 			Session s = lstSessions.SelectedItem as Session;
 
-			Item item = (Item) lstConsumable.SelectedItem;
-			_stash.Consume(item);
-			lstConsumable.Items.Remove(lstConsumable.SelectedItem);
+			List<Item> selection = new List<Item>();
+			foreach (var selected in lstConsumable.SelectedItems)
+			{
+				selection.Add((Item) selected);
+			}
 
-			s.ConsumedItems.Add(item);
-			lstConsumed.Items.Add(item);
+			foreach (Item item in selection)
+			{
+				_stash.Consume(item);
+				lstConsumable.Items.Remove(item);
 
-			foreach (Consumer c in s.Consumers)
-				c.Withdraw(item.UnitPrice / s.Consumers.Count);
+				s.ConsumedItems.Add(item);
+				lstConsumed.Items.Add(item);
+
+				foreach (Consumer c in s.Consumers)
+					c.Withdraw(item.UnitPrice / s.Consumers.Count);
+			}
 		}
 
 		private void btnUnconsume_Click(object sender, EventArgs e)
 		{
-			if (lstConsumed.SelectedItem == null) return;
+			if (lstConsumed.SelectedItems.Count == 0) return;
 
 			Session s = lstSessions.SelectedItem as Session;
 
-			Item item = (Item)lstConsumed.SelectedItem;
-			s.ConsumedItems.Consume(item);
-			lstConsumed.Items.Remove(lstConsumed.SelectedItem);
+			List<Item> selection = new List<Item>();
+			foreach (var selected in lstConsumed.SelectedItems)
+			{
+				selection.Add((Item)selected);
+			}
 
-			_stash.Add(item);
-			lstConsumable.Items.Add(item);
+			foreach (Item item in selection)
+			{
+				s.ConsumedItems.Consume(item);
+				lstConsumed.Items.Remove(item);
 
-			foreach (Consumer c in s.Consumers)
-				c.Deposit(item.UnitPrice / s.Consumers.Count);
+				_stash.Add(item);
+				lstConsumable.Items.Add(item);
+
+				foreach (Consumer c in s.Consumers)
+					c.Deposit(item.UnitPrice / s.Consumers.Count);
+			}
 		}
 	}
 }

@@ -224,6 +224,7 @@
 			this.lstConsumable.FormattingEnabled = true;
 			this.lstConsumable.Location = new System.Drawing.Point(189, 19);
 			this.lstConsumable.Name = "lstConsumable";
+			this.lstConsumable.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
 			this.lstConsumable.Size = new System.Drawing.Size(120, 186);
 			this.lstConsumable.TabIndex = 1;
 			// 
@@ -234,6 +235,7 @@
 			this.lstConsumed.FormattingEnabled = true;
 			this.lstConsumed.Location = new System.Drawing.Point(6, 19);
 			this.lstConsumed.Name = "lstConsumed";
+			this.lstConsumed.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
 			this.lstConsumed.Size = new System.Drawing.Size(120, 186);
 			this.lstConsumed.TabIndex = 0;
 			// 
