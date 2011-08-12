@@ -174,15 +174,15 @@ namespace TreasureChest
 							session.Consumers.Add(Consumer.Christof);
 							break;
 					}
+				}
 
-					foreach (XmlNode nodeConsumed in nodeSession.ChildNodes[1].ChildNodes)
+				foreach (XmlNode nodeConsumed in nodeSession.ChildNodes[1].ChildNodes)
+				{
+					session.ConsumedItems.Add(new Item
 					{
-						session.ConsumedItems.Add(new Item
-																				{
-																					Name = nodeConsumed.Attributes["Name"].Value,
-																					UnitPrice = float.Parse(nodeConsumed.Attributes["Price"].Value, CultureInfo.InvariantCulture)
-																				});
-					}
+						Name = nodeConsumed.Attributes["Name"].Value,
+						UnitPrice = float.Parse(nodeConsumed.Attributes["Price"].Value, CultureInfo.InvariantCulture)
+					});
 				}
 			}
 		}
