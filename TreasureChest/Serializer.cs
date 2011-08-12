@@ -73,11 +73,11 @@ namespace TreasureChest
 					nodeAttendants.AppendChild(_document.CreateElement(consumer.Name));
 
 				// List of consumed items
-				XmlElement nodeConsumed = (XmlElement)nodeSession.AppendChild(_document.CreateElement("ConsumedItem"));
+				XmlElement nodeConsumed = (XmlElement)nodeSession.AppendChild(_document.CreateElement("ConsumedItems"));
 				for (int i = 0; i < session.ConsumedItems.Count(); ++i)
 				{
 					Item item = session.ConsumedItems.Get(i);
-					XmlElement nodeItem = (XmlElement)nodeConsumed.AppendChild(_document.CreateElement("Item"));
+					XmlElement nodeItem = (XmlElement)nodeConsumed.AppendChild(_document.CreateElement("ConsumedItem"));
 					nodeItem.SetAttribute("Name", item.Name);
 					nodeItem.SetAttribute("Price", item.UnitPrice.ToString(CultureInfo.InvariantCulture));
 				}
