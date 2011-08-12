@@ -15,7 +15,15 @@ namespace TreasureChest
 		{
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
-			Application.Run(new FormMain(new List<Session>(), new Inventory()));
+
+			List<Session> sessions = new List<Session>();
+			Inventory inventory = new Inventory();
+
+			Serializer.Deserialize(sessions, inventory);
+
+			Application.Run(new FormMain(sessions, inventory));
+
+			Serializer.Serialize(sessions, inventory);
 		}
 	}
 }
