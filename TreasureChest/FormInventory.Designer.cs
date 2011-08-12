@@ -49,7 +49,6 @@
 			this.lstInventory.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
 			this.lstInventory.Location = new System.Drawing.Point(12, 12);
 			this.lstInventory.Name = "lstInventory";
-			this.lstInventory.Scrollable = false;
 			this.lstInventory.Size = new System.Drawing.Size(420, 284);
 			this.lstInventory.TabIndex = 4;
 			this.lstInventory.UseCompatibleStateImageBehavior = false;
