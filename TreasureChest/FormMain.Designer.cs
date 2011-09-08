@@ -72,7 +72,7 @@
 			this.Controls.Add(this.btnInventory);
 			this.Controls.Add(this.btnSessions);
 			this.Name = "FormMain";
-			this.Text = "Treasure Chest - v1.0.0";
+			this.Text = "Treasure Chest - v1.0.1";
 			this.ResumeLayout(false);
 
 		}
