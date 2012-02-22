@@ -24,14 +24,50 @@ namespace TreasureChest
 		{
 			if (Consumers.Contains(c)) return;
 
+			// Unset credits
+			for (int i = 0; i < ConsumedItems.Count(); ++i)
+			{
+				Item item = ConsumedItems.Get(i);
+				float price = item.UnitPrice/ Consumers.Count;
+				foreach (Consumer con in Consumers)
+					con.Deposit(price);
+			}
+
 			Consumers.Add(c);
+
+			// Reset credits
+			for (int i = 0; i < ConsumedItems.Count(); ++i)
+			{
+				Item item = ConsumedItems.Get(i);
+				float price = item.UnitPrice/Consumers.Count;
+				foreach (Consumer con in Consumers)
+					con.Withdraw(price);
+			}
 		}
 
 		public void Remove(Consumer c)
 		{
 			if (!Consumers.Contains(c)) return;
 
+			// Unset credits
+			for (int i = 0; i < ConsumedItems.Count(); ++i)
+			{
+				Item item = ConsumedItems.Get(i);
+				float price = item.UnitPrice / Consumers.Count;
+				foreach (Consumer con in Consumers)
+					con.Deposit(price);
+			}
+
 			Consumers.Remove(c);
+
+			// Reset credits
+			for (int i = 0; i < ConsumedItems.Count(); ++i)
+			{
+				Item item = ConsumedItems.Get(i);
+				float price = item.UnitPrice / Consumers.Count;
+				foreach (Consumer con in Consumers)
+					con.Withdraw(price);
+			}
 		}
 
 		public void ConsumeFrom(Inventory i, string name)

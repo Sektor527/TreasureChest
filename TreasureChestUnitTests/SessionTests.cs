@@ -99,5 +99,40 @@ namespace TreasureChestUnitTests
 			Assert.AreEqual(1, i.Count());
 			Assert.AreEqual("Hopus", i.Get(0).Name);
 		}
+
+		[Test]
+		public void CreditRedistribution()
+		{
+			// Setup session
+			Session s = new Session();
+
+			// Setup consumers
+			Consumer wim = new Consumer("Wim");
+			wim.Deposit(10f);
+			Consumer bart = new Consumer("Bart");
+			bart.Deposit(10f);
+
+			// Setup inventory
+			Inventory i = new Inventory();
+			i.Add(1, "Hopus", 10f);
+			s.ConsumeFrom(i, "Hopus");
+
+			// Add one consumer
+			s.Add(wim);
+			Assert.AreEqual(0f, wim.Credit);
+			Assert.AreEqual(10f, bart.Credit);
+
+			// Add a second consumer
+			s.Add(bart);
+			Assert.AreEqual(5f, wim.Credit);
+			Assert.AreEqual(5f, bart.Credit);
+
+			// Remove a consumer
+			s.Remove(wim);
+			Assert.AreEqual(10f, wim.Credit);
+			Assert.AreEqual(0f, bart.Credit);
+
+
+		}
 	}
 }

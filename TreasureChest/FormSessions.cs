@@ -116,15 +116,6 @@ namespace TreasureChest
 		{
 			Session s = lstSessions.SelectedItem as Session;
 
-			// Unset credits
-			for (int i = 0; i < s.ConsumedItems.Count(); ++i)
-			{
-				Item item = s.ConsumedItems.Get(i);
-				float price = item.UnitPrice / s.Consumers.Count;
-				foreach (Consumer c in s.Consumers)
-					c.Deposit(price);
-			}
-
 			if ((sender as CheckBox).Checked)
 			{
 				if (sender == chkConsumerWim) s.Add(Consumer.Wim);
@@ -144,15 +135,6 @@ namespace TreasureChest
 				if (sender == chkConsumerChristof) s.Remove(Consumer.Christof);
 				if (sender == chkConsumerChristoph) s.Remove(Consumer.Christoph);
 				if (sender == chkConsumerFrederik) s.Remove(Consumer.Frederik);
-			}
-
-			// Reset credits
-			for (int i = 0; i < s.ConsumedItems.Count(); ++i)
-			{
-				Item item = s.ConsumedItems.Get(i);
-				float price = item.UnitPrice / s.Consumers.Count;
-				foreach (Consumer c in s.Consumers)
-					c.Withdraw(price);
 			}
 		}
 
