@@ -59,6 +59,18 @@ namespace TreasureChest
 
 		private void btnDelete_Click(object sender, EventArgs e)
 		{
+			// Update list
+			foreach (ListViewItem item in lstInventory.SelectedItems)
+				_inventory.Remove(item.Text);
+
+			// Update interface
+			lstInventory.Items.Clear();
+			for (int i = 0; i < _inventory.Count(); ++i)
+				AddListViewItem(i);
+
+			lstInventory.Columns[0].Width = -1;
+
+			lstInventory.Focus();
 		}
 	}
 }
