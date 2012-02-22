@@ -106,6 +106,23 @@ namespace TreasureChestUnitTests
 		}
 
 		[Test]
+		public void RemoveFromInventory()
+		{
+			Inventory i = new Inventory();
+
+			i.Add(1, "Lays Peper & Zout", 3.20f);
+			i.Add(2, "Lays Peper & Zout", 3.30f);
+
+			i.Remove("Lays Peper & Zout");
+			Assert.AreEqual(2, i.Count());
+			Assert.IsTrue(AreEqualFloat(3.30f, i.Price("Lays Peper & Zout")));
+
+			i.Remove("Lays Peper & Zout");
+			Assert.AreEqual(1, i.Count());
+			Assert.IsTrue(AreEqualFloat(3.30f, i.Price("Lays Peper & Zout")));
+		}
+
+		[Test]
 		public void ItemEqualityPrices()
 		{
 			Item item1 = new Item {Name = "Item", UnitPrice = 1.2f};

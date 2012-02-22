@@ -79,6 +79,17 @@ namespace TreasureChest
 			return _inventory[index];
 		}
 
+		public Item GetCheapest(string name)
+		{
+			for (int i = _inventory.Count - 1; i >= 0; --i)
+			{
+				if (_inventory[i].Name == name)
+					return _inventory[i];
+			}
+
+			return new Item {Name = name, UnitPrice = 0f};
+		}
+
 		public Item Consume(string name)
 		{
 			Item item = Get(name);
@@ -99,6 +110,12 @@ namespace TreasureChest
 
 			_inventory.Remove(item);
 			return item;
+		}
+
+		public void Remove(string name)
+		{
+			Item item = GetCheapest(name);
+			_inventory.Remove(item);
 		}
 
 		public int Count()
