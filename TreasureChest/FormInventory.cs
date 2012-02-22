@@ -56,5 +56,9 @@ namespace TreasureChest
 			ListViewItem lvitem = new ListViewItem(new string[] { item.Name, item.UnitPrice.ToString(CultureInfo.InvariantCulture) });
 			lstInventory.Items.Add(lvitem);
 		}
+
+		private void btnDelete_Click(object sender, EventArgs e)
+		{
+		}
 	}
 }

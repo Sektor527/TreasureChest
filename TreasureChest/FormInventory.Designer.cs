@@ -36,6 +36,7 @@
 			this.txtProductName = new System.Windows.Forms.TextBox();
 			this.txtProductPrice = new System.Windows.Forms.TextBox();
 			this.numProductCount = new System.Windows.Forms.NumericUpDown();
+			this.btnDelete = new System.Windows.Forms.Button();
 			((System.ComponentModel.ISupportInitialize)(this.numProductCount)).BeginInit();
 			this.SuspendLayout();
 			// 
@@ -49,7 +50,7 @@
 			this.lstInventory.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
 			this.lstInventory.Location = new System.Drawing.Point(12, 12);
 			this.lstInventory.Name = "lstInventory";
-			this.lstInventory.Size = new System.Drawing.Size(420, 284);
+			this.lstInventory.Size = new System.Drawing.Size(502, 284);
 			this.lstInventory.TabIndex = 4;
 			this.lstInventory.UseCompatibleStateImageBehavior = false;
 			this.lstInventory.View = System.Windows.Forms.View.Details;
@@ -108,13 +109,24 @@
             0,
             0});
 			// 
+			// btnDelete
+			// 
+			this.btnDelete.Location = new System.Drawing.Point(439, 301);
+			this.btnDelete.Name = "btnDelete";
+			this.btnDelete.Size = new System.Drawing.Size(75, 23);
+			this.btnDelete.TabIndex = 0;
+			this.btnDelete.Text = "Delete";
+			this.btnDelete.UseVisualStyleBackColor = true;
+			this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+			// 
 			// FormInventory
 			// 
 			this.AcceptButton = this.btnAdd;
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.CancelButton = this.btnClose;
-			this.ClientSize = new System.Drawing.Size(444, 337);
+			this.ClientSize = new System.Drawing.Size(525, 337);
+			this.Controls.Add(this.btnDelete);
 			this.Controls.Add(this.numProductCount);
 			this.Controls.Add(this.txtProductPrice);
 			this.Controls.Add(this.txtProductName);
@@ -140,5 +152,6 @@
 		private System.Windows.Forms.NumericUpDown numProductCount;
 		private System.Windows.Forms.ColumnHeader columnHeader1;
 		private System.Windows.Forms.ColumnHeader columnHeader2;
+		private System.Windows.Forms.Button btnDelete;
 	}
 }
