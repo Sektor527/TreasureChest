@@ -11,20 +11,20 @@ namespace TreasureChest
 	{
 		private static XmlDocument _document;
 
-		internal static void Serialize(List<Session> sessions, Inventory inventory)
+		internal static void Serialize(List<Session> sessions, List<Consumer> consumers, Inventory inventory)
 		{
 			_document = new XmlDocument();
 			_document.AppendChild(_document.CreateXmlDeclaration("1.0", null, null));
 			XmlNode root = _document.AppendChild(_document.CreateElement("TreasureChest"));
 
-			SerializeConsumers(root);
+			SerializeConsumers(root, consumers);
 			SerializeSessions(root, sessions);
 			SerializeInventory(root, inventory);
 
 			_document.Save("chest.dat");
 		}
 
-		private static void SerializeConsumers(XmlNode root)
+		private static void SerializeConsumers(XmlNode root, List<Consumer> consumers)
 		{
 			XmlNode nodeConsumers = root.AppendChild(_document.CreateElement("Consumers"));
 
@@ -97,19 +97,19 @@ namespace TreasureChest
 			}
 		}
 
-		internal static void Deserialize(List<Session> sessions, Inventory inventory)
+		internal static void Deserialize(List<Session> sessions, List<Consumer> consumers, Inventory inventory)
 		{
 			if (!File.Exists("chest.dat")) return;
 
 			XmlDocument document = new XmlDocument();
 			document.Load("chest.dat");
 
-			DeserializeConsumers(document);
+			DeserializeConsumers(document, consumers);
 			DeserializeSessions(document, sessions);
 			DeserializeInventory(document, inventory);
 		}
 
-		private static void DeserializeConsumers(XmlDocument document)
+		private static void DeserializeConsumers(XmlDocument document, List<Consumer> consumers)
 		{
 			foreach (XmlNode nodeConsumer in document.GetElementsByTagName("Consumer"))
 			{

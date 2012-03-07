@@ -17,13 +17,14 @@ namespace TreasureChest
 			Application.SetCompatibleTextRenderingDefault(false);
 
 			List<Session> sessions = new List<Session>();
+			List<Consumer> consumers = new List<Consumer>();
 			Inventory inventory = new Inventory();
 
-			Serializer.Deserialize(sessions, inventory);
+			Serializer.Deserialize(sessions, consumers, inventory);
 
-			Application.Run(new FormMain(sessions, inventory));
+			Application.Run(new FormMain(sessions, consumers, inventory));
 
-			Serializer.Serialize(sessions, inventory);
+			Serializer.Serialize(sessions, consumers, inventory);
 		}
 	}
 }

@@ -9,11 +9,14 @@ using System.Windows.Forms;
 
 namespace TreasureChest
 {
-	public partial class FormConsumers : Form
+	internal partial class FormConsumers : Form
 	{
-		public FormConsumers()
+		private List<Consumer> _consumers;
+		public FormConsumers(List<Consumer> consumers)
 		{
 			InitializeComponent();
+
+			_consumers = consumers;
 		}
 
 		private void FormConsumers_Load(object sender, EventArgs e)

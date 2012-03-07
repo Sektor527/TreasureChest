@@ -12,19 +12,21 @@ namespace TreasureChest
 	partial class FormMain : Form
 	{
 		private List<Session> _sessions;
+		private List<Consumer> _consumers; 
 		private Inventory _inventory;
 
-		public FormMain(List<Session> sessions, Inventory inventory)
+		public FormMain(List<Session> sessions, List<Consumer> consumers, Inventory inventory)
 		{
 			InitializeComponent();
 
 			_sessions = sessions;
+			_consumers = consumers;
 			_inventory = inventory;
 		}
 
 		private void btnSessions_Click(object sender, EventArgs e)
 		{
-			FormSessions form = new FormSessions(_sessions, _inventory);
+			FormSessions form = new FormSessions(_sessions, _consumers, _inventory);
 			form.ShowDialog();
 		}
 
@@ -36,7 +38,7 @@ namespace TreasureChest
 
 		private void btnConsumers_Click(object sender, EventArgs e)
 		{
-			FormConsumers form = new FormConsumers();
+			FormConsumers form = new FormConsumers(_consumers);
 			form.ShowDialog();
 		}
 	}
