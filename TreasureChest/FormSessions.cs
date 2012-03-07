@@ -12,7 +12,6 @@ namespace TreasureChest
 	partial class FormSessions : Form
 	{
 		private List<Session> _sessions;
-		private List<Consumer> _consumers; 
 		private Inventory _stash;
 
 		public FormSessions(List<Session> sessions, List<Consumer> consumers, Inventory stash)
@@ -21,8 +20,6 @@ namespace TreasureChest
 
 			_sessions = sessions;
 			_sessions.Sort();
-
-			_consumers = consumers;
 
 			_stash = stash;
 
