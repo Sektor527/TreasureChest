@@ -84,7 +84,7 @@ namespace TreasureChest
 			document.Load("chest.dat");
 
 			DeserializeConsumers(document, consumers);
-			DeserializeSessions(document, sessions);
+			DeserializeSessions(document, sessions, consumers);
 			DeserializeInventory(document, inventory);
 		}
 
@@ -100,7 +100,7 @@ namespace TreasureChest
 			}
 		}
 
-		private static void DeserializeSessions(XmlDocument document, List<Session> sessions)
+		private static void DeserializeSessions(XmlDocument document, List<Session> sessions, List<Consumer> consumers)
 		{
 			foreach (XmlNode nodeSession in document.GetElementsByTagName("Session"))
 			{
@@ -110,29 +110,10 @@ namespace TreasureChest
 
 				foreach (XmlNode nodeAttendant in nodeSession.ChildNodes[0].ChildNodes)
 				{
-					switch (nodeAttendant.Name)
+					foreach (Consumer consumer in consumers)
 					{
-						case "Wim":
-							session.Consumers.Add(Consumer.Wim);
-							break;
-						case "Bart":
-							session.Consumers.Add(Consumer.Bart);
-							break;
-						case "Jo":
-							session.Consumers.Add(Consumer.Jo);
-							break;
-						case "Koen":
-							session.Consumers.Add(Consumer.Koen);
-							break;
-						case "Frederik":
-							session.Consumers.Add(Consumer.Frederik);
-							break;
-						case "Christoph":
-							session.Consumers.Add(Consumer.Christoph);
-							break;
-						case "Christof":
-							session.Consumers.Add(Consumer.Christof);
-							break;
+						if (consumer.Name == nodeAttendant.Name)
+							session.Consumers.Add(consumer);
 					}
 				}
 

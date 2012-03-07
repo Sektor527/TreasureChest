@@ -12,7 +12,7 @@ namespace TreasureChest
 	internal partial class FormConsumers : Form
 	{
 		public FormConsumers(List<Consumer> consumers)
-		{
+	{	
 			InitializeComponent();
 
 			foreach (Consumer c in consumers)
