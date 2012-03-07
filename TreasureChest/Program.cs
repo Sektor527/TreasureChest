@@ -22,8 +22,6 @@ namespace TreasureChest
 
 			Serializer.Deserialize(sessions, consumers, inventory);
 
-			Application.Run(new FormMain(sessions, consumers, inventory));
-
 			consumers.Add(Consumer.Wim);
 			consumers.Add(Consumer.Bart);
 			consumers.Add(Consumer.Koen);
@@ -31,6 +29,8 @@ namespace TreasureChest
 			consumers.Add(Consumer.Frederik);
 			consumers.Add(Consumer.Christoph);
 			consumers.Add(Consumer.Christof);
+
+			Application.Run(new FormMain(sessions, consumers, inventory));
 
 			Serializer.Serialize(sessions, consumers, inventory);
 		}

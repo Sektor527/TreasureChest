@@ -11,12 +11,17 @@ namespace TreasureChest
 {
 	internal partial class FormConsumers : Form
 	{
-		private List<Consumer> _consumers;
 		public FormConsumers(List<Consumer> consumers)
 		{
 			InitializeComponent();
 
-			_consumers = consumers;
+			foreach (Consumer c in consumers)
+			{
+				ConsumerCredit ctrl = new ConsumerCredit();
+				ctrl.Tag = c;
+
+				_consumerPanel.Controls.Add(ctrl);
+			}
 		}
 
 		private void FormConsumers_Load(object sender, EventArgs e)
@@ -24,62 +29,14 @@ namespace TreasureChest
 			UpdateCredits();
 		}
 
-		private void btnDeposit_Click(object sender, EventArgs e)
+		private void Deposit(object sender, EventArgs e)
 		{
-			if (!string.IsNullOrEmpty(txtWim.Text))
+			foreach (ConsumerCredit c in _consumerPanel.Controls)
 			{
-				float amount;
-				if (float.TryParse(txtWim.Text, out amount))
-					Consumer.Wim.Deposit(amount);
-				txtWim.Text = "";
-			}
+				Consumer consumer = c.Tag as Consumer;
+				if (consumer == null) continue;
 
-			if (!string.IsNullOrEmpty(txtBart.Text))
-			{
-				float amount;
-				if (float.TryParse(txtBart.Text, out amount))
-					Consumer.Bart.Deposit(amount);
-				txtBart.Text = "";
-			}
-
-			if (!string.IsNullOrEmpty(txtJo.Text))
-			{
-				float amount;
-				if (float.TryParse(txtJo.Text, out amount))
-					Consumer.Jo.Deposit(amount);
-				txtJo.Text = "";
-			}
-
-			if (!string.IsNullOrEmpty(txtKoen.Text))
-			{
-				float amount;
-				if (float.TryParse(txtKoen.Text, out amount))
-					Consumer.Koen.Deposit(amount);
-				txtKoen.Text = "";
-			}
-
-			if (!string.IsNullOrEmpty(txtFrederik.Text))
-			{
-				float amount;
-				if (float.TryParse(txtFrederik.Text, out amount))
-					Consumer.Frederik.Deposit(amount);
-				txtFrederik.Text = "";
-			}
-
-			if (!string.IsNullOrEmpty(txtChristoph.Text))
-			{
-				float amount;
-				if (float.TryParse(txtChristoph.Text, out amount))
-					Consumer.Christoph.Deposit(amount);
-				txtChristoph.Text = "";
-			}
-
-			if (!string.IsNullOrEmpty(txtChristof.Text))
-			{
-				float amount;
-				if (float.TryParse(txtChristof.Text, out amount))
-					Consumer.Christof.Deposit(amount);
-				txtChristof.Text = "";
+				consumer.Deposit(c.Deposit);
 			}
 
 			UpdateCredits();
@@ -87,26 +44,15 @@ namespace TreasureChest
 
 		private void UpdateCredits()
 		{
-			lblWim.Text = Consumer.Wim.Credit.ToString();
-			lblWim.ForeColor = Consumer.Wim.Credit <= 0 ? Color.Red : Color.Black;
+			foreach (ConsumerCredit c in _consumerPanel.Controls)
+			{
+				Consumer consumer = c.Tag as Consumer;
+				if (consumer == null) continue;
 
-			lblBart.Text = Consumer.Bart.Credit.ToString();
-			lblBart.ForeColor = Consumer.Bart.Credit <= 0 ? Color.Red : Color.Black;
-
-			lblJo.Text = Consumer.Jo.Credit.ToString();
-			lblJo.ForeColor = Consumer.Jo.Credit <= 0 ? Color.Red : Color.Black;
-
-			lblKoen.Text = Consumer.Koen.Credit.ToString();
-			lblKoen.ForeColor = Consumer.Koen.Credit <= 0 ? Color.Red : Color.Black;
-
-			lblFrederik.Text = Consumer.Frederik.Credit.ToString();
-			lblFrederik.ForeColor = Consumer.Frederik.Credit <= 0 ? Color.Red : Color.Black;
-
-			lblChristoph.Text = Consumer.Christoph.Credit.ToString();
-			lblChristoph.ForeColor = Consumer.Christoph.Credit <= 0 ? Color.Red : Color.Black;
-
-			lblChristof.Text = Consumer.Christof.Credit.ToString();
-			lblChristof.ForeColor = Consumer.Christof.Credit <= 0 ? Color.Red : Color.Black;
+				c.ConsumerName = consumer.Name;
+				c.Credit = consumer.Credit;
+				c.Deposit = 0f;
+			}
 		}
 	}
 }
