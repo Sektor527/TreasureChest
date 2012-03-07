@@ -36,7 +36,7 @@
 			// btnDeposit
 			// 
 			this.btnDeposit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this.btnDeposit.Location = new System.Drawing.Point(9, 308);
+			this.btnDeposit.Location = new System.Drawing.Point(9, 222);
 			this.btnDeposit.Name = "btnDeposit";
 			this.btnDeposit.Size = new System.Drawing.Size(75, 23);
 			this.btnDeposit.TabIndex = 7;
@@ -48,7 +48,7 @@
 			// 
 			this.btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.btnClose.DialogResult = System.Windows.Forms.DialogResult.OK;
-			this.btnClose.Location = new System.Drawing.Point(285, 308);
+			this.btnClose.Location = new System.Drawing.Point(145, 222);
 			this.btnClose.Name = "btnClose";
 			this.btnClose.Size = new System.Drawing.Size(75, 23);
 			this.btnClose.TabIndex = 8;
@@ -63,7 +63,7 @@
 			this._consumerPanel.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
 			this._consumerPanel.Location = new System.Drawing.Point(9, 9);
 			this._consumerPanel.Name = "_consumerPanel";
-			this._consumerPanel.Size = new System.Drawing.Size(354, 293);
+			this._consumerPanel.Size = new System.Drawing.Size(214, 207);
 			this._consumerPanel.TabIndex = 23;
 			// 
 			// FormConsumers
@@ -72,10 +72,11 @@
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.CancelButton = this.btnClose;
-			this.ClientSize = new System.Drawing.Size(372, 343);
+			this.ClientSize = new System.Drawing.Size(232, 257);
 			this.Controls.Add(this._consumerPanel);
 			this.Controls.Add(this.btnClose);
 			this.Controls.Add(this.btnDeposit);
+			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
 			this.Name = "FormConsumers";
 			this.Text = "FormConsumers";
 			this.Load += new System.EventHandler(this.FormConsumers_Load);

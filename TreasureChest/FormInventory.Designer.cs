@@ -133,6 +133,7 @@
 			this.Controls.Add(this.btnClose);
 			this.Controls.Add(this.btnAdd);
 			this.Controls.Add(this.lstInventory);
+			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
 			this.Name = "FormInventory";
 			this.Text = "FormInventory";
 			this.Load += new System.EventHandler(this.FormInventory_Load);

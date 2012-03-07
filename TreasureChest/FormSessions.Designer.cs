@@ -169,6 +169,7 @@
 			this.Controls.Add(this.btnAddSession);
 			this.Controls.Add(this.lstSessions);
 			this.Controls.Add(this.btnDeleteSession);
+			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
 			this.Name = "FormSessions";
 			this.Text = "FormSessions";
 			this.Load += new System.EventHandler(this.FormSessions_Load);
