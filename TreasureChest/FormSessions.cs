@@ -25,6 +25,17 @@ namespace TreasureChest
 			_consumers = consumers;
 
 			_stash = stash;
+
+			foreach (Consumer c in consumers)
+			{
+				CheckBox checkbox = new CheckBox();
+				checkbox.Text = c.Name;
+				checkbox.Tag = c;
+				checkbox.CheckedChanged += OnConsumerCheckChanged;
+				checkbox.Margin = new Padding(0);
+
+				_consumersPanel.Controls.Add(checkbox);
+			}
 		}
 
 		private void FormSessions_Load(object sender, EventArgs e)
@@ -51,13 +62,13 @@ namespace TreasureChest
 			groupBox2.Enabled = true;
 			dateTimePicker.Enabled = true;
 
-			chkConsumerWim.Checked = s.Consumers.Contains(Consumer.Wim);
-			chkConsumerBart.Checked = s.Consumers.Contains(Consumer.Bart);
-			chkConsumerJo.Checked = s.Consumers.Contains(Consumer.Jo);
-			chkConsumerKoen.Checked = s.Consumers.Contains(Consumer.Koen);
-			chkConsumerFrederik.Checked = s.Consumers.Contains(Consumer.Frederik);
-			chkConsumerChristoph.Checked = s.Consumers.Contains(Consumer.Christoph);
-			chkConsumerChristof.Checked = s.Consumers.Contains(Consumer.Christof);
+			foreach (CheckBox checkbox in _consumersPanel.Controls)
+			{
+				Consumer c = checkbox.Tag as Consumer;
+				if (c == null) continue; 
+
+				checkbox.Checked = s.Consumers.Contains(c);
+			}
 
 			dateTimePicker.Value = s.Date;
 
@@ -118,27 +129,18 @@ namespace TreasureChest
 		private void OnConsumerCheckChanged(object sender, EventArgs e)
 		{
 			Session s = lstSessions.SelectedItem as Session;
+			if (s == null) return;
 
-			if ((sender as CheckBox).Checked)
-			{
-				if (sender == chkConsumerWim) s.Add(Consumer.Wim);
-				if (sender == chkConsumerBart) s.Add(Consumer.Bart);
-				if (sender == chkConsumerJo) s.Add(Consumer.Jo);
-				if (sender == chkConsumerKoen) s.Add(Consumer.Koen);
-				if (sender == chkConsumerChristof) s.Add(Consumer.Christof);
-				if (sender == chkConsumerChristoph) s.Add(Consumer.Christoph);
-				if (sender == chkConsumerFrederik) s.Add(Consumer.Frederik);
-			}
+			CheckBox checkbox = sender as CheckBox;
+			if (checkbox == null) return;
+
+			Consumer consumer = checkbox.Tag as Consumer;
+			if (consumer == null) return;
+
+			if (checkbox.Checked)
+				s.Add(consumer);
 			else
-			{
-				if (sender == chkConsumerWim) s.Remove(Consumer.Wim);
-				if (sender == chkConsumerBart) s.Remove(Consumer.Bart);
-				if (sender == chkConsumerJo) s.Remove(Consumer.Jo);
-				if (sender == chkConsumerKoen) s.Remove(Consumer.Koen);
-				if (sender == chkConsumerChristof) s.Remove(Consumer.Christof);
-				if (sender == chkConsumerChristoph) s.Remove(Consumer.Christoph);
-				if (sender == chkConsumerFrederik) s.Remove(Consumer.Frederik);
-			}
+				s.Remove(consumer);
 		}
 
 		private void btnConsume_Click(object sender, EventArgs e)

@@ -31,14 +31,8 @@
 			this.lstSessions = new System.Windows.Forms.ListBox();
 			this.btnAddSession = new System.Windows.Forms.Button();
 			this.btnDeleteSession = new System.Windows.Forms.Button();
-			this.chkConsumerWim = new System.Windows.Forms.CheckBox();
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
-			this.chkConsumerChristof = new System.Windows.Forms.CheckBox();
-			this.chkConsumerChristoph = new System.Windows.Forms.CheckBox();
-			this.chkConsumerFrederik = new System.Windows.Forms.CheckBox();
-			this.chkConsumerKoen = new System.Windows.Forms.CheckBox();
-			this.chkConsumerJo = new System.Windows.Forms.CheckBox();
-			this.chkConsumerBart = new System.Windows.Forms.CheckBox();
+			this._consumersPanel = new System.Windows.Forms.FlowLayoutPanel();
 			this.dateTimePicker = new System.Windows.Forms.DateTimePicker();
 			this.groupBox2 = new System.Windows.Forms.GroupBox();
 			this.btnUnconsume = new System.Windows.Forms.Button();
@@ -83,26 +77,9 @@
 			this.btnDeleteSession.UseVisualStyleBackColor = true;
 			this.btnDeleteSession.Click += new System.EventHandler(this.btnDeleteSession_Click);
 			// 
-			// chkConsumerWim
-			// 
-			this.chkConsumerWim.AutoSize = true;
-			this.chkConsumerWim.Location = new System.Drawing.Point(6, 19);
-			this.chkConsumerWim.Name = "chkConsumerWim";
-			this.chkConsumerWim.Size = new System.Drawing.Size(47, 17);
-			this.chkConsumerWim.TabIndex = 3;
-			this.chkConsumerWim.Text = "Wim";
-			this.chkConsumerWim.UseVisualStyleBackColor = true;
-			this.chkConsumerWim.CheckedChanged += new System.EventHandler(this.OnConsumerCheckChanged);
-			// 
 			// groupBox1
 			// 
-			this.groupBox1.Controls.Add(this.chkConsumerChristof);
-			this.groupBox1.Controls.Add(this.chkConsumerChristoph);
-			this.groupBox1.Controls.Add(this.chkConsumerFrederik);
-			this.groupBox1.Controls.Add(this.chkConsumerKoen);
-			this.groupBox1.Controls.Add(this.chkConsumerJo);
-			this.groupBox1.Controls.Add(this.chkConsumerBart);
-			this.groupBox1.Controls.Add(this.chkConsumerWim);
+			this.groupBox1.Controls.Add(this._consumersPanel);
 			this.groupBox1.Location = new System.Drawing.Point(114, 38);
 			this.groupBox1.Name = "groupBox1";
 			this.groupBox1.Size = new System.Drawing.Size(101, 214);
@@ -110,71 +87,13 @@
 			this.groupBox1.TabStop = false;
 			this.groupBox1.Text = "Consumers";
 			// 
-			// chkConsumerChristof
+			// _consumersPanel
 			// 
-			this.chkConsumerChristof.AutoSize = true;
-			this.chkConsumerChristof.Location = new System.Drawing.Point(6, 157);
-			this.chkConsumerChristof.Name = "chkConsumerChristof";
-			this.chkConsumerChristof.Size = new System.Drawing.Size(61, 17);
-			this.chkConsumerChristof.TabIndex = 9;
-			this.chkConsumerChristof.Text = "Christof";
-			this.chkConsumerChristof.UseVisualStyleBackColor = true;
-			this.chkConsumerChristof.CheckedChanged += new System.EventHandler(this.OnConsumerCheckChanged);
-			// 
-			// chkConsumerChristoph
-			// 
-			this.chkConsumerChristoph.AutoSize = true;
-			this.chkConsumerChristoph.Location = new System.Drawing.Point(6, 134);
-			this.chkConsumerChristoph.Name = "chkConsumerChristoph";
-			this.chkConsumerChristoph.Size = new System.Drawing.Size(70, 17);
-			this.chkConsumerChristoph.TabIndex = 8;
-			this.chkConsumerChristoph.Text = "Christoph";
-			this.chkConsumerChristoph.UseVisualStyleBackColor = true;
-			this.chkConsumerChristoph.CheckedChanged += new System.EventHandler(this.OnConsumerCheckChanged);
-			// 
-			// chkConsumerFrederik
-			// 
-			this.chkConsumerFrederik.AutoSize = true;
-			this.chkConsumerFrederik.Location = new System.Drawing.Point(6, 111);
-			this.chkConsumerFrederik.Name = "chkConsumerFrederik";
-			this.chkConsumerFrederik.Size = new System.Drawing.Size(64, 17);
-			this.chkConsumerFrederik.TabIndex = 7;
-			this.chkConsumerFrederik.Text = "Frederik";
-			this.chkConsumerFrederik.UseVisualStyleBackColor = true;
-			this.chkConsumerFrederik.CheckedChanged += new System.EventHandler(this.OnConsumerCheckChanged);
-			// 
-			// chkConsumerKoen
-			// 
-			this.chkConsumerKoen.AutoSize = true;
-			this.chkConsumerKoen.Location = new System.Drawing.Point(6, 88);
-			this.chkConsumerKoen.Name = "chkConsumerKoen";
-			this.chkConsumerKoen.Size = new System.Drawing.Size(51, 17);
-			this.chkConsumerKoen.TabIndex = 6;
-			this.chkConsumerKoen.Text = "Koen";
-			this.chkConsumerKoen.UseVisualStyleBackColor = true;
-			this.chkConsumerKoen.CheckedChanged += new System.EventHandler(this.OnConsumerCheckChanged);
-			// 
-			// chkConsumerJo
-			// 
-			this.chkConsumerJo.AutoSize = true;
-			this.chkConsumerJo.Location = new System.Drawing.Point(6, 65);
-			this.chkConsumerJo.Name = "chkConsumerJo";
-			this.chkConsumerJo.Size = new System.Drawing.Size(37, 17);
-			this.chkConsumerJo.TabIndex = 5;
-			this.chkConsumerJo.Text = "Jo";
-			this.chkConsumerJo.UseVisualStyleBackColor = true;
-			this.chkConsumerJo.CheckedChanged += new System.EventHandler(this.OnConsumerCheckChanged);
-			// 
-			// chkConsumerBart
-			// 
-			this.chkConsumerBart.AutoSize = true;
-			this.chkConsumerBart.Location = new System.Drawing.Point(6, 42);
-			this.chkConsumerBart.Name = "chkConsumerBart";
-			this.chkConsumerBart.Size = new System.Drawing.Size(45, 17);
-			this.chkConsumerBart.TabIndex = 4;
-			this.chkConsumerBart.Text = "Bart";
-			this.chkConsumerBart.UseVisualStyleBackColor = true;
-			this.chkConsumerBart.CheckedChanged += new System.EventHandler(this.OnConsumerCheckChanged);
+			this._consumersPanel.Location = new System.Drawing.Point(8, 18);
+			this._consumersPanel.Margin = new System.Windows.Forms.Padding(0);
+			this._consumersPanel.Name = "_consumersPanel";
+			this._consumersPanel.Size = new System.Drawing.Size(86, 187);
+			this._consumersPanel.TabIndex = 10;
 			// 
 			// dateTimePicker
 			// 
@@ -254,7 +173,6 @@
 			this.Text = "FormSessions";
 			this.Load += new System.EventHandler(this.FormSessions_Load);
 			this.groupBox1.ResumeLayout(false);
-			this.groupBox1.PerformLayout();
 			this.groupBox2.ResumeLayout(false);
 			this.ResumeLayout(false);
 
@@ -265,19 +183,13 @@
 		private System.Windows.Forms.ListBox lstSessions;
 		private System.Windows.Forms.Button btnAddSession;
 		private System.Windows.Forms.Button btnDeleteSession;
-		private System.Windows.Forms.CheckBox chkConsumerWim;
 		private System.Windows.Forms.GroupBox groupBox1;
-		private System.Windows.Forms.CheckBox chkConsumerChristof;
-		private System.Windows.Forms.CheckBox chkConsumerChristoph;
-		private System.Windows.Forms.CheckBox chkConsumerFrederik;
-		private System.Windows.Forms.CheckBox chkConsumerKoen;
-		private System.Windows.Forms.CheckBox chkConsumerJo;
-		private System.Windows.Forms.CheckBox chkConsumerBart;
 		private System.Windows.Forms.DateTimePicker dateTimePicker;
 		private System.Windows.Forms.GroupBox groupBox2;
 		private System.Windows.Forms.ListBox lstConsumable;
 		private System.Windows.Forms.ListBox lstConsumed;
 		private System.Windows.Forms.Button btnUnconsume;
 		private System.Windows.Forms.Button btnConsume;
+		private System.Windows.Forms.FlowLayoutPanel _consumersPanel;
 	}
 }
