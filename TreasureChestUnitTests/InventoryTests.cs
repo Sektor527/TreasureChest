@@ -86,23 +86,38 @@ namespace TreasureChestUnitTests
 			Inventory i = new Inventory();
 
 			i.Add(2, "Hopus", 3.00f);
-			i.Add(1, "Lays Peper & Zout", 3.20f);
+			i.Add(2, "Lays Peper & Zout", 3.20f);
 
 			Item item1 = i.Consume("Hopus");
-			Assert.AreEqual(2, i.Count());
+			Assert.AreEqual(3, i.Count());
 			Assert.AreEqual("Hopus", item1.Name);
 
 			Item item2 = i.Consume(0);
-			Assert.AreEqual(1, i.Count());
+			Assert.AreEqual(2, i.Count());
 			Assert.AreEqual("Hopus", item2.Name);
 
 			Item item3 = i.Consume(i.Get("Lays Peper & Zout"));
-			Assert.AreEqual(0, i.Count());
+			Assert.AreEqual(1, i.Count());
 			Assert.AreEqual("Lays Peper & Zout", item3.Name);
+		}
 
-			Item item4 = i.Consume(new Item {Name = "Something", UnitPrice = 1f});
-			Assert.AreEqual(0, i.Count());
-			Assert.AreEqual(null, item4.Name);
+		[Test]
+		public void Consume_InvalidItems()
+		{
+			Inventory i = new Inventory();
+			i.Add(2, "Hopus", 3.00f);
+
+			Item item1 = i.Consume("Wrong");
+			Assert.IsNull(item1);
+			Assert.AreEqual(2, i.Count());
+
+			Item item2 = i.Consume(6);
+			Assert.IsNull(item2);
+			Assert.AreEqual(2, i.Count());
+
+			Item item3 = i.Consume(new Item());
+			Assert.IsNull(item3);
+			Assert.AreEqual(2, i.Count());
 		}
 
 		[Test]

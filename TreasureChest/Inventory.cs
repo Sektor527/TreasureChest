@@ -75,6 +75,8 @@ namespace TreasureChest
 
 		public Item Get(int index)
 		{
+			if (index < 0 || index > _inventory.Count) return null;
+
 			return _inventory[index];
 		}
 
@@ -105,7 +107,7 @@ namespace TreasureChest
 
 		public Item Consume(Item item)
 		{
-			if (!_inventory.Contains(item)) return new Item();
+			if (!_inventory.Contains(item)) return null;
 
 			_inventory.Remove(item);
 			return item;
