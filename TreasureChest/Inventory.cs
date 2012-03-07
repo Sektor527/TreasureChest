@@ -6,7 +6,7 @@ using System.Text;
 
 namespace TreasureChest
 {
-	struct Item
+	class Item
 	{
 		internal string Name;
 		internal float UnitPrice;
@@ -20,7 +20,6 @@ namespace TreasureChest
 		{
 			if (obj == null) return false;
 			if (obj.GetType() != typeof(Item)) return false;
-
 
 			return Name.Equals(((Item) obj).Name) && UnitPrice.Equals(((Item) obj).UnitPrice);
 		}
@@ -71,7 +70,7 @@ namespace TreasureChest
 					return _inventory[i];
 			}
 
-			return new Item { Name = name, UnitPrice = 0f };
+			return null;
 		}
 
 		public Item Get(int index)
@@ -87,7 +86,7 @@ namespace TreasureChest
 					return _inventory[i];
 			}
 
-			return new Item {Name = name, UnitPrice = 0f};
+			return null;
 		}
 
 		public Item Consume(string name)
