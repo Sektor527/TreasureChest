@@ -28,33 +28,12 @@ namespace TreasureChest
 		{
 			XmlNode nodeConsumers = root.AppendChild(_document.CreateElement("Consumers"));
 
-			XmlElement nodeWim = (XmlElement)nodeConsumers.AppendChild(_document.CreateElement("Consumer"));
-			nodeWim.SetAttribute("Name", Consumer.Wim.Name);
-			nodeWim.SetAttribute("Credit", Consumer.Wim.Credit.ToString(CultureInfo.InvariantCulture));
-
-			XmlElement nodeBart = (XmlElement)nodeConsumers.AppendChild(_document.CreateElement("Consumer"));
-			nodeBart.SetAttribute("Name", Consumer.Bart.Name);
-			nodeBart.SetAttribute("Credit", Consumer.Bart.Credit.ToString(CultureInfo.InvariantCulture));
-
-			XmlElement nodeKoen = (XmlElement)nodeConsumers.AppendChild(_document.CreateElement("Consumer"));
-			nodeKoen.SetAttribute("Name", Consumer.Koen.Name);
-			nodeKoen.SetAttribute("Credit", Consumer.Koen.Credit.ToString(CultureInfo.InvariantCulture));
-
-			XmlElement nodeJo = (XmlElement)nodeConsumers.AppendChild(_document.CreateElement("Consumer"));
-			nodeJo.SetAttribute("Name", Consumer.Jo.Name);
-			nodeJo.SetAttribute("Credit", Consumer.Jo.Credit.ToString(CultureInfo.InvariantCulture));
-
-			XmlElement nodeFrederik = (XmlElement)nodeConsumers.AppendChild(_document.CreateElement("Consumer"));
-			nodeFrederik.SetAttribute("Name", Consumer.Frederik.Name);
-			nodeFrederik.SetAttribute("Credit", Consumer.Frederik.Credit.ToString(CultureInfo.InvariantCulture));
-
-			XmlElement nodeChristoph = (XmlElement)nodeConsumers.AppendChild(_document.CreateElement("Consumer"));
-			nodeChristoph.SetAttribute("Name", Consumer.Christoph.Name);
-			nodeChristoph.SetAttribute("Credit", Consumer.Christoph.Credit.ToString(CultureInfo.InvariantCulture));
-
-			XmlElement nodeChristof = (XmlElement)nodeConsumers.AppendChild(_document.CreateElement("Consumer"));
-			nodeChristof.SetAttribute("Name", Consumer.Christof.Name);
-			nodeChristof.SetAttribute("Credit", Consumer.Christof.Credit.ToString(CultureInfo.InvariantCulture));
+			foreach (Consumer c in consumers)
+			{
+				XmlElement node = (XmlElement) nodeConsumers.AppendChild(_document.CreateElement("Consumer"));
+				node.SetAttribute("Name", c.Name);
+				node.SetAttribute("Credit", c.Credit.ToString(CultureInfo.InvariantCulture));
+			}
 		}
 
 		private static void SerializeSessions(XmlNode root, List<Session> sessions)

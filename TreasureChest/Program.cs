@@ -24,6 +24,14 @@ namespace TreasureChest
 
 			Application.Run(new FormMain(sessions, consumers, inventory));
 
+			consumers.Add(Consumer.Wim);
+			consumers.Add(Consumer.Bart);
+			consumers.Add(Consumer.Koen);
+			consumers.Add(Consumer.Jo);
+			consumers.Add(Consumer.Frederik);
+			consumers.Add(Consumer.Christoph);
+			consumers.Add(Consumer.Christof);
+
 			Serializer.Serialize(sessions, consumers, inventory);
 		}
 	}
