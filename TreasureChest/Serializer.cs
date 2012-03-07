@@ -92,30 +92,11 @@ namespace TreasureChest
 		{
 			foreach (XmlNode nodeConsumer in document.GetElementsByTagName("Consumer"))
 			{
-				switch (nodeConsumer.Attributes["Name"].Value)
-				{
-					case "Wim":
-						Consumer.Wim.Credit = float.Parse(nodeConsumer.Attributes["Credit"].Value, CultureInfo.InvariantCulture);
-						break;
-					case "Bart":
-						Consumer.Bart.Credit = float.Parse(nodeConsumer.Attributes["Credit"].Value, CultureInfo.InvariantCulture);
-						break;
-					case "Koen":
-						Consumer.Koen.Credit = float.Parse(nodeConsumer.Attributes["Credit"].Value, CultureInfo.InvariantCulture);
-						break;
-					case "Jo":
-						Consumer.Jo.Credit = float.Parse(nodeConsumer.Attributes["Credit"].Value, CultureInfo.InvariantCulture);
-						break;
-					case "Frederik":
-						Consumer.Frederik.Credit = float.Parse(nodeConsumer.Attributes["Credit"].Value, CultureInfo.InvariantCulture);
-						break;
-					case "Christoph":
-						Consumer.Christoph.Credit = float.Parse(nodeConsumer.Attributes["Credit"].Value, CultureInfo.InvariantCulture);
-						break;
-					case "Christof":
-						Consumer.Christof.Credit = float.Parse(nodeConsumer.Attributes["Credit"].Value, CultureInfo.InvariantCulture);
-						break;
-				}
+				string name = nodeConsumer.Attributes["Name"].Value;
+				Consumer consumer = new Consumer(name);
+
+				consumer.Credit = float.Parse(nodeConsumer.Attributes["Credit"].Value, CultureInfo.InvariantCulture);
+				consumers.Add(consumer);
 			}
 		}
 
