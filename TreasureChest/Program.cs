@@ -20,9 +20,11 @@ namespace TreasureChest
 			List<Consumer> consumers = new List<Consumer>();
 			Inventory inventory = new Inventory();
 
+			Controller controller = new Controller(sessions, consumers, inventory);
+
 			Serializer.Deserialize(sessions, consumers, inventory);
 
-			Application.Run(new FormMain(sessions, consumers, inventory));
+			Application.Run(new FormMain(controller));
 
 			Serializer.Serialize(sessions, consumers, inventory);
 		}

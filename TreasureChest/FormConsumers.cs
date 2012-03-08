@@ -11,11 +11,14 @@ namespace TreasureChest
 {
 	internal partial class FormConsumers : Form
 	{
-		public FormConsumers(List<Consumer> consumers)
-	{	
+		Controller _controller;
+		public FormConsumers(Controller controller)
+		{	
 			InitializeComponent();
 
-			foreach (Consumer c in consumers)
+			_controller = controller;
+
+			foreach (Consumer c in controller.Consumers)
 			{
 				ConsumerCredit ctrl = new ConsumerCredit();
 				ctrl.Tag = c;
@@ -34,9 +37,7 @@ namespace TreasureChest
 			foreach (ConsumerCredit c in _consumerPanel.Controls)
 			{
 				Consumer consumer = c.Tag as Consumer;
-				if (consumer == null) continue;
-
-				consumer.Deposit(c.Deposit);
+				_controller.Deposit(consumer, c.Deposit);
 			}
 
 			UpdateCredits();

@@ -80,7 +80,7 @@ namespace TreasureChest
 			return _inventory[index];
 		}
 
-		public Item GetCheapest(string name)
+		private Item GetCheapest(string name)
 		{
 			for (int i = _inventory.Count - 1; i >= 0; --i)
 			{

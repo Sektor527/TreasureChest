@@ -11,19 +11,15 @@ namespace TreasureChest
 {
 	partial class FormSessions : Form
 	{
-		private List<Session> _sessions;
-		private Inventory _stash;
+		private Controller _controller;
 
-		public FormSessions(List<Session> sessions, List<Consumer> consumers, Inventory stash)
+		public FormSessions(Controller controller)
 		{
 			InitializeComponent();
 
-			_sessions = sessions;
-			_sessions.Sort();
+			_controller = controller;
 
-			_stash = stash;
-
-			foreach (Consumer c in consumers)
+			foreach (Consumer c in _controller.Consumers)
 			{
 				CheckBox checkbox = new CheckBox();
 				checkbox.Text = c.Name;
@@ -37,7 +33,7 @@ namespace TreasureChest
 
 		private void FormSessions_Load(object sender, EventArgs e)
 		{
-			foreach (Session s in _sessions)
+			foreach (Session s in _controller.Sessions)
 				lstSessions.Items.Add(s);
 
 			UpdateSessionData();
@@ -64,7 +60,7 @@ namespace TreasureChest
 				Consumer c = checkbox.Tag as Consumer;
 				if (c == null) continue; 
 
-				checkbox.Checked = s.Consumers.Contains(c);
+				checkbox.Checked = _controller.IsConsumerInSession(s, c);
 			}
 
 			dateTimePicker.Value = s.Date;
@@ -72,15 +68,15 @@ namespace TreasureChest
 			lstConsumable.Items.Clear();
 			lstConsumed.Items.Clear();
 
-			for (int i = 0; i < _stash.Count(); ++i)
+			for (int i = 0; i < _controller.GetInventorySize(); ++i)
 			{
-				Item item = _stash.Get(i);
+				Item item = _controller.GetItemFromInventory(i);
 				lstConsumable.Items.Add(item);
 			}
 
-			for (int i = 0; i < s.ConsumedItems.Count(); ++i)
+			for (int i = 0; i < _controller.GetConsumedItemsCount(s); ++i)
 			{
-				Item item = s.ConsumedItems.Get(i);
+				Item item = _controller.GetItemFromSession(s,i);
 				lstConsumed.Items.Add(item);
 			}
 		}
@@ -88,9 +84,9 @@ namespace TreasureChest
 		private void btnAddSession_Click(object sender, EventArgs e)
 		{
 			Session s = new Session();
-			_sessions.Add(s);
-			_sessions.Sort();
-			lstSessions.Items.Insert(_sessions.IndexOf(s), s);
+			_controller.Sessions.Add(s);
+			_controller.Sessions.Sort();
+			lstSessions.Items.Insert(_controller.Sessions.IndexOf(s), s);
 			lstSessions.SelectedItem = s;
 		}
 
@@ -107,9 +103,9 @@ namespace TreasureChest
 
 			s.Date = dateTimePicker.Value;
 
-			_sessions.Sort();
+			_controller.Sessions.Sort();
 			lstSessions.Items.Remove(s);
-			lstSessions.Items.Insert(_sessions.IndexOf(s), s);
+			lstSessions.Items.Insert(_controller.Sessions.IndexOf(s), s);
 			lstSessions.SelectedItem = s;
 		}
 
@@ -119,25 +115,22 @@ namespace TreasureChest
 
 			if (s == null) return;
 
-			_sessions.Remove(s);
+			_controller.Sessions.Remove(s);
 			lstSessions.Items.Remove(s);
 		}
 
 		private void OnConsumerCheckChanged(object sender, EventArgs e)
 		{
-			Session s = lstSessions.SelectedItem as Session;
-			if (s == null) return;
-
 			CheckBox checkbox = sender as CheckBox;
 			if (checkbox == null) return;
 
+			Session s = lstSessions.SelectedItem as Session;
 			Consumer consumer = checkbox.Tag as Consumer;
-			if (consumer == null) return;
 
 			if (checkbox.Checked)
-				s.Add(consumer);
+				_controller.AddConsumerToSession(s, consumer);
 			else
-				s.Remove(consumer);
+				_controller.RemoveConsumerFromSession(s, consumer);
 		}
 
 		private void btnConsume_Click(object sender, EventArgs e)
@@ -152,16 +145,12 @@ namespace TreasureChest
 				selection.Add((Item) selected);
 			}
 
+			_controller.ConsumeItems(s, selection);
+
 			foreach (Item item in selection)
 			{
-				_stash.Consume(item);
 				lstConsumable.Items.Remove(item);
-
-				s.ConsumedItems.Add(item);
 				lstConsumed.Items.Add(item);
-
-				foreach (Consumer c in s.Consumers)
-					c.Withdraw(item.UnitPrice / s.Consumers.Count);
 			}
 		}
 
@@ -177,16 +166,12 @@ namespace TreasureChest
 				selection.Add((Item)selected);
 			}
 
+			_controller.UnconsumeItems(s, selection);
+
 			foreach (Item item in selection)
 			{
-				s.ConsumedItems.Consume(item);
 				lstConsumed.Items.Remove(item);
-
-				_stash.Add(item);
 				lstConsumable.Items.Add(item);
-
-				foreach (Consumer c in s.Consumers)
-					c.Deposit(item.UnitPrice / s.Consumers.Count);
 			}
 		}
 	}

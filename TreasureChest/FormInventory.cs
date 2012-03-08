@@ -12,18 +12,18 @@ namespace TreasureChest
 {
 	internal partial class FormInventory : Form
 	{
-		private Inventory _inventory;
+		private Controller _controller;
 
-		public FormInventory(Inventory inventory)
+		public FormInventory(Controller controller)
 		{
 			InitializeComponent();
 
-			_inventory = inventory;
+			_controller = controller;
 		}
 
 		private void FormInventory_Load(object sender, EventArgs e)
 		{
-			for (int i = 0; i < _inventory.Count(); ++i)
+			for (int i = 0; i < _controller.GetInventorySize(); ++i)
 				AddListViewItem(i);
 
 			lstInventory.Columns[0].Width = -1;
@@ -32,16 +32,16 @@ namespace TreasureChest
 		private void btnAdd_Click(object sender, EventArgs e)
 		{
 			// Update list
-			_inventory.Add(1, txtProductName.Text, float.Parse(txtProductPrice.Text, CultureInfo.InvariantCulture), (int)numProductCount.Value);
+			_controller.AddItemToInventory(1, txtProductName.Text, float.Parse(txtProductPrice.Text, CultureInfo.InvariantCulture), (int)numProductCount.Value);
 
 			// Update interface
 			lstInventory.Items.Clear();
-			for (int i = 0; i < _inventory.Count(); ++i)
+			for (int i = 0; i < _controller.GetInventorySize(); ++i)
 				AddListViewItem(i);
 
 			lstInventory.Columns[0].Width = -1;
 
-			// Rest fields
+			// Reset fields
 			txtProductName.Text = "";
 			txtProductPrice.Text = "";
 			numProductCount.Value = 1;
@@ -51,7 +51,7 @@ namespace TreasureChest
 
 		private void AddListViewItem(int index)
 		{
-			Item item = _inventory.Get(index);
+			Item item = _controller.GetItemFromInventory(index);
 
 			ListViewItem lvitem = new ListViewItem(new string[] { item.Name, item.UnitPrice.ToString(CultureInfo.InvariantCulture) });
 			lstInventory.Items.Add(lvitem);
@@ -61,11 +61,11 @@ namespace TreasureChest
 		{
 			// Update list
 			foreach (ListViewItem item in lstInventory.SelectedItems)
-				_inventory.Remove(item.Text);
+				_controller.RemoveItemFromInventory(item.Text);
 
 			// Update interface
 			lstInventory.Items.Clear();
-			for (int i = 0; i < _inventory.Count(); ++i)
+			for (int i = 0; i < _controller.GetInventorySize(); ++i)
 				AddListViewItem(i);
 
 			lstInventory.Columns[0].Width = -1;
