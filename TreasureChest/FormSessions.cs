@@ -84,8 +84,7 @@ namespace TreasureChest
 		private void btnAddSession_Click(object sender, EventArgs e)
 		{
 			Session s = new Session();
-			_controller.Sessions.Add(s);
-			_controller.Sessions.Sort();
+			_controller.AddSession(s);
 			lstSessions.Items.Insert(_controller.Sessions.IndexOf(s), s);
 			lstSessions.SelectedItem = s;
 		}

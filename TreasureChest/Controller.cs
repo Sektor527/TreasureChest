@@ -32,6 +32,11 @@ namespace TreasureChest
 			_inventory.Add(count, name, price, units);
 		}
 
+		internal Item GetItemFromInventory(string name)
+		{
+			return _inventory.Get(name);
+		}
+
 		internal Item GetItemFromInventory(int index)
 		{
 			return _inventory.Get(index);
@@ -52,35 +57,51 @@ namespace TreasureChest
 			return _inventory.Count(name);
 		}
 
+		internal void AddSession(Session session)
+		{
+			if (session == null) throw new ArgumentNullException("Invalid session");
+			Sessions.Add(session);
+			Sessions.Sort();
+		}
+
 		internal void AddConsumerToSession(Session session, Consumer consumer)
 		{
-			if (session == null || consumer == null) return;
+			if (session == null) throw new ArgumentNullException("Invalid session");
+			if (consumer == null) throw new ArgumentNullException("Invalid consumer");
 			session.Add(consumer);
 		}
 
 		internal void RemoveConsumerFromSession(Session session, Consumer consumer)
 		{
-			if (session == null || consumer == null) return;
+			if (session == null) throw new ArgumentNullException("Invalid session");
+			if (consumer == null) throw new ArgumentNullException("Invalid consumer");
 			session.Remove(consumer);
 		}
 
 		internal bool IsConsumerInSession(Session session, Consumer consumer)
 		{
+			if (session == null) throw new ArgumentNullException("Invalid session");
+			if (consumer == null) throw new ArgumentNullException("Invalid consumer");
 			return session.Consumers.Contains(consumer);
 		}
 
 		internal Item GetItemFromSession(Session session, int index)
 		{
+			if (session == null) throw new ArgumentNullException("Invalid session");
 			return session.ConsumedItems.Get(index);
 		}
 
 		internal int GetConsumedItemsCount(Session session)
 		{
+			if (session == null) throw new ArgumentNullException("Invalid session");
 			return session.ConsumedItems.Count();
 		}
 
 		internal void ConsumeItems(Session session, List<Item> items)
 		{
+			if (session == null) throw new ArgumentNullException("Invalid session");
+			if (items == null) throw new ArgumentNullException("Invalid item list");
+
 			foreach (Item item in items)
 			{
 				Item consumed = _inventory.Consume(item);
@@ -95,6 +116,9 @@ namespace TreasureChest
 
 		internal void UnconsumeItems(Session session, List<Item> items)
 		{
+			if (session == null) throw new ArgumentNullException("Invalid session");
+			if (items == null) throw new ArgumentNullException("Invalid item list");
+
 			foreach (Item item in items)
 			{
 				Item unconsumed = session.ConsumedItems.Consume(item);
@@ -109,7 +133,7 @@ namespace TreasureChest
 
 		internal void Deposit(Consumer consumer, float amount)
 		{
-			if (consumer == null) return;
+			if (consumer == null) throw new ArgumentNullException("Invalid consumer");
 			consumer.Deposit(amount);
 		}
 	}
