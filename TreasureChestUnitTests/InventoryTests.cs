@@ -45,6 +45,26 @@ namespace TreasureChestUnitTests
 
 			// Non-existing Counts
 			Assert.AreEqual(0, i.Count("Grimbergen kaas"));
+
+			// Zero counts, units
+			i.Add(0, "ZeroCount", 10);
+			Assert.AreEqual(0, i.Count("ZeroCount"));
+
+			i.Add(3, "ZeroUnits", 10, 0);
+			Assert.AreEqual(0, i.Count("ZeroUnits"));
+
+			i.Add(0, "BothZero", 10, 0);
+			Assert.AreEqual(0, i.Count("BothZero"));
+
+			// Negative counts, units
+			i.Add(-1, "NegativeCount", 10);
+			Assert.AreEqual(0, i.Count("NegativeCount"));
+
+			i.Add(3, "NegativeUnits", 10, -1);
+			Assert.AreEqual(0, i.Count("NegativeUnits"));
+
+			i.Add(-1, "BothNegative", 10, -1);
+			Assert.AreEqual(0, i.Count("BothNegative"));
 		}
 
 		[Test]

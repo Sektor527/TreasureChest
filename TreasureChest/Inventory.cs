@@ -42,6 +42,8 @@ namespace TreasureChest
 
 		public void Add(int count, string name, float price)
 		{
+			if (count < 0) return;
+
 			for (int i = 0; i < count; ++i)
 				_inventory.Add(new Item() { Name = name, UnitPrice = price });
 
@@ -50,6 +52,8 @@ namespace TreasureChest
 
 		public void Add(int count, string name, float price, int units)
 		{
+			if (count < 0 || units < 0) return;
+
 			for (int i = 0; i < count * units; ++i)
 				_inventory.Add(new Item() { Name = name, UnitPrice = price / units });
 
