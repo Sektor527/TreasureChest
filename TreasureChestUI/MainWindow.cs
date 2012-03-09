@@ -17,6 +17,9 @@ namespace TreasureChestUI
 			_controller = controller;
 
 			InitializeComponent();
+
+			foreach (Consumer c in _controller.Consumers)
+				_consumerPanel.Controls.Add(new ConsumerControl(_controller) { Name = c.Name, Credit = c.Credit, Tag = c });
 		}
 
 		private Controller _controller;
