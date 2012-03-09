@@ -29,10 +29,11 @@
 		private void InitializeComponent()
 		{
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
+			this._consumerPanel = new System.Windows.Forms.FlowLayoutPanel();
 			this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
 			this.button1 = new System.Windows.Forms.Button();
 			this.button2 = new System.Windows.Forms.Button();
-			this._consumerPanel = new System.Windows.Forms.FlowLayoutPanel();
+			this._inventoryPanel = new System.Windows.Forms.Panel();
 			this.groupBox1.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -45,6 +46,15 @@
 			this.groupBox1.TabIndex = 0;
 			this.groupBox1.TabStop = false;
 			this.groupBox1.Text = "Consumers";
+			// 
+			// _consumerPanel
+			// 
+			this._consumerPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+			this._consumerPanel.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+			this._consumerPanel.Location = new System.Drawing.Point(3, 16);
+			this._consumerPanel.Name = "_consumerPanel";
+			this._consumerPanel.Size = new System.Drawing.Size(178, 390);
+			this._consumerPanel.TabIndex = 0;
 			// 
 			// dateTimePicker1
 			// 
@@ -71,20 +81,19 @@
 			this.button2.Text = ">>";
 			this.button2.UseVisualStyleBackColor = true;
 			// 
-			// _consumerPanel
+			// _inventoryPanel
 			// 
-			this._consumerPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-			this._consumerPanel.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-			this._consumerPanel.Location = new System.Drawing.Point(3, 16);
-			this._consumerPanel.Name = "_consumerPanel";
-			this._consumerPanel.Size = new System.Drawing.Size(178, 390);
-			this._consumerPanel.TabIndex = 0;
+			this._inventoryPanel.Location = new System.Drawing.Point(256, 96);
+			this._inventoryPanel.Name = "_inventoryPanel";
+			this._inventoryPanel.Size = new System.Drawing.Size(306, 302);
+			this._inventoryPanel.TabIndex = 5;
 			// 
 			// MainWindow
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(779, 437);
+			this.Controls.Add(this._inventoryPanel);
 			this.Controls.Add(this.button2);
 			this.Controls.Add(this.button1);
 			this.Controls.Add(this.dateTimePicker1);
@@ -103,6 +112,7 @@
 		private System.Windows.Forms.Button button1;
 		private System.Windows.Forms.Button button2;
 		private System.Windows.Forms.FlowLayoutPanel _consumerPanel;
+		private System.Windows.Forms.Panel _inventoryPanel;
 	}
 }
 

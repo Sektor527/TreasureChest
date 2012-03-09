@@ -54,6 +54,12 @@
     <Compile Include="ConsumerControl.Designer.cs">
       <DependentUpon>ConsumerControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="InventoryControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="InventoryControl.Designer.cs">
+      <DependentUpon>InventoryControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainWindow.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -64,6 +70,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="ConsumerControl.resx">
       <DependentUpon>ConsumerControl.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InventoryControl.resx">
+      <DependentUpon>InventoryControl.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="MainWindow.resx">

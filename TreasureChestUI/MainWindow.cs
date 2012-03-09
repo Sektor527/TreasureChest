@@ -18,6 +18,8 @@ namespace TreasureChestUI
 
 			InitializeComponent();
 
+			_inventoryPanel.Controls.Add(new InventoryControl(_controller) { Dock = DockStyle.Fill });
+
 			foreach (Consumer c in _controller.Consumers)
 				_consumerPanel.Controls.Add(new ConsumerControl(_controller) { Name = c.Name, Credit = c.Credit, Tag = c });
 		}
