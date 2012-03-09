@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace TreasureChest
+namespace TreasureChestCore
 {
-	class Session : IComparable<Session>
+	public class Session : IComparable<Session>
 	{
 		public DateTime Date { get; set; }
 		public List<Consumer> Consumers { get; private set; }
@@ -20,7 +20,7 @@ namespace TreasureChest
 			Date = date;
 		}
 
-		public void Add(Consumer c)
+		internal void Add(Consumer c)
 		{
 			if (Consumers.Contains(c)) return;
 
@@ -45,7 +45,7 @@ namespace TreasureChest
 			}
 		}
 
-		public void Remove(Consumer c)
+		internal void Remove(Consumer c)
 		{
 			if (!Consumers.Contains(c)) return;
 
@@ -70,13 +70,13 @@ namespace TreasureChest
 			}
 		}
 
-		public void ConsumeFrom(Inventory i, string name)
+		internal void ConsumeFrom(Inventory i, string name)
 		{
 			Item item = i.Consume(name);
 			ConsumedItems.Add(item);
 		}
 
-		public void UnconsumeTo(Inventory i, string name)
+		internal void UnconsumeTo(Inventory i, string name)
 		{
 			Item item = ConsumedItems.Consume(name);
 			i.Add(item);

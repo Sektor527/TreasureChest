@@ -48,14 +48,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Consumer.cs" />
     <Compile Include="ConsumerCredit.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="ConsumerCredit.Designer.cs">
       <DependentUpon>ConsumerCredit.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controller.cs" />
     <Compile Include="FormConsumers.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -80,7 +78,6 @@
     <Compile Include="FormSessions.Designer.cs">
       <DependentUpon>FormSessions.cs</DependentUpon>
     </Compile>
-    <Compile Include="Inventory.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="ConsumerCredit.resx">
@@ -120,8 +117,12 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="Serializer.cs" />
-    <Compile Include="Session.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TreasureChestCore\TreasureChestCore.csproj">
+      <Project>{B77FFC8B-3746-48A2-8893-64BCD4BDFFF8}</Project>
+      <Name>TreasureChestCore</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

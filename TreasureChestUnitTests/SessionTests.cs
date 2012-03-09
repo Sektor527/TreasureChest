@@ -1,6 +1,6 @@
 ﻿using System;
 using NUnit.Framework;
-using TreasureChest;
+using TreasureChestCore;
 
 namespace TreasureChestUnitTests
 {

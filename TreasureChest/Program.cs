@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 
+using TreasureChestCore;
+
 namespace TreasureChest
 {
 	static class Program

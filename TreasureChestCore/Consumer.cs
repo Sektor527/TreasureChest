@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace TreasureChest
+namespace TreasureChestCore
 {
-	class Consumer
+	public class Consumer
 	{
 		public string Name { get; set; }
 		public float Credit { get; set; }
@@ -15,12 +15,12 @@ namespace TreasureChest
 			Name = name;
 		}
 
-		public void Deposit(float amount)
+		internal void Deposit(float amount)
 		{
 			Credit += amount;
 		}
 
-		public void Withdraw(float amount)
+		internal void Withdraw(float amount)
 		{
 			Credit -= amount;
 		}

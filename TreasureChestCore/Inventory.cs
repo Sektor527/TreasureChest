@@ -4,12 +4,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace TreasureChest
+namespace TreasureChestCore
 {
-	class Item
+	public class Item
 	{
-		internal string Name;
-		internal float UnitPrice;
+		public string Name;
+		public float UnitPrice;
 
 		public override string ToString()
 		{
@@ -25,7 +25,7 @@ namespace TreasureChest
 		}
 	}
 
-	class Inventory
+	public class Inventory
 	{
 		private class InventorySorter : IComparer<Item>
 		{
@@ -40,7 +40,7 @@ namespace TreasureChest
 
 		private readonly List<Item> _inventory = new List<Item>();
 
-		public void Add(int count, string name, float price)
+		internal void Add(int count, string name, float price)
 		{
 			if (count < 0) return;
 
@@ -50,7 +50,7 @@ namespace TreasureChest
 			_inventory.Sort(new InventorySorter());
 		}
 
-		public void Add(int count, string name, float price, int units)
+		internal void Add(int count, string name, float price, int units)
 		{
 			if (count < 0 || units < 0) return;
 
@@ -60,13 +60,13 @@ namespace TreasureChest
 			_inventory.Sort(new InventorySorter());
 		}
 
-		public void Add(Item item)
+		internal void Add(Item item)
 		{
 			_inventory.Add(item);
 			_inventory.Sort(new InventorySorter());
 		}
 
-		public Item Get(string name)
+		internal Item Get(string name)
 		{
 			for (int i = 0; i < _inventory.Count; ++i)
 			{
@@ -77,7 +77,7 @@ namespace TreasureChest
 			return null;
 		}
 
-		public Item Get(int index)
+		internal Item Get(int index)
 		{
 			if (index < 0 || index > _inventory.Count) return null;
 
@@ -95,21 +95,21 @@ namespace TreasureChest
 			return null;
 		}
 
-		public Item Consume(string name)
+		internal Item Consume(string name)
 		{
 			Item item = Get(name);
 			_inventory.Remove(item);
 			return item;
 		}
 
-		public Item Consume(int index)
+		internal Item Consume(int index)
 		{
 			Item item = Get(index);
 			_inventory.Remove(item);
 			return item;
 		}
 
-		public Item Consume(Item item)
+		internal Item Consume(Item item)
 		{
 			if (!_inventory.Contains(item)) return null;
 
@@ -117,18 +117,18 @@ namespace TreasureChest
 			return item;
 		}
 
-		public void Remove(string name)
+		internal void Remove(string name)
 		{
 			Item item = GetCheapest(name);
 			_inventory.Remove(item);
 		}
 
-		public int Count()
+		internal int Count()
 		{
 			return _inventory.Count;
 		}
 
-		public int Count(string name)
+		internal int Count(string name)
 		{
 			int result = 0;
 			foreach (Item item in _inventory)
@@ -137,7 +137,7 @@ namespace TreasureChest
 			return result;
 		}
 
-		public float Price(string name)
+		internal float Price(string name)
 		{
 			foreach (Item item in _inventory)
 				if (item.Name == name) return item.UnitPrice;

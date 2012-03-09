@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
+using TreasureChestCore;
+
 namespace TreasureChest
 {
 	partial class FormSessions : Form
