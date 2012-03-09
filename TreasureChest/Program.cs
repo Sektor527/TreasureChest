@@ -22,11 +22,11 @@ namespace TreasureChest
 
 			Controller controller = new Controller(sessions, consumers, inventory);
 
-			Serializer.Deserialize(sessions, consumers, inventory);
+			controller.Deserialize();
 
 			Application.Run(new FormMain(controller));
 
-			Serializer.Serialize(sessions, consumers, inventory);
+			controller.Serialize();
 		}
 	}
 }

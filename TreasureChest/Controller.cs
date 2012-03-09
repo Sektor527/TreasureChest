@@ -85,7 +85,14 @@ namespace TreasureChest
 			return session.Consumers.Contains(consumer);
 		}
 
-		internal Item GetItemFromSession(Session session, int index)
+		public void AddItemToSession(Session session, Item item)
+		{
+			if (session == null) throw new ArgumentNullException("Invalid session");
+			if (item == null) throw new ArgumentNullException("Invalid item");
+			session.ConsumedItems.Add(item);
+		}
+
+		public Item GetItemFromSession(Session session, int index)
 		{
 			if (session == null) throw new ArgumentNullException("Invalid session");
 			return session.ConsumedItems.Get(index);
@@ -135,6 +142,16 @@ namespace TreasureChest
 		{
 			if (consumer == null) throw new ArgumentNullException("Invalid consumer");
 			consumer.Deposit(amount);
+		}
+
+		public void Deserialize()
+		{
+			Serializer.Deserialize(_sessions, _consumers, _inventory);
+		}
+
+		public void Serialize()
+		{
+			Serializer.Serialize(_sessions, _consumers, _inventory);
 		}
 	}
 }

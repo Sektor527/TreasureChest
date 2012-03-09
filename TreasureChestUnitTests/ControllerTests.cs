@@ -55,7 +55,7 @@ namespace TreasureChestUnitTests
 
 			// Items transferred
 			Assert.AreEqual(7, _controller.GetInventorySize());
-			Assert.AreEqual(2, session.ConsumedItems.Count());
+			Assert.AreEqual(2, _controller.GetConsumedItemsCount(session));
 
 			// Credits reduced
 			Assert.AreEqual(6, wim.Credit);
@@ -87,7 +87,7 @@ namespace TreasureChestUnitTests
 			_controller.ConsumeItems(session, bogusItems);
 
 			Assert.AreEqual(9, _controller.GetInventorySize());
-			Assert.AreEqual(0, session.ConsumedItems.Count());
+			Assert.AreEqual(0, _controller.GetConsumedItemsCount(session));
 		}
 
 		[Test]
@@ -103,18 +103,18 @@ namespace TreasureChestUnitTests
 			_controller.AddConsumerToSession(session, wim);
 			_controller.AddConsumerToSession(session, bart);
 
-			session.ConsumedItems.Add(new Item { Name = "Something", UnitPrice = 1f });
-			session.ConsumedItems.Add(new Item {Name = "Whatever", UnitPrice = 2f});
+			_controller.AddItemToSession(session, new Item { Name = "Something", UnitPrice = 1f });
+			_controller.AddItemToSession(session, new Item { Name = "Whatever", UnitPrice = 2f });
 
 			List<Item> unconsumedItems = new List<Item>();
-			unconsumedItems.Add(session.ConsumedItems.Get(0));
-			unconsumedItems.Add(session.ConsumedItems.Get(1));
+			unconsumedItems.Add(_controller.GetItemFromSession(session, 0));
+			unconsumedItems.Add(_controller.GetItemFromSession(session, 1));
 
 			_controller.UnconsumeItems(session, unconsumedItems);
 
 			// Items transferred
 			Assert.AreEqual(2, _controller.GetInventorySize());
-			Assert.AreEqual(0, session.ConsumedItems.Count());
+			Assert.AreEqual(0, _controller.GetConsumedItemsCount(session));
 
 			// Credits refunded
 			Assert.AreEqual(11.5f, wim.Credit);
@@ -130,8 +130,8 @@ namespace TreasureChestUnitTests
 			Session session = new Session();
 			_controller.AddSession(session);
 
-			session.ConsumedItems.Add(new Item { Name = "Something", UnitPrice = 1f });
-			session.ConsumedItems.Add(new Item { Name = "Whatever", UnitPrice = 2f });
+			_controller.AddItemToSession(session, new Item { Name = "Something", UnitPrice = 1f });
+			_controller.AddItemToSession(session, new Item { Name = "Whatever", UnitPrice = 2f });
 
 			List<Item> unconsumedItems = new List<Item>();
 			unconsumedItems.Add(new Item());
@@ -139,7 +139,7 @@ namespace TreasureChestUnitTests
 			_controller.UnconsumeItems(session, unconsumedItems);
 
 			Assert.AreEqual(0, _controller.GetInventorySize());
-			Assert.AreEqual(2, session.ConsumedItems.Count());
+			Assert.AreEqual(2, _controller.GetConsumedItemsCount(session));
 		}
 	}
 }
