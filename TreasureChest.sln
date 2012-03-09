@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TreasureChestUnitTests", "T
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TreasureChestCore", "TreasureChestCore\TreasureChestCore.csproj", "{B77FFC8B-3746-48A2-8893-64BCD4BDFFF8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TreasureChestUI", "TreasureChestUI\TreasureChestUI.csproj", "{488DA9CF-6A33-45A7-9DEC-6C34BB226382}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -25,6 +27,10 @@ Global
 		{B77FFC8B-3746-48A2-8893-64BCD4BDFFF8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B77FFC8B-3746-48A2-8893-64BCD4BDFFF8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B77FFC8B-3746-48A2-8893-64BCD4BDFFF8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{488DA9CF-6A33-45A7-9DEC-6C34BB226382}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{488DA9CF-6A33-45A7-9DEC-6C34BB226382}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{488DA9CF-6A33-45A7-9DEC-6C34BB226382}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{488DA9CF-6A33-45A7-9DEC-6C34BB226382}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
