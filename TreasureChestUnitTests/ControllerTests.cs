@@ -43,6 +43,22 @@ namespace TreasureChestUnitTests
 		}
 
 		[Test]
+		public void RemoveSession()
+		{
+			Session session = new Session(new DateTime(1982, 3, 16));
+			_controller.AddSession(session);
+
+			// Remove non-existing session should have no effect
+			_controller.RemoveSession(new Session(new DateTime(1979, 4, 27)));
+			Assert.AreEqual(1, _controller.Sessions.Count);
+			Assert.AreEqual(session, _controller.Sessions[0]);
+
+			// Remove existing session
+			_controller.RemoveSession(session);
+			Assert.AreEqual(0, _controller.Sessions.Count);
+		}
+
+		[Test]
 		public void ConsumeItems()
 		{
 			Consumer wim, bart, koen;

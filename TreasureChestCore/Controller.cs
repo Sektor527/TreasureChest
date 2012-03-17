@@ -75,6 +75,11 @@ namespace TreasureChestCore
 			return null;
 		}
 
+		public void RemoveSession(Session session)
+		{
+			Sessions.Remove(session);
+		}
+
 		public void AddConsumerToSession(Session session, Consumer consumer)
 		{
 			if (session == null) throw new ArgumentNullException("Invalid session");
