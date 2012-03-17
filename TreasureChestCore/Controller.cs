@@ -64,6 +64,17 @@ namespace TreasureChestCore
 			Sessions.Sort();
 		}
 
+		public Session GetSession(DateTime dateTime)
+		{
+			foreach (Session session in Sessions)
+			{
+				if (session.Date.Year == dateTime.Year && session.Date.Month == dateTime.Month && session.Date.Day == dateTime.Day)
+					return session;
+			}
+
+			return null;
+		}
+
 		public void AddConsumerToSession(Session session, Consumer consumer)
 		{
 			if (session == null) throw new ArgumentNullException("Invalid session");

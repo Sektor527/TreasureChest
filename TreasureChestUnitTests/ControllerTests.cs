@@ -32,6 +32,17 @@ namespace TreasureChestUnitTests
 		}
 
 		[Test]
+		public void GetSession()
+		{
+			Session session = new Session(new DateTime(1982, 3, 16));
+			_controller.AddSession(session);
+
+			Assert.AreEqual(session, _controller.GetSession(new DateTime(1982, 3, 16)));
+			Assert.AreEqual(session, _controller.GetSession(new DateTime(1982, 3, 16, 3, 33, 33)));
+			Assert.IsNull(_controller.GetSession(new DateTime(1979, 4, 27)));
+		}
+
+		[Test]
 		public void ConsumeItems()
 		{
 			Consumer wim, bart, koen;
