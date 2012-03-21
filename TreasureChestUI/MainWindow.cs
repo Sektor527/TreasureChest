@@ -21,12 +21,39 @@ namespace TreasureChestUI
 			_inventoryPanel.Controls.Add(new InventoryControl(_controller) { Dock = DockStyle.Fill });
 
 			foreach (Consumer c in _controller.Consumers)
-				_consumerPanel.Controls.Add(new ConsumerControl(_controller) { Name = c.Name, Credit = c.Credit, Tag = c });
+			{
+				ConsumerControl consumerControl = new ConsumerControl(_controller) {Name = c.Name, Credit = c.Credit, Tag = c};
+				_consumerPanel.Controls.Add(consumerControl);
+				consumerControl.CheckChanged += CheckChanged;
+			}
+		}
+
+		private void CheckChanged(object sender, EventArgs eventArgs)
+		{
+			CheckCreateSession();
+			CheckRemoveSession();
+		}
+
+		private void CheckCreateSession()
+		{
+			if (SelectedSession == null && CheckedConsumerCount > 0)
+				_controller.AddSession(new Session(dateTimePicker1.Value));
+		}
+
+		private void CheckRemoveSession()
+		{
+			if (SelectedSession != null && CheckedConsumerCount == 0)
+				_controller.RemoveSession(SelectedSession);
 		}
 
 		private Session SelectedSession
 		{
 			get { return _controller.GetSession(dateTimePicker1.Value); }
+		}
+
+		private int CheckedConsumerCount
+		{
+			get { return _consumerPanel.Controls.OfType<ConsumerControl>().Count(consumerControl => consumerControl.Selected); }
 		}
 
 		private Controller _controller;
