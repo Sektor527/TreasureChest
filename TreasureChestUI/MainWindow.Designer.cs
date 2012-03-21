@@ -62,6 +62,7 @@
 			this.dateTimePicker1.Name = "dateTimePicker1";
 			this.dateTimePicker1.Size = new System.Drawing.Size(225, 20);
 			this.dateTimePicker1.TabIndex = 2;
+			this.dateTimePicker1.ValueChanged += new System.EventHandler(this.DateChanged);
 			// 
 			// button1
 			// 

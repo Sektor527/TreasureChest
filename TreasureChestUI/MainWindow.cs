@@ -28,6 +28,22 @@ namespace TreasureChestUI
 			}
 		}
 
+		private void DateChanged(object sender, EventArgs e)
+		{
+			UpdateConsumers();
+		}
+
+		private void UpdateConsumers()
+		{
+			foreach (Control control in _consumerPanel.Controls)
+			{
+				ConsumerControl consumerControl = control as ConsumerControl;
+				if (consumerControl == null) continue;
+
+				consumerControl.Selected = SelectedSession != null && _controller.IsConsumerInSession(SelectedSession, consumerControl.Consumer);
+			}
+		}
+
 		private void ConsumerCheckChanged(object sender, EventArgs eventArgs)
 		{
 			ConsumerControl control = sender as ConsumerControl;
@@ -35,7 +51,8 @@ namespace TreasureChestUI
 
 			if (!control.Selected)
 			{
-				_controller.RemoveConsumerFromSession(SelectedSession, control.Consumer);
+				if (SelectedSession != null)
+					_controller.RemoveConsumerFromSession(SelectedSession, control.Consumer);
 				CheckRemoveSession();
 			}
 
