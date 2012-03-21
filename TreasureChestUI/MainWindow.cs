@@ -28,11 +28,13 @@ namespace TreasureChestUI
 			}
 
 			UpdateConsumers();
+			UpdateConsumedItems();
 		}
 
 		private void DateChanged(object sender, EventArgs e)
 		{
 			UpdateConsumers();
+			UpdateConsumedItems();
 		}
 
 		private void UpdateConsumers()
@@ -43,6 +45,17 @@ namespace TreasureChestUI
 				if (consumerControl == null) continue;
 
 				consumerControl.Selected = SelectedSession != null && _controller.IsConsumerInSession(SelectedSession, consumerControl.Consumer);
+			}
+		}
+
+		private void UpdateConsumedItems()
+		{
+			lstConsumed.Items.Clear();
+			if (SelectedSession == null) return;
+
+			for (int i = 0; i < _controller.GetConsumedItemsCount(SelectedSession); ++i)
+			{
+				lstConsumed.Items.Add(_controller.GetItemFromSession(SelectedSession, i));
 			}
 		}
 
