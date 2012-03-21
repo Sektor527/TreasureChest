@@ -26,6 +26,8 @@ namespace TreasureChestUI
 				_consumerPanel.Controls.Add(consumerControl);
 				consumerControl.CheckChanged += ConsumerCheckChanged;
 			}
+
+			UpdateConsumers();
 		}
 
 		private void DateChanged(object sender, EventArgs e)
