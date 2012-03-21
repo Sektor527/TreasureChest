@@ -24,6 +24,11 @@ namespace TreasureChestUI
 				_consumerPanel.Controls.Add(new ConsumerControl(_controller) { Name = c.Name, Credit = c.Credit, Tag = c });
 		}
 
+		private Session SelectedSession
+		{
+			get { return _controller.GetSession(dateTimePicker1.Value); }
+		}
+
 		private Controller _controller;
 	}
 }
