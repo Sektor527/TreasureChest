@@ -34,6 +34,9 @@
 			this.button1 = new System.Windows.Forms.Button();
 			this.button2 = new System.Windows.Forms.Button();
 			this._inventoryPanel = new System.Windows.Forms.Panel();
+			this.btnUnconsume = new System.Windows.Forms.Button();
+			this.btnConsume = new System.Windows.Forms.Button();
+			this.lstConsumed = new System.Windows.Forms.ListBox();
 			this.groupBox1.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -89,11 +92,43 @@
 			this._inventoryPanel.Size = new System.Drawing.Size(306, 302);
 			this._inventoryPanel.TabIndex = 5;
 			// 
+			// btnUnconsume
+			// 
+			this.btnUnconsume.Location = new System.Drawing.Point(199, 238);
+			this.btnUnconsume.Name = "btnUnconsume";
+			this.btnUnconsume.Size = new System.Drawing.Size(51, 23);
+			this.btnUnconsume.TabIndex = 8;
+			this.btnUnconsume.Text = ">>";
+			this.btnUnconsume.UseVisualStyleBackColor = true;
+			// 
+			// btnConsume
+			// 
+			this.btnConsume.Location = new System.Drawing.Point(199, 209);
+			this.btnConsume.Name = "btnConsume";
+			this.btnConsume.Size = new System.Drawing.Size(51, 23);
+			this.btnConsume.TabIndex = 7;
+			this.btnConsume.Text = "<<";
+			this.btnConsume.UseVisualStyleBackColor = true;
+			// 
+			// lstConsumed
+			// 
+			this.lstConsumed.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+									| System.Windows.Forms.AnchorStyles.Left)));
+			this.lstConsumed.FormattingEnabled = true;
+			this.lstConsumed.Location = new System.Drawing.Point(12, 96);
+			this.lstConsumed.Name = "lstConsumed";
+			this.lstConsumed.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
+			this.lstConsumed.Size = new System.Drawing.Size(181, 303);
+			this.lstConsumed.TabIndex = 6;
+			// 
 			// MainWindow
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(779, 437);
+			this.Controls.Add(this.btnUnconsume);
+			this.Controls.Add(this.btnConsume);
+			this.Controls.Add(this.lstConsumed);
 			this.Controls.Add(this._inventoryPanel);
 			this.Controls.Add(this.button2);
 			this.Controls.Add(this.button1);
@@ -114,6 +149,9 @@
 		private System.Windows.Forms.Button button2;
 		private System.Windows.Forms.FlowLayoutPanel _consumerPanel;
 		private System.Windows.Forms.Panel _inventoryPanel;
+		private System.Windows.Forms.Button btnUnconsume;
+		private System.Windows.Forms.Button btnConsume;
+		private System.Windows.Forms.ListBox lstConsumed;
 	}
 }
 
