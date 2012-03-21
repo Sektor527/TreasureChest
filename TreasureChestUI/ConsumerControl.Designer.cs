@@ -48,6 +48,7 @@
 			this._checkbox.TabIndex = 0;
 			this._checkbox.Text = "checkBox1";
 			this._checkbox.UseVisualStyleBackColor = true;
+			this._checkbox.CheckedChanged += new System.EventHandler(this.CheckboxCheckedChanged);
 			// 
 			// _credit
 			// 

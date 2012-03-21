@@ -59,5 +59,11 @@ namespace TreasureChestUI
 				e.Handled = true;
 			}
 		}
+
+		internal EventHandler CheckChanged;
+		private void CheckboxCheckedChanged(object sender, EventArgs e)
+		{
+			CheckChanged(this, e);
+		}
 	}
 }
