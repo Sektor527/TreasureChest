@@ -24,14 +24,26 @@ namespace TreasureChestUI
 			{
 				ConsumerControl consumerControl = new ConsumerControl(_controller) {Name = c.Name, Credit = c.Credit, Tag = c};
 				_consumerPanel.Controls.Add(consumerControl);
-				consumerControl.CheckChanged += CheckChanged;
+				consumerControl.CheckChanged += ConsumerCheckChanged;
 			}
 		}
 
-		private void CheckChanged(object sender, EventArgs eventArgs)
+		private void ConsumerCheckChanged(object sender, EventArgs eventArgs)
 		{
-			CheckCreateSession();
-			CheckRemoveSession();
+			ConsumerControl control = sender as ConsumerControl;
+			if (control == null) return;
+
+			if (!control.Selected)
+			{
+				_controller.RemoveConsumerFromSession(SelectedSession, control.Consumer);
+				CheckRemoveSession();
+			}
+
+			else
+			{
+				CheckCreateSession();
+				_controller.AddConsumerToSession(SelectedSession, control.Consumer);
+			}
 		}
 
 		private void CheckCreateSession()

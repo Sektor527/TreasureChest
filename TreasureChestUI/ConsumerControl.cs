@@ -18,6 +18,7 @@ namespace TreasureChestUI
 			InitializeComponent();
 		}
 
+		public Consumer Consumer { get { return Tag as Consumer; } }
 		public string Name { set { _checkbox.Text = value; } }
 		public float Credit { set { _credit.Text = value.ToString("0.00"); _credit.ForeColor = value <= 0f ? Color.Red : Color.Black; } }
 		public bool Selected { set { _checkbox.Checked = value; } get { return _checkbox.Checked; } }
