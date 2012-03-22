@@ -29,12 +29,14 @@ namespace TreasureChestUI
 
 			UpdateConsumers();
 			UpdateConsumedItems();
+			UpdateInventory();
 		}
 
 		private void DateChanged(object sender, EventArgs e)
 		{
 			UpdateConsumers();
 			UpdateConsumedItems();
+			UpdateInventory();
 		}
 
 		private void UpdateConsumers()
@@ -57,6 +59,14 @@ namespace TreasureChestUI
 			{
 				lstConsumed.Items.Add(_controller.GetItemFromSession(SelectedSession, i));
 			}
+		}
+
+		private void UpdateInventory()
+		{
+			InventoryControl inventory = _inventoryPanel.Controls[0] as InventoryControl;
+			if (inventory == null) return;
+
+			inventory.UpdateItems();
 		}
 
 		private void ConsumerCheckChanged(object sender, EventArgs eventArgs)
