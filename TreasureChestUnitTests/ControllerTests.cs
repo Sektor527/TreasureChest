@@ -168,5 +168,16 @@ namespace TreasureChestUnitTests
 			Assert.AreEqual(0, _controller.GetInventorySize());
 			Assert.AreEqual(2, _controller.GetConsumedItemsCount(session));
 		}
+
+		[Test]
+		public void Consumers()
+		{
+			Session session = new Session();
+			_controller.AddSession(session);
+
+			_controller.AddConsumerToSession(session, new Consumer("wim"));
+
+			Assert.AreEqual(1, _controller.GetConsumersCount(session));
+		}
 	}
 }

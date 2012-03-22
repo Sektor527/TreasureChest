@@ -120,6 +120,12 @@ namespace TreasureChestCore
 			return session.ConsumedItems.Count();
 		}
 
+		public int GetConsumersCount(Session session)
+		{
+			if (session == null) throw new ArgumentNullException("Invalid session");
+			return session.Consumers.Count;
+		}
+
 		public void ConsumeItems(Session session, List<Item> items)
 		{
 			if (session == null) throw new ArgumentNullException("Invalid session");
