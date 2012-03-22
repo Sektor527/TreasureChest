@@ -21,7 +21,18 @@ namespace TreasureChestUI
 			_controller = controller;
 		}
 
-		private Controller _controller;
+		public List<Item> SelectedItems
+		{
+			get
+			{
+				List<Item> result = new List<Item>();
+				foreach (ListViewItem listViewItem in lstInventory.SelectedItems)
+				{
+					result.Add(_controller.GetItemFromInventory(listViewItem.SubItems[0].Text));
+				}
+				return result;
+			}
+		}
 
 		private void LoadWindow(object sender, EventArgs e)
 		{
@@ -32,6 +43,7 @@ namespace TreasureChestUI
 			lstInventory.Columns[1].Width = -1;
 		}
 
+		private Controller _controller;
 		private void AddItem(object sender, EventArgs e)
 		{
 			// Update list
