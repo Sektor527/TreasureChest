@@ -100,6 +100,7 @@
 			this.btnUnconsume.TabIndex = 8;
 			this.btnUnconsume.Text = ">>";
 			this.btnUnconsume.UseVisualStyleBackColor = true;
+			this.btnUnconsume.Click += new System.EventHandler(this.Unconsume);
 			// 
 			// btnConsume
 			// 
@@ -109,6 +110,7 @@
 			this.btnConsume.TabIndex = 7;
 			this.btnConsume.Text = "<<";
 			this.btnConsume.UseVisualStyleBackColor = true;
+			this.btnConsume.Click += new System.EventHandler(this.Consume);
 			// 
 			// lstConsumed
 			// 

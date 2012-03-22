@@ -39,6 +39,37 @@ namespace TreasureChestUI
 			UpdateInventory();
 		}
 
+		private void Consume(object sender, EventArgs e)
+		{
+			InventoryControl inventory = _inventoryPanel.Controls[0] as InventoryControl;
+			if (inventory == null) return;
+			if (inventory.SelectedItems.Count == 0) return;
+
+			if (SelectedSession == null)
+				_controller.AddSession(new Session(dateTimePicker1.Value));
+
+			_controller.ConsumeItems(SelectedSession, inventory.SelectedItems);
+
+			UpdateConsumers();
+			UpdateConsumedItems();
+			UpdateInventory();
+		}
+
+		private void Unconsume(object sender, EventArgs e)
+		{
+			InventoryControl inventory = _inventoryPanel.Controls[0] as InventoryControl;
+			if (inventory == null) return;
+			if (SelectedConsumedItems.Count == 0) return;
+
+			_controller.UnconsumeItems(SelectedSession, SelectedConsumedItems);
+
+			CheckRemoveSession();
+
+			UpdateConsumers();
+			UpdateConsumedItems();
+			UpdateInventory();
+		}
+
 		private void UpdateConsumers()
 		{
 			foreach (Control control in _consumerPanel.Controls)
@@ -47,6 +78,7 @@ namespace TreasureChestUI
 				if (consumerControl == null) continue;
 
 				consumerControl.Selected = SelectedSession != null && _controller.IsConsumerInSession(SelectedSession, consumerControl.Consumer);
+				consumerControl.UpdateCredit();
 			}
 		}
 
@@ -83,20 +115,18 @@ namespace TreasureChestUI
 
 			else
 			{
-				CheckCreateSession();
+				if (SelectedSession == null && CheckedConsumerCount > 0)
+					_controller.AddSession(new Session(dateTimePicker1.Value));
+
 				_controller.AddConsumerToSession(SelectedSession, control.Consumer);
 			}
-		}
 
-		private void CheckCreateSession()
-		{
-			if (SelectedSession == null && CheckedConsumerCount > 0)
-				_controller.AddSession(new Session(dateTimePicker1.Value));
+			UpdateConsumers();
 		}
 
 		private void CheckRemoveSession()
 		{
-			if (SelectedSession != null && CheckedConsumerCount == 0)
+			if (SelectedSession != null && _controller.GetConsumersCount(SelectedSession) == 0 && _controller.GetConsumedItemsCount(SelectedSession) == 0)
 				_controller.RemoveSession(SelectedSession);
 		}
 
@@ -108,6 +138,11 @@ namespace TreasureChestUI
 		private int CheckedConsumerCount
 		{
 			get { return _consumerPanel.Controls.OfType<ConsumerControl>().Count(consumerControl => consumerControl.Selected); }
+		}
+
+		private List<Item> SelectedConsumedItems
+		{
+			get { return lstConsumed.SelectedItems.OfType<Item>().ToList(); }
 		}
 
 		private Controller _controller;
