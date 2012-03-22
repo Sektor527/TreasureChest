@@ -34,8 +34,10 @@ namespace TreasureChestUI
 			}
 		}
 
-		private void LoadWindow(object sender, EventArgs e)
+		public void UpdateItems()
 		{
+			lstInventory.Items.Clear();
+
 			for (int i = 0; i < _controller.GetInventorySize(); ++i)
 				AddListViewItem(i);
 
@@ -44,17 +46,19 @@ namespace TreasureChestUI
 		}
 
 		private Controller _controller;
+
+		private void LoadWindow(object sender, EventArgs e)
+		{
+			UpdateItems();
+		}
+
 		private void AddItem(object sender, EventArgs e)
 		{
 			// Update list
 			_controller.AddItemToInventory(1, txtProductName.Text, float.Parse(txtProductPrice.Text, CultureInfo.InvariantCulture), (int)numProductCount.Value);
 
 			// Update interface
-			lstInventory.Items.Clear();
-			for (int i = 0; i < _controller.GetInventorySize(); ++i)
-				AddListViewItem(i);
-
-			lstInventory.Columns[0].Width = -1;
+			UpdateItems();
 
 			// Reset fields
 			txtProductName.Text = "";
@@ -79,11 +83,7 @@ namespace TreasureChestUI
 				_controller.RemoveItemFromInventory(item.Text);
 
 			// Update interface
-			lstInventory.Items.Clear();
-			for (int i = 0; i < _controller.GetInventorySize(); ++i)
-				AddListViewItem(i);
-
-			lstInventory.Columns[0].Width = -1;
+			UpdateItems();
 
 			lstInventory.Focus();
 		}
