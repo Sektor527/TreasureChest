@@ -30,6 +30,11 @@ namespace TreasureChestUI
 			_depositValue.Focus();
 		}
 
+		internal void UpdateCredit()
+		{
+			Credit = ((Consumer) Tag).Credit;
+		}
+
 		private Controller _controller;
 
 		private void SubmitDeposit(object sender, EventArgs e)
