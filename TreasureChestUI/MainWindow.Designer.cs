@@ -28,15 +28,17 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
+			System.Windows.Forms.Button _nextSession;
+			System.Windows.Forms.Button _previousSession;
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
 			this._consumerPanel = new System.Windows.Forms.FlowLayoutPanel();
 			this.lstConsumed = new System.Windows.Forms.ListBox();
 			this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-			this.button2 = new System.Windows.Forms.Button();
-			this.button1 = new System.Windows.Forms.Button();
 			this._inventoryPanel = new System.Windows.Forms.Panel();
 			this.btnUnconsume = new System.Windows.Forms.Button();
 			this.btnConsume = new System.Windows.Forms.Button();
+			_nextSession = new System.Windows.Forms.Button();
+			_previousSession = new System.Windows.Forms.Button();
 			this.groupBox1.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -45,8 +47,8 @@
 			this.groupBox1.Controls.Add(this._consumerPanel);
 			this.groupBox1.Controls.Add(this.lstConsumed);
 			this.groupBox1.Controls.Add(this.dateTimePicker1);
-			this.groupBox1.Controls.Add(this.button2);
-			this.groupBox1.Controls.Add(this.button1);
+			this.groupBox1.Controls.Add(_nextSession);
+			this.groupBox1.Controls.Add(_previousSession);
 			this.groupBox1.Location = new System.Drawing.Point(12, 12);
 			this.groupBox1.Name = "groupBox1";
 			this.groupBox1.Size = new System.Drawing.Size(400, 323);
@@ -82,25 +84,25 @@
 			this.dateTimePicker1.TabIndex = 0;
 			this.dateTimePicker1.ValueChanged += new System.EventHandler(this.DateChanged);
 			// 
-			// button2
+			// _nextSession
 			// 
-			this.button2.Location = new System.Drawing.Point(270, 17);
-			this.button2.Name = "button2";
-			this.button2.Size = new System.Drawing.Size(27, 20);
-			this.button2.TabIndex = 2;
-			this.button2.Text = ">>";
-			this.button2.UseVisualStyleBackColor = true;
-			this.button2.Click += new System.EventHandler(this.button2_Click);
+			_nextSession.Location = new System.Drawing.Point(270, 17);
+			_nextSession.Name = "_nextSession";
+			_nextSession.Size = new System.Drawing.Size(27, 20);
+			_nextSession.TabIndex = 2;
+			_nextSession.Text = ">>";
+			_nextSession.UseVisualStyleBackColor = true;
+			_nextSession.Click += new System.EventHandler(this.NextSessionClicked);
 			// 
-			// button1
+			// _previousSession
 			// 
-			this.button1.Location = new System.Drawing.Point(237, 17);
-			this.button1.Name = "button1";
-			this.button1.Size = new System.Drawing.Size(27, 20);
-			this.button1.TabIndex = 1;
-			this.button1.Text = "<<";
-			this.button1.UseVisualStyleBackColor = true;
-			this.button1.Click += new System.EventHandler(this.button1_Click);
+			_previousSession.Location = new System.Drawing.Point(237, 17);
+			_previousSession.Name = "_previousSession";
+			_previousSession.Size = new System.Drawing.Size(27, 20);
+			_previousSession.TabIndex = 1;
+			_previousSession.Text = "<<";
+			_previousSession.UseVisualStyleBackColor = true;
+			_previousSession.Click += new System.EventHandler(this.PreviousSessionClicked);
 			// 
 			// _inventoryPanel
 			// 
@@ -117,7 +119,7 @@
 			this.btnUnconsume.TabIndex = 1;
 			this.btnUnconsume.Text = ">>";
 			this.btnUnconsume.UseVisualStyleBackColor = true;
-			this.btnUnconsume.Click += new System.EventHandler(this.Unconsume);
+			this.btnUnconsume.Click += new System.EventHandler(this.UnconsumeClicked);
 			// 
 			// btnConsume
 			// 
@@ -127,7 +129,7 @@
 			this.btnConsume.TabIndex = 0;
 			this.btnConsume.Text = "<<";
 			this.btnConsume.UseVisualStyleBackColor = true;
-			this.btnConsume.Click += new System.EventHandler(this.Consume);
+			this.btnConsume.Click += new System.EventHandler(this.ConsumeClicked);
 			// 
 			// MainWindow
 			// 
@@ -151,8 +153,6 @@
 
 		private System.Windows.Forms.GroupBox groupBox1;
 		private System.Windows.Forms.DateTimePicker dateTimePicker1;
-		private System.Windows.Forms.Button button1;
-		private System.Windows.Forms.Button button2;
 		private System.Windows.Forms.FlowLayoutPanel _consumerPanel;
 		private System.Windows.Forms.Panel _inventoryPanel;
 		private System.Windows.Forms.Button btnUnconsume;
