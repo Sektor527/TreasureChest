@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using TreasureChestCore;
 
 namespace TreasureChestUI
+
 {
 	public partial class MainWindow : Form
 	{

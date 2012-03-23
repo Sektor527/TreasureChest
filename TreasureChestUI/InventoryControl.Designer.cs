@@ -45,7 +45,7 @@
 			this._deleteInventory.Location = new System.Drawing.Point(293, 289);
 			this._deleteInventory.Name = "_deleteInventory";
 			this._deleteInventory.Size = new System.Drawing.Size(23, 23);
-			this._deleteInventory.TabIndex = 4;
+			this._deleteInventory.TabIndex = 5;
 			this._deleteInventory.Text = "-";
 			this._deleteInventory.UseVisualStyleBackColor = true;
 			this._deleteInventory.Click += new System.EventHandler(this.DeleteItem);
@@ -56,7 +56,7 @@
 			this.numProductCount.Location = new System.Drawing.Point(212, 290);
 			this.numProductCount.Name = "numProductCount";
 			this.numProductCount.Size = new System.Drawing.Size(46, 20);
-			this.numProductCount.TabIndex = 2;
+			this.numProductCount.TabIndex = 3;
 			this.numProductCount.Value = new decimal(new int[] {
             1,
             0,
@@ -69,7 +69,7 @@
 			this.txtProductPrice.Location = new System.Drawing.Point(150, 290);
 			this.txtProductPrice.Name = "txtProductPrice";
 			this.txtProductPrice.Size = new System.Drawing.Size(56, 20);
-			this.txtProductPrice.TabIndex = 1;
+			this.txtProductPrice.TabIndex = 2;
 			// 
 			// txtProductName
 			// 
@@ -78,7 +78,7 @@
 			this.txtProductName.Location = new System.Drawing.Point(0, 289);
 			this.txtProductName.Name = "txtProductName";
 			this.txtProductName.Size = new System.Drawing.Size(144, 20);
-			this.txtProductName.TabIndex = 0;
+			this.txtProductName.TabIndex = 1;
 			// 
 			// _addInventory
 			// 
@@ -86,7 +86,7 @@
 			this._addInventory.Location = new System.Drawing.Point(264, 289);
 			this._addInventory.Name = "_addInventory";
 			this._addInventory.Size = new System.Drawing.Size(23, 23);
-			this._addInventory.TabIndex = 3;
+			this._addInventory.TabIndex = 4;
 			this._addInventory.Text = "+";
 			this._addInventory.UseVisualStyleBackColor = true;
 			this._addInventory.Click += new System.EventHandler(this.AddItem);
@@ -105,7 +105,7 @@
 			this.lstInventory.Location = new System.Drawing.Point(0, 0);
 			this.lstInventory.Name = "lstInventory";
 			this.lstInventory.Size = new System.Drawing.Size(316, 284);
-			this.lstInventory.TabIndex = 16;
+			this.lstInventory.TabIndex = 0;
 			this.lstInventory.UseCompatibleStateImageBehavior = false;
 			this.lstInventory.View = System.Windows.Forms.View.Details;
 			// 
