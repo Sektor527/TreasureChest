@@ -146,5 +146,21 @@ namespace TreasureChestUI
 		}
 
 		private Controller _controller;
+
+		private void button1_Click(object sender, EventArgs e)
+		{
+			Session previousSession = _controller.GetPreviousSession(dateTimePicker1.Value);
+			if (previousSession == null) return;
+
+			dateTimePicker1.Value = previousSession.Date;
+		}
+
+		private void button2_Click(object sender, EventArgs e)
+		{
+			Session nextSession = _controller.GetNextSession(dateTimePicker1.Value);
+			if (nextSession == null) return;
+
+			dateTimePicker1.Value = nextSession.Date;
+		}
 	}
 }
