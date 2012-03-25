@@ -80,6 +80,30 @@ namespace TreasureChestCore
 			Sessions.Remove(session);
 		}
 
+		public Session GetNextSession(DateTime dateTime)
+		{
+			Session result = null;
+			foreach (Session session in _sessions)
+			{
+				if (session.Date > dateTime && (result == null || session.Date < result.Date))
+					result = session;
+			}
+
+			return result;
+		}
+
+		public Session GetPreviousSession(DateTime dateTime)
+		{
+			Session result = null;
+			foreach (Session session in _sessions)
+			{
+				if (session.Date < dateTime && (result == null || session.Date > result.Date))
+					result = session;
+			}
+
+			return result;
+		}
+
 		public void AddConsumerToSession(Session session, Consumer consumer)
 		{
 			if (session == null) throw new ArgumentNullException("Invalid session");

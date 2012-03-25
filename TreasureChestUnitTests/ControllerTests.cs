@@ -59,6 +59,39 @@ namespace TreasureChestUnitTests
 		}
 
 		[Test]
+		public void NextAndPreviousSessions()
+		{
+			Session session1 = new Session(new DateTime(1999, 2, 5));
+			Session session2 = new Session(new DateTime(1999, 6, 1));
+			Session session3 = new Session(new DateTime(2000, 1, 1));
+			Session session4 = new Session(new DateTime(2000, 1, 2));
+			_controller.AddSession(session1);
+			_controller.AddSession(session2);
+			_controller.AddSession(session3);
+			_controller.AddSession(session4);
+
+			Assert.AreEqual(session1, _controller.GetNextSession(new DateTime(1990, 1, 1)));
+			Assert.AreEqual(session2, _controller.GetNextSession(new DateTime(1999, 4, 4)));
+			Assert.AreEqual(session3, _controller.GetNextSession(new DateTime(1999, 12, 31)));
+			Assert.AreEqual(session4, _controller.GetNextSession(new DateTime(2000, 1, 1)));
+
+			Assert.AreEqual(session4, _controller.GetPreviousSession(new DateTime(2001, 1, 1)));
+			Assert.AreEqual(session3, _controller.GetPreviousSession(new DateTime(2000, 1, 2)));
+			Assert.AreEqual(session2, _controller.GetPreviousSession(new DateTime(1999, 9, 1)));
+			Assert.AreEqual(session1, _controller.GetPreviousSession(new DateTime(1999, 5, 1)));
+
+			Assert.AreEqual(session2, _controller.GetNextSession(session1.Date));
+			Assert.AreEqual(session3, _controller.GetNextSession(session2.Date));
+			Assert.AreEqual(session4, _controller.GetNextSession(session3.Date));
+			Assert.IsNull(_controller.GetNextSession(session4.Date));
+
+			Assert.IsNull(_controller.GetPreviousSession(session1.Date));
+			Assert.AreEqual(session1, _controller.GetPreviousSession(session2.Date));
+			Assert.AreEqual(session2, _controller.GetPreviousSession(session3.Date));
+			Assert.AreEqual(session3, _controller.GetPreviousSession(session4.Date));
+		}
+
+		[Test]
 		public void ConsumeItems()
 		{
 			Consumer wim, bart, koen;
