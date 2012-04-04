@@ -31,6 +31,7 @@
 			System.Windows.Forms.Button _close;
 			this._list = new System.Windows.Forms.ListView();
 			this._name = new System.Windows.Forms.ColumnHeader();
+			this._add = new System.Windows.Forms.Button();
 			_close = new System.Windows.Forms.Button();
 			this.SuspendLayout();
 			// 
@@ -65,12 +66,23 @@
 			// 
 			this._name.Width = 258;
 			// 
+			// _add
+			// 
+			this._add.Location = new System.Drawing.Point(12, 227);
+			this._add.Name = "_add";
+			this._add.Size = new System.Drawing.Size(75, 23);
+			this._add.TabIndex = 2;
+			this._add.Text = "Add";
+			this._add.UseVisualStyleBackColor = true;
+			this._add.Click += new System.EventHandler(this.AddClicked);
+			// 
 			// ManageConsumersWindow
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.CancelButton = _close;
 			this.ClientSize = new System.Drawing.Size(284, 262);
+			this.Controls.Add(this._add);
 			this.Controls.Add(this._list);
 			this.Controls.Add(_close);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
@@ -86,6 +98,7 @@
 
 		private System.Windows.Forms.ListView _list;
 		private System.Windows.Forms.ColumnHeader _name;
+		private System.Windows.Forms.Button _add;
 
 	}
 }

@@ -37,6 +37,14 @@ namespace TreasureChestUI
 			consumer.Name = e.Label;
 		}
 
+		private void AddClicked(object sender, EventArgs e)
+		{
+			Consumer c = new Consumer("");
+			_controller.Consumers.Add(c);
+			UpdateList();
+			ItemWithName("").BeginEdit();
+		}
+
 		private void UpdateList()
 		{
 			_list.Items.Clear();
@@ -44,6 +52,17 @@ namespace TreasureChestUI
 			{
 				_list.Items.Add(new ListViewItem(c.Name) { Tag = c });
 			}
+		}
+
+		private ListViewItem ItemWithName(string name)
+		{
+			foreach (ListViewItem item in _list.Items)
+			{
+				if (item.Text == name)
+					return item;
+			}
+
+			return null;
 		}
 	}
 }

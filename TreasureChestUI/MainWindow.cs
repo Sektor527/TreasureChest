@@ -177,6 +177,7 @@ namespace TreasureChestUI
 		{
 			var window = new ManageConsumersWindow(_controller);
 			window.ShowDialog();
+			AddRemoveConsumers();
 			UpdateConsumers();
 		}
 	}
