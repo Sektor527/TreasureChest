@@ -17,10 +17,7 @@ namespace TreasureChestUI
 			_controller = controller;
 			InitializeComponent();
 
-			foreach (Consumer c in _controller.Consumers)
-			{
-				_list.Items.Add(new ListViewItem(c.Name) {Tag = c});
-			}
+			UpdateList();
 		}
 
 		private readonly Controller _controller;
@@ -38,6 +35,15 @@ namespace TreasureChestUI
 			if (e.Label == null) return;
 
 			consumer.Name = e.Label;
+		}
+
+		private void UpdateList()
+		{
+			_list.Items.Clear();
+			foreach (Consumer c in _controller.Consumers)
+			{
+				_list.Items.Add(new ListViewItem(c.Name) { Tag = c });
+			}
 		}
 	}
 }
