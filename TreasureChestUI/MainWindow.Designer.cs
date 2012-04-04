@@ -140,6 +140,7 @@
 			this._manageConsumers.TabIndex = 3;
 			this._manageConsumers.Text = "Manage Consumers";
 			this._manageConsumers.UseVisualStyleBackColor = true;
+			this._manageConsumers.Click += new System.EventHandler(this._manageConsumers_Click);
 			// 
 			// MainWindow
 			// 

@@ -166,5 +166,11 @@ namespace TreasureChestUI
 		}
 
 		private readonly Controller _controller;
+
+		private void _manageConsumers_Click(object sender, EventArgs e)
+		{
+			var window = new ManageConsumersWindow(_controller);
+			window.ShowDialog();
+		}
 	}
 }

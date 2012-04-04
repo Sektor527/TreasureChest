@@ -6,15 +6,19 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using TreasureChestCore;
 
 namespace TreasureChestUI
 {
 	public partial class ManageConsumersWindow : Form
 	{
-		public ManageConsumersWindow()
+		public ManageConsumersWindow(Controller controller)
 		{
+			_controller = controller;
 			InitializeComponent();
 		}
+
+		private readonly Controller _controller;
 
 		private void CloseClicked(object sender, EventArgs e)
 		{
