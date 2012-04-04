@@ -29,6 +29,8 @@
 		private void InitializeComponent()
 		{
 			System.Windows.Forms.Button _close;
+			this._list = new System.Windows.Forms.ListView();
+			this._name = new System.Windows.Forms.ColumnHeader();
 			_close = new System.Windows.Forms.Button();
 			this.SuspendLayout();
 			// 
@@ -44,12 +46,31 @@
 			_close.UseVisualStyleBackColor = true;
 			_close.Click += new System.EventHandler(this.CloseClicked);
 			// 
+			// _list
+			// 
+			this._list.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this._name});
+			this._list.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
+			this._list.LabelEdit = true;
+			this._list.Location = new System.Drawing.Point(12, 12);
+			this._list.MultiSelect = false;
+			this._list.Name = "_list";
+			this._list.Size = new System.Drawing.Size(260, 209);
+			this._list.TabIndex = 0;
+			this._list.UseCompatibleStateImageBehavior = false;
+			this._list.View = System.Windows.Forms.View.Details;
+			// 
+			// _name
+			// 
+			this._name.Width = 258;
+			// 
 			// ManageConsumersWindow
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.CancelButton = _close;
 			this.ClientSize = new System.Drawing.Size(284, 262);
+			this.Controls.Add(this._list);
 			this.Controls.Add(_close);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
 			this.MaximizeBox = false;
@@ -61,6 +82,9 @@
 		}
 
 		#endregion
+
+		private System.Windows.Forms.ListView _list;
+		private System.Windows.Forms.ColumnHeader _name;
 
 	}
 }
