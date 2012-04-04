@@ -21,13 +21,7 @@ namespace TreasureChestUI
 
 			_inventoryPanel.Controls.Add(new InventoryControl(_controller) { Dock = DockStyle.Fill });
 
-			foreach (Consumer c in _controller.Consumers)
-			{
-				ConsumerControl consumerControl = new ConsumerControl(_controller) {Name = c.Name, Credit = c.Credit, Tag = c};
-				_consumerPanel.Controls.Add(consumerControl);
-				consumerControl.CheckChanged += ConsumerCheckChanged;
-			}
-
+			AddRemoveConsumers();
 			UpdateInterface();
 		}
 
@@ -149,6 +143,17 @@ namespace TreasureChestUI
 		{
 			if (SelectedSession != null && _controller.GetConsumersCount(SelectedSession) == 0 && _controller.GetConsumedItemsCount(SelectedSession) == 0)
 				_controller.RemoveSession(SelectedSession);
+		}
+
+		private void AddRemoveConsumers()
+		{
+			_consumerPanel.Controls.Clear();
+			foreach (Consumer c in _controller.Consumers)
+			{
+				ConsumerControl consumerControl = new ConsumerControl(_controller) { Name = c.Name, Credit = c.Credit, Tag = c };
+				_consumerPanel.Controls.Add(consumerControl);
+				consumerControl.CheckChanged += ConsumerCheckChanged;
+			}
 		}
 
 		private Session SelectedSession
