@@ -59,6 +59,7 @@
 			this._list.TabIndex = 0;
 			this._list.UseCompatibleStateImageBehavior = false;
 			this._list.View = System.Windows.Forms.View.Details;
+			this._list.AfterLabelEdit += new System.Windows.Forms.LabelEditEventHandler(this.ConsumerRenamed);
 			// 
 			// _name
 			// 

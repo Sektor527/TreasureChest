@@ -35,6 +35,11 @@ namespace TreasureChestUI
 			Credit = ((Consumer) Tag).Credit;
 		}
 
+		internal void UpdateName()
+		{
+			Name = ((Consumer) Tag).Name;
+		}
+
 		private Controller _controller;
 
 		private void SubmitDeposit(object sender, EventArgs e)

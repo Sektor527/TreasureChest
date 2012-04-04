@@ -29,5 +29,15 @@ namespace TreasureChestUI
 		{
 			Close();
 		}
+
+		private void ConsumerRenamed(object sender, LabelEditEventArgs e)
+		{
+			ListViewItem item = _list.Items[e.Item];
+			Consumer consumer = item.Tag as Consumer;
+			if (consumer == null) return;
+			if (e.Label == null) return;
+
+			consumer.Name = e.Label;
+		}
 	}
 }

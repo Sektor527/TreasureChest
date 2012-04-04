@@ -121,6 +121,7 @@ namespace TreasureChestUI
 
 				consumerControl.Selected = SelectedSession != null && _controller.IsConsumerInSession(SelectedSession, consumerControl.Consumer);
 				consumerControl.UpdateCredit();
+				consumerControl.UpdateName();
 			}
 		}
 
@@ -171,6 +172,7 @@ namespace TreasureChestUI
 		{
 			var window = new ManageConsumersWindow(_controller);
 			window.ShowDialog();
+			UpdateConsumers();
 		}
 	}
 }
