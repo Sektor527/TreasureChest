@@ -67,4 +67,7 @@
   <Target Name="AfterBuild">
   </Target>
   -->
+  <PropertyGroup>
+    <PostBuildEvent>nunit-console $(TargetPath)</PostBuildEvent>
+  </PropertyGroup>
 </Project>
