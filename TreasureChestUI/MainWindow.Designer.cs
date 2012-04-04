@@ -37,10 +37,31 @@
 			this._inventoryPanel = new System.Windows.Forms.Panel();
 			this.btnUnconsume = new System.Windows.Forms.Button();
 			this.btnConsume = new System.Windows.Forms.Button();
+			this._manageConsumers = new System.Windows.Forms.Button();
 			_nextSession = new System.Windows.Forms.Button();
 			_previousSession = new System.Windows.Forms.Button();
 			this.groupBox1.SuspendLayout();
 			this.SuspendLayout();
+			// 
+			// _nextSession
+			// 
+			_nextSession.Location = new System.Drawing.Point(270, 17);
+			_nextSession.Name = "_nextSession";
+			_nextSession.Size = new System.Drawing.Size(27, 20);
+			_nextSession.TabIndex = 2;
+			_nextSession.Text = ">>";
+			_nextSession.UseVisualStyleBackColor = true;
+			_nextSession.Click += new System.EventHandler(this.NextSessionClicked);
+			// 
+			// _previousSession
+			// 
+			_previousSession.Location = new System.Drawing.Point(237, 17);
+			_previousSession.Name = "_previousSession";
+			_previousSession.Size = new System.Drawing.Size(27, 20);
+			_previousSession.TabIndex = 1;
+			_previousSession.Text = "<<";
+			_previousSession.UseVisualStyleBackColor = true;
+			_previousSession.Click += new System.EventHandler(this.PreviousSessionClicked);
 			// 
 			// groupBox1
 			// 
@@ -84,26 +105,6 @@
 			this.dateTimePicker1.TabIndex = 0;
 			this.dateTimePicker1.ValueChanged += new System.EventHandler(this.DateChanged);
 			// 
-			// _nextSession
-			// 
-			_nextSession.Location = new System.Drawing.Point(270, 17);
-			_nextSession.Name = "_nextSession";
-			_nextSession.Size = new System.Drawing.Size(27, 20);
-			_nextSession.TabIndex = 2;
-			_nextSession.Text = ">>";
-			_nextSession.UseVisualStyleBackColor = true;
-			_nextSession.Click += new System.EventHandler(this.NextSessionClicked);
-			// 
-			// _previousSession
-			// 
-			_previousSession.Location = new System.Drawing.Point(237, 17);
-			_previousSession.Name = "_previousSession";
-			_previousSession.Size = new System.Drawing.Size(27, 20);
-			_previousSession.TabIndex = 1;
-			_previousSession.Text = "<<";
-			_previousSession.UseVisualStyleBackColor = true;
-			_previousSession.Click += new System.EventHandler(this.PreviousSessionClicked);
-			// 
 			// _inventoryPanel
 			// 
 			this._inventoryPanel.Location = new System.Drawing.Point(469, 56);
@@ -131,11 +132,21 @@
 			this.btnConsume.UseVisualStyleBackColor = true;
 			this.btnConsume.Click += new System.EventHandler(this.ConsumeClicked);
 			// 
+			// _manageConsumers
+			// 
+			this._manageConsumers.Location = new System.Drawing.Point(18, 336);
+			this._manageConsumers.Name = "_manageConsumers";
+			this._manageConsumers.Size = new System.Drawing.Size(196, 23);
+			this._manageConsumers.TabIndex = 3;
+			this._manageConsumers.Text = "Manage Consumers";
+			this._manageConsumers.UseVisualStyleBackColor = true;
+			// 
 			// MainWindow
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(721, 367);
+			this.Controls.Add(this._manageConsumers);
 			this.Controls.Add(this._inventoryPanel);
 			this.Controls.Add(this.btnUnconsume);
 			this.Controls.Add(this.btnConsume);
@@ -158,6 +169,7 @@
 		private System.Windows.Forms.Button btnUnconsume;
 		private System.Windows.Forms.Button btnConsume;
 		private System.Windows.Forms.ListBox lstConsumed;
+		private System.Windows.Forms.Button _manageConsumers;
 	}
 }
 
