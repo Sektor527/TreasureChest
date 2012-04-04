@@ -45,6 +45,18 @@ namespace TreasureChestUI
 			ItemWithName("").BeginEdit();
 		}
 
+		private void RemoveClicked(object sender, EventArgs e)
+		{
+			ListViewItem item = _list.SelectedItems[0];
+			if (item == null) return;
+
+			Consumer consumer = item.Tag as Consumer;
+			if (consumer == null) return;
+
+			_controller.Consumers.Remove(consumer);
+			UpdateList();
+		}
+
 		private void UpdateList()
 		{
 			_list.Items.Clear();

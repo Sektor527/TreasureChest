@@ -32,6 +32,7 @@
 			this._list = new System.Windows.Forms.ListView();
 			this._name = new System.Windows.Forms.ColumnHeader();
 			this._add = new System.Windows.Forms.Button();
+			this._remove = new System.Windows.Forms.Button();
 			_close = new System.Windows.Forms.Button();
 			this.SuspendLayout();
 			// 
@@ -76,12 +77,23 @@
 			this._add.UseVisualStyleBackColor = true;
 			this._add.Click += new System.EventHandler(this.AddClicked);
 			// 
+			// _remove
+			// 
+			this._remove.Location = new System.Drawing.Point(93, 227);
+			this._remove.Name = "_remove";
+			this._remove.Size = new System.Drawing.Size(75, 23);
+			this._remove.TabIndex = 3;
+			this._remove.Text = "Remove";
+			this._remove.UseVisualStyleBackColor = true;
+			this._remove.Click += new System.EventHandler(this.RemoveClicked);
+			// 
 			// ManageConsumersWindow
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.CancelButton = _close;
 			this.ClientSize = new System.Drawing.Size(284, 262);
+			this.Controls.Add(this._remove);
 			this.Controls.Add(this._add);
 			this.Controls.Add(this._list);
 			this.Controls.Add(_close);
@@ -99,6 +111,7 @@
 		private System.Windows.Forms.ListView _list;
 		private System.Windows.Forms.ColumnHeader _name;
 		private System.Windows.Forms.Button _add;
+		private System.Windows.Forms.Button _remove;
 
 	}
 }
