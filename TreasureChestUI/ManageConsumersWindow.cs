@@ -16,6 +16,11 @@ namespace TreasureChestUI
 		{
 			_controller = controller;
 			InitializeComponent();
+
+			foreach (Consumer c in _controller.Consumers)
+			{
+				_list.Items.Add(new ListViewItem(c.Name) {Tag = c});
+			}
 		}
 
 		private readonly Controller _controller;
