@@ -19,18 +19,38 @@ namespace TreasureChestUI
 
 			InitializeComponent();
 
-			_inventoryControl = new InventoryControl(_controller) {Dock = DockStyle.Fill};
+			// Set up session picker
+			_sessionPickerControl = new SessionPickerControl(_controller) { Dock = DockStyle.Fill, };
+			_sessionPickerControl.DateChanged += DateChanged;
+			_sessionPanel.Controls.Add(_sessionPickerControl, 0, 0);
+			_sessionPanel.SetColumnSpan(_sessionPickerControl, 2);
 
+			// Set up consumer list
+			_consumersControl = new ConsumerListControl(_controller) { Dock = DockStyle.Fill };
+			_consumersControl.SelectionChanged += ConsumersSelectionChanged;
+			_sessionPanel.Controls.Add(_consumersControl, 0, 1);
+
+			// Set up consumed items
+			_consumedItemsControl = new ConsumedItemsControl(_controller) { Dock = DockStyle.Fill };
+			_sessionPanel.Controls.Add(_consumedItemsControl, 1, 1);
+
+			// Set up inventory
+			_inventoryControl = new InventoryControl(_controller) {Dock = DockStyle.Fill};
 			_inventoryPanel.Controls.Add(_inventoryControl);
 
-			AddRemoveConsumers();
-			UpdateInterface();
+
+			// Update UI
+			_consumersControl.UpdateConsumers(SelectedSession);
+			_consumedItemsControl.UpdateConsumedItems(SelectedSession);
+			_inventoryControl.UpdateItems();
 		}
 
 		#region Event Handlers
 		private void DateChanged(object sender, EventArgs e)
 		{
-			UpdateInterface();
+			// Update UI
+			_consumersControl.UpdateConsumers(SelectedSession);
+			_consumedItemsControl.UpdateConsumedItems(SelectedSession);
 		}
 
 		private void ConsumeClicked(object sender, EventArgs e)
@@ -38,11 +58,14 @@ namespace TreasureChestUI
 			if (_inventoryControl.SelectedItems.Count == 0) return;
 
 			if (SelectedSession == null)
-				_controller.AddSession(new Session(dateTimePicker1.Value));
+				_controller.AddSession(new Session(_sessionPickerControl.Value));
 
 			_controller.ConsumeItems(SelectedSession, _inventoryControl.SelectedItems);
 
-			UpdateInterface();
+			// Update UI
+			_consumersControl.UpdateConsumers(SelectedSession);
+			_consumedItemsControl.UpdateConsumedItems(SelectedSession);
+			_inventoryControl.UpdateItems();
 		}
 
 		private void UnconsumeClicked(object sender, EventArgs e)
@@ -53,91 +76,31 @@ namespace TreasureChestUI
 
 			CheckRemoveSession();
 
-			UpdateInterface();
+			// Update UI
+			_consumersControl.UpdateConsumers(SelectedSession);
+			_consumedItemsControl.UpdateConsumedItems(SelectedSession);
+			_inventoryControl.UpdateItems();
 		}
 
-		private void ConsumerCheckChanged(object sender, EventArgs eventArgs)
+		private void ConsumersSelectionChanged(Consumer consumer, bool isChecked)
 		{
-			ConsumerControl control = sender as ConsumerControl;
-			if (control == null) return;
-
-			if (!control.Selected)
+			if (!isChecked)
 			{
 				if (SelectedSession != null)
-					_controller.RemoveConsumerFromSession(SelectedSession, control.Consumer);
+					_controller.RemoveConsumerFromSession(SelectedSession, consumer);
 				CheckRemoveSession();
 			}
 
 			else
 			{
 				if (SelectedSession == null && CheckedConsumerCount > 0)
-					_controller.AddSession(new Session(dateTimePicker1.Value));
+					_controller.AddSession(new Session(_sessionPickerControl.Value));
 
-				_controller.AddConsumerToSession(SelectedSession, control.Consumer);
+				_controller.AddConsumerToSession(SelectedSession, consumer);
 			}
 
-			UpdateConsumers();
+			_consumersControl.UpdateConsumers(SelectedSession);
 		}
-
-		private void PreviousSessionClicked(object sender, EventArgs e)
-		{
-			Session previousSession = _controller.GetPreviousSession(dateTimePicker1.Value);
-			if (previousSession == null) return;
-
-			dateTimePicker1.Value = previousSession.Date;
-		}
-
-		private void NextSessionClicked(object sender, EventArgs e)
-		{
-			Session nextSession = _controller.GetNextSession(dateTimePicker1.Value);
-			if (nextSession == null) return;
-
-			dateTimePicker1.Value = nextSession.Date;
-		}
-		#endregion
-
-		#region Update interface
-		private void UpdateInterface()
-		{
-			UpdateConsumers();
-			UpdateConsumedItems();
-			_inventoryControl.UpdateItems();
-		}
-
-		private void UpdateConsumers()
-		{
-			foreach (Control control in _consumerPanel.Controls)
-			{
-				ConsumerControl consumerControl = control as ConsumerControl;
-				if (consumerControl == null) continue;
-
-				consumerControl.Selected = SelectedSession != null && _controller.IsConsumerInSession(SelectedSession, consumerControl.Consumer);
-				consumerControl.UpdateCredit();
-				consumerControl.UpdateName();
-			}
-		}
-
-		private void UpdateConsumedItems()
-		{
-			lstConsumed.Items.Clear();
-			if (SelectedSession == null)
-			{
-				_consumedTotal.Text = String.Format("Cost: --");
-				return;
-			}
-
-			float totalCost = 0f;
-
-			for (int i = 0; i < _controller.GetConsumedItemsCount(SelectedSession); ++i)
-			{
-				Item item = _controller.GetItemFromSession(SelectedSession, i);
-				lstConsumed.Items.Add(item);
-				totalCost += item.UnitPrice;
-			}
-
-			_consumedTotal.Text = String.Format("Cost: {0}", totalCost.ToString("#.##"));
-		}
-
 		#endregion
 
 		private void CheckRemoveSession()
@@ -146,41 +109,25 @@ namespace TreasureChestUI
 				_controller.RemoveSession(SelectedSession);
 		}
 
-		private void AddRemoveConsumers()
-		{
-			_consumerPanel.Controls.Clear();
-			foreach (Consumer c in _controller.Consumers)
-			{
-				ConsumerControl consumerControl = new ConsumerControl(_controller) { Name = c.Name, Credit = c.Credit, Tag = c };
-				_consumerPanel.Controls.Add(consumerControl);
-				consumerControl.CheckChanged += ConsumerCheckChanged;
-			}
-		}
-
 		private Session SelectedSession
 		{
-			get { return _controller.GetSession(dateTimePicker1.Value); }
+			get { return _sessionPickerControl.SelectedSession; }
 		}
 
 		private int CheckedConsumerCount
 		{
-			get { return _consumerPanel.Controls.OfType<ConsumerControl>().Count(consumerControl => consumerControl.Selected); }
+			get { return _consumersControl.CheckedConsumerCount; }
 		}
 
 		private List<Item> SelectedConsumedItems
 		{
-			get { return lstConsumed.SelectedItems.OfType<Item>().ToList(); }
+			get { return _consumedItemsControl.SelectedItems; }
 		}
 
 		private readonly Controller _controller;
 		private readonly InventoryControl _inventoryControl;
-
-		private void _manageConsumers_Click(object sender, EventArgs e)
-		{
-			var window = new ManageConsumersWindow(_controller);
-			window.ShowDialog();
-			AddRemoveConsumers();
-			UpdateConsumers();
-		}
+		private readonly ConsumerListControl _consumersControl;
+		private readonly ConsumedItemsControl _consumedItemsControl;
+		private readonly SessionPickerControl _sessionPickerControl;
 	}
 }
