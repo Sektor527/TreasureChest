@@ -122,12 +122,22 @@ namespace TreasureChestUI
 		private void UpdateConsumedItems()
 		{
 			lstConsumed.Items.Clear();
-			if (SelectedSession == null) return;
+			if (SelectedSession == null)
+			{
+				_consumedTotal.Text = String.Format("Cost: --");
+				return;
+			}
+
+			float totalCost = 0f;
 
 			for (int i = 0; i < _controller.GetConsumedItemsCount(SelectedSession); ++i)
 			{
-				lstConsumed.Items.Add(_controller.GetItemFromSession(SelectedSession, i));
+				Item item = _controller.GetItemFromSession(SelectedSession, i);
+				lstConsumed.Items.Add(item);
+				totalCost += item.UnitPrice;
 			}
+
+			_consumedTotal.Text = String.Format("Cost: {0}", totalCost.ToString("#.##"));
 		}
 
 		private void UpdateInventory()
