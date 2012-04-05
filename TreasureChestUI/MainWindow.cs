@@ -19,7 +19,9 @@ namespace TreasureChestUI
 
 			InitializeComponent();
 
-			_inventoryPanel.Controls.Add(new InventoryControl(_controller) { Dock = DockStyle.Fill });
+			_inventoryControl = new InventoryControl(_controller) {Dock = DockStyle.Fill};
+
+			_inventoryPanel.Controls.Add(_inventoryControl);
 
 			AddRemoveConsumers();
 			UpdateInterface();
@@ -33,22 +35,18 @@ namespace TreasureChestUI
 
 		private void ConsumeClicked(object sender, EventArgs e)
 		{
-			InventoryControl inventory = _inventoryPanel.Controls[0] as InventoryControl;
-			if (inventory == null) return;
-			if (inventory.SelectedItems.Count == 0) return;
+			if (_inventoryControl.SelectedItems.Count == 0) return;
 
 			if (SelectedSession == null)
 				_controller.AddSession(new Session(dateTimePicker1.Value));
 
-			_controller.ConsumeItems(SelectedSession, inventory.SelectedItems);
+			_controller.ConsumeItems(SelectedSession, _inventoryControl.SelectedItems);
 
 			UpdateInterface();
 		}
 
 		private void UnconsumeClicked(object sender, EventArgs e)
 		{
-			InventoryControl inventory = _inventoryPanel.Controls[0] as InventoryControl;
-			if (inventory == null) return;
 			if (SelectedConsumedItems.Count == 0) return;
 
 			_controller.UnconsumeItems(SelectedSession, SelectedConsumedItems);
@@ -103,7 +101,7 @@ namespace TreasureChestUI
 		{
 			UpdateConsumers();
 			UpdateConsumedItems();
-			UpdateInventory();
+			_inventoryControl.UpdateItems();
 		}
 
 		private void UpdateConsumers()
@@ -140,13 +138,6 @@ namespace TreasureChestUI
 			_consumedTotal.Text = String.Format("Cost: {0}", totalCost.ToString("#.##"));
 		}
 
-		private void UpdateInventory()
-		{
-			InventoryControl inventory = _inventoryPanel.Controls[0] as InventoryControl;
-			if (inventory == null) return;
-
-			inventory.UpdateItems();
-		}
 		#endregion
 
 		private void CheckRemoveSession()
@@ -182,6 +173,7 @@ namespace TreasureChestUI
 		}
 
 		private readonly Controller _controller;
+		private readonly InventoryControl _inventoryControl;
 
 		private void _manageConsumers_Click(object sender, EventArgs e)
 		{
