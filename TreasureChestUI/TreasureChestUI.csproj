@@ -112,6 +112,9 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="SessionPickerControl.resx">
+      <DependentUpon>SessionPickerControl.cs</DependentUpon>
+    </EmbeddedResource>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
@@ -124,6 +127,12 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="SessionPickerControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="SessionPickerControl.Designer.cs">
+      <DependentUpon>SessionPickerControl.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
