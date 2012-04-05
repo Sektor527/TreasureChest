@@ -60,6 +60,12 @@
     <Compile Include="ConsumerControl.Designer.cs">
       <DependentUpon>ConsumerControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="ConsumerListControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ConsumerListControl.Designer.cs">
+      <DependentUpon>ConsumerListControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="InventoryControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -86,6 +92,9 @@
     <EmbeddedResource Include="ConsumerControl.resx">
       <DependentUpon>ConsumerControl.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConsumerListControl.resx">
+      <DependentUpon>ConsumerListControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="InventoryControl.resx">
       <DependentUpon>InventoryControl.cs</DependentUpon>
