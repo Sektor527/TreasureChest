@@ -29,6 +29,7 @@
 		private void InitializeComponent()
 		{
 			System.Windows.Forms.Button _close;
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ManageConsumersWindow));
 			this._list = new System.Windows.Forms.ListView();
 			this._name = new System.Windows.Forms.ColumnHeader();
 			this._add = new System.Windows.Forms.Button();
@@ -98,6 +99,7 @@
 			this.Controls.Add(this._list);
 			this.Controls.Add(_close);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
 			this.Name = "ManageConsumersWindow";

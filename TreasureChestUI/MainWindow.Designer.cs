@@ -30,6 +30,7 @@
 		{
 			System.Windows.Forms.Button _nextSession;
 			System.Windows.Forms.Button _previousSession;
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainWindow));
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
 			this._consumerPanel = new System.Windows.Forms.FlowLayoutPanel();
 			this.lstConsumed = new System.Windows.Forms.ListBox();
@@ -153,6 +154,7 @@
 			this.Controls.Add(this.btnConsume);
 			this.Controls.Add(this.groupBox1);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.MaximizeBox = false;
 			this.Name = "MainWindow";
 			this.Text = "Treasure Chest - v2.0";
