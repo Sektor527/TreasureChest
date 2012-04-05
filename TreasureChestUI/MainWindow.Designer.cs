@@ -39,6 +39,7 @@
 			this.btnUnconsume = new System.Windows.Forms.Button();
 			this.btnConsume = new System.Windows.Forms.Button();
 			this._manageConsumers = new System.Windows.Forms.Button();
+			this._consumedTotal = new System.Windows.Forms.Label();
 			_nextSession = new System.Windows.Forms.Button();
 			_previousSession = new System.Windows.Forms.Button();
 			this.groupBox1.SuspendLayout();
@@ -66,6 +67,7 @@
 			// 
 			// groupBox1
 			// 
+			this.groupBox1.Controls.Add(this._consumedTotal);
 			this.groupBox1.Controls.Add(this._consumerPanel);
 			this.groupBox1.Controls.Add(this.lstConsumed);
 			this.groupBox1.Controls.Add(this.dateTimePicker1);
@@ -95,7 +97,7 @@
 			this.lstConsumed.Location = new System.Drawing.Point(208, 44);
 			this.lstConsumed.Name = "lstConsumed";
 			this.lstConsumed.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
-			this.lstConsumed.Size = new System.Drawing.Size(186, 273);
+			this.lstConsumed.Size = new System.Drawing.Size(186, 247);
 			this.lstConsumed.TabIndex = 4;
 			// 
 			// dateTimePicker1
@@ -143,6 +145,15 @@
 			this._manageConsumers.UseVisualStyleBackColor = true;
 			this._manageConsumers.Click += new System.EventHandler(this._manageConsumers_Click);
 			// 
+			// _consumedTotal
+			// 
+			this._consumedTotal.Location = new System.Drawing.Point(208, 299);
+			this._consumedTotal.Name = "_consumedTotal";
+			this._consumedTotal.Size = new System.Drawing.Size(186, 15);
+			this._consumedTotal.TabIndex = 5;
+			this._consumedTotal.Text = "Cost:";
+			this._consumedTotal.TextAlign = System.Drawing.ContentAlignment.TopRight;
+			// 
 			// MainWindow
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -173,6 +184,7 @@
 		private System.Windows.Forms.Button btnConsume;
 		private System.Windows.Forms.ListBox lstConsumed;
 		private System.Windows.Forms.Button _manageConsumers;
+		private System.Windows.Forms.Label _consumedTotal;
 	}
 }
 
