@@ -74,7 +74,8 @@ namespace TreasureChestUI
 		internal EventHandler CheckChanged;
 		private void CheckboxCheckedChanged(object sender, EventArgs e)
 		{
-			CheckChanged(this, e);
+			if (CheckChanged != null)
+				CheckChanged(this, e);
 		}
 	}
 }
