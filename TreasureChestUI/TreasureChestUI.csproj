@@ -48,6 +48,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ConsumedItemsControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ConsumedItemsControl.Designer.cs">
+      <DependentUpon>ConsumedItemsControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="ConsumerControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -74,6 +80,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="ConsumedItemsControl.resx">
+      <DependentUpon>ConsumedItemsControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ConsumerControl.resx">
       <DependentUpon>ConsumerControl.cs</DependentUpon>
       <SubType>Designer</SubType>
