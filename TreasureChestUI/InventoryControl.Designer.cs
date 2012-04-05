@@ -129,7 +129,6 @@
 			this.Controls.Add(this.lstInventory);
 			this.Name = "InventoryControl";
 			this.Size = new System.Drawing.Size(318, 315);
-			this.Load += new System.EventHandler(this.LoadWindow);
 			((System.ComponentModel.ISupportInitialize)(this.numProductCount)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();

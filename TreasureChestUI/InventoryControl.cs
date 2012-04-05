@@ -16,9 +16,10 @@ namespace TreasureChestUI
 	{
 		public InventoryControl(Controller controller)
 		{
+			_controller = controller;
 			InitializeComponent();
 
-			_controller = controller;
+			UpdateItems();
 		}
 
 		public List<Item> SelectedItems
@@ -43,13 +44,6 @@ namespace TreasureChestUI
 
 			lstInventory.Columns[0].Width = -1;
 			lstInventory.Columns[1].Width = -1;
-		}
-
-		private Controller _controller;
-
-		private void LoadWindow(object sender, EventArgs e)
-		{
-			UpdateItems();
 		}
 
 		private void AddItem(object sender, EventArgs e)
@@ -87,5 +81,7 @@ namespace TreasureChestUI
 
 			lstInventory.Focus();
 		}
+
+		private Controller _controller;
 	}
 }
