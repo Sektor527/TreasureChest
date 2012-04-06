@@ -22,8 +22,8 @@ namespace TreasureChestUI
 
 		internal DateTime Value
 		{
-			get { return dateTimePicker1.Value; }
-			set { dateTimePicker1.Value = value; }
+			get { return dateTimePicker1.Value.Date; }
+			set { dateTimePicker1.Value = value.Date; }
 		}
 
 		internal Session SelectedSession
@@ -33,18 +33,18 @@ namespace TreasureChestUI
 
 		private void PreviousSessionClicked(object sender, EventArgs e)
 		{
-			Session previousSession = _controller.GetPreviousSession(dateTimePicker1.Value);
+			Session previousSession = _controller.GetPreviousSession(Value);
 			if (previousSession == null) return;
 
-			dateTimePicker1.Value = previousSession.Date;
+			Value = previousSession.Date;
 		}
 
 		private void NextSessionClicked(object sender, EventArgs e)
 		{
-			Session nextSession = _controller.GetNextSession(dateTimePicker1.Value);
+			Session nextSession = _controller.GetNextSession(Value);
 			if (nextSession == null) return;
 
-			dateTimePicker1.Value = nextSession.Date;
+			Value = nextSession.Date;
 		}
 
 		private void OnDateChanged(object sender, EventArgs e)

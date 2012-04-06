@@ -7,7 +7,11 @@ namespace TreasureChestCore
 {
 	public class Session : IComparable<Session>
 	{
-		public DateTime Date { get; set; }
+		public DateTime Date 
+		{ 
+			get { return _date.Date; }
+			set { _date = value.Date; }
+		}
 		public List<Consumer> Consumers { get; private set; }
 		public Inventory ConsumedItems { get; private set; }
 
@@ -101,5 +105,7 @@ namespace TreasureChestCore
 		{
 			return GetHashCode() == obj.GetHashCode();
 		}
+
+		private DateTime _date;
 	}
 }
