@@ -39,7 +39,12 @@ namespace TreasureChestUI
 		{
 			lstInventory.Items.Clear();
 
-			AddListViewItems();
+			Dictionary<KeyValuePair<string, float>, int> stacks = _controller.GetStacksFromInventory();
+			foreach (KeyValuePair<string, float> item in stacks.Keys)
+			{
+				ListViewItem lvitem = new ListViewItem(new string[] { stacks[item].ToString(CultureInfo.InvariantCulture), item.Key, item.Value.ToString(CultureInfo.InvariantCulture) });
+				lstInventory.Items.Add(lvitem);
+			}
 
 			lstInventory.Columns[0].Width = -1;
 			lstInventory.Columns[1].Width = -1;
@@ -59,16 +64,6 @@ namespace TreasureChestUI
 			numProductCount.Value = 1;
 
 			txtProductName.Focus();
-		}
-
-		private void AddListViewItems()
-		{
-			Dictionary<KeyValuePair<string, float>, int> stacks = _controller.GetStacksFromInventory();
-			foreach (KeyValuePair<string, float> item in stacks.Keys)
-			{
-				ListViewItem lvitem = new ListViewItem(new string[] { stacks[item].ToString(CultureInfo.InvariantCulture), item.Key, item.Value.ToString(CultureInfo.InvariantCulture) });
-				lstInventory.Items.Add(lvitem);
-			}
 		}
 
 		private void DeleteItem(object sender, EventArgs e)

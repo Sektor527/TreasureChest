@@ -121,7 +121,7 @@ namespace TreasureChestUI
 
 		private List<Item> SelectedConsumedItems
 		{
-			get { return _consumedItemsControl.SelectedItems; }
+			get { return _consumedItemsControl.GetSelectedItems(_sessionPickerControl.SelectedSession); }
 		}
 
 		private readonly Controller _controller;

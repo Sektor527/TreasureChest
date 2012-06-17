@@ -29,7 +29,10 @@
 		private void InitializeComponent()
 		{
 			this._consumedTotal = new System.Windows.Forms.Label();
-			this.lstConsumed = new System.Windows.Forms.ListBox();
+			this.lstConsumed = new System.Windows.Forms.ListView();
+			this.columnHeader1 = new System.Windows.Forms.ColumnHeader();
+			this.columnHeader2 = new System.Windows.Forms.ColumnHeader();
+			this.columnHeader3 = new System.Windows.Forms.ColumnHeader();
 			this.SuspendLayout();
 			// 
 			// _consumedTotal
@@ -48,20 +51,34 @@
 			this.lstConsumed.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
 									| System.Windows.Forms.AnchorStyles.Left)
 									| System.Windows.Forms.AnchorStyles.Right)));
-			this.lstConsumed.FormattingEnabled = true;
-			this.lstConsumed.IntegralHeight = false;
+			this.lstConsumed.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader1,
+            this.columnHeader2,
+            this.columnHeader3});
+			this.lstConsumed.FullRowSelect = true;
+			this.lstConsumed.GridLines = true;
+			this.lstConsumed.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
 			this.lstConsumed.Location = new System.Drawing.Point(0, 0);
 			this.lstConsumed.Name = "lstConsumed";
-			this.lstConsumed.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
-			this.lstConsumed.Size = new System.Drawing.Size(186, 247);
-			this.lstConsumed.TabIndex = 6;
+			this.lstConsumed.Size = new System.Drawing.Size(187, 247);
+			this.lstConsumed.TabIndex = 8;
+			this.lstConsumed.UseCompatibleStateImageBehavior = false;
+			this.lstConsumed.View = System.Windows.Forms.View.Details;
+			// 
+			// columnHeader1
+			// 
+			this.columnHeader1.Width = 25;
+			// 
+			// columnHeader2
+			// 
+			this.columnHeader2.Width = 25;
 			// 
 			// ConsumedItemsControl
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.Controls.Add(this._consumedTotal);
 			this.Controls.Add(this.lstConsumed);
+			this.Controls.Add(this._consumedTotal);
 			this.Name = "ConsumedItemsControl";
 			this.Size = new System.Drawing.Size(187, 269);
 			this.ResumeLayout(false);
@@ -71,6 +88,9 @@
 		#endregion
 
 		private System.Windows.Forms.Label _consumedTotal;
-		private System.Windows.Forms.ListBox lstConsumed;
+		private System.Windows.Forms.ListView lstConsumed;
+		private System.Windows.Forms.ColumnHeader columnHeader1;
+		private System.Windows.Forms.ColumnHeader columnHeader2;
+		private System.Windows.Forms.ColumnHeader columnHeader3;
 	}
 }

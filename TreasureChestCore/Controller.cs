@@ -143,6 +143,17 @@ namespace TreasureChestCore
 			return session.ConsumedItems.Get(index);
 		}
 
+		public Item GetItemFromSession(Session session, string name)
+		{
+			if (session == null) throw new ArgumentNullException("Invalid session");
+			return session.ConsumedItems.Get(name);
+		}
+
+		public Dictionary<KeyValuePair<string, float>, int> GetStacksFromSession(Session session)
+		{
+			return session.ConsumedItems.GetStacks();
+		}
+
 		public int GetConsumedItemsCount(Session session)
 		{
 			if (session == null) throw new ArgumentNullException("Invalid session");

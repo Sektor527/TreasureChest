@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Data;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
@@ -27,21 +28,40 @@ namespace TreasureChestUI
 				return;
 			}
 
+			AddListViewItems(session);
+
 			float totalCost = 0f;
 
 			for (int i = 0; i < _controller.GetConsumedItemsCount(session); ++i)
 			{
 				Item item = _controller.GetItemFromSession(session, i);
-				lstConsumed.Items.Add(item);
 				totalCost += item.UnitPrice;
 			}
 
 			_consumedTotal.Text = String.Format("Cost: {0}", totalCost.ToString("#.00"));
 		}
 
-		internal List<Item> SelectedItems
+		private void AddListViewItems(Session session)
 		{
-		  get { return lstConsumed.SelectedItems.OfType<Item>().ToList(); }
+			Dictionary<KeyValuePair<string, float>, int> stacks = _controller.GetStacksFromSession(session);
+			foreach (KeyValuePair<string, float> item in stacks.Keys)
+			{
+				ListViewItem lvitem = new ListViewItem(new string[] { stacks[item].ToString(CultureInfo.InvariantCulture), item.Key, item.Value.ToString(CultureInfo.InvariantCulture) });
+				lstConsumed.Items.Add(lvitem);
+			}
+
+			lstConsumed.Columns[0].Width = -1;
+			lstConsumed.Columns[1].Width = -1;
+		}
+
+		internal List<Item> GetSelectedItems(Session session)
+		{
+			List<Item> result = new List<Item>();
+			foreach (ListViewItem listViewItem in lstConsumed.SelectedItems)
+			{
+				result.Add(_controller.GetItemFromSession(session, listViewItem.SubItems[1].Text));
+			}
+			return result;
 		}
 
 		private Controller _controller;
