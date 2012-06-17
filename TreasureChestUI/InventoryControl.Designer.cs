@@ -36,6 +36,7 @@
 			this.lstInventory = new System.Windows.Forms.ListView();
 			this.columnHeader1 = new System.Windows.Forms.ColumnHeader();
 			this.columnHeader2 = new System.Windows.Forms.ColumnHeader();
+			this.columnHeader3 = new System.Windows.Forms.ColumnHeader();
 			((System.ComponentModel.ISupportInitialize)(this.numProductCount)).BeginInit();
 			this.SuspendLayout();
 			// 
@@ -98,7 +99,8 @@
 									| System.Windows.Forms.AnchorStyles.Right)));
 			this.lstInventory.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1,
-            this.columnHeader2});
+            this.columnHeader2,
+            this.columnHeader3});
 			this.lstInventory.FullRowSelect = true;
 			this.lstInventory.GridLines = true;
 			this.lstInventory.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
@@ -111,11 +113,17 @@
 			// 
 			// columnHeader1
 			// 
+			this.columnHeader1.DisplayIndex = 0;
 			this.columnHeader1.Width = 25;
 			// 
 			// columnHeader2
 			// 
+			this.columnHeader2.DisplayIndex = 1;
 			this.columnHeader2.Width = 25;
+			// 
+			// columnHeader3
+			// 
+			this.columnHeader3.DisplayIndex = 2;
 			// 
 			// InventoryControl
 			// 
@@ -145,5 +153,6 @@
 		private System.Windows.Forms.ListView lstInventory;
 		private System.Windows.Forms.ColumnHeader columnHeader1;
 		private System.Windows.Forms.ColumnHeader columnHeader2;
+		private System.Windows.Forms.ColumnHeader columnHeader3;
 	}
 }

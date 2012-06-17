@@ -29,7 +29,7 @@ namespace TreasureChestUI
 				List<Item> result = new List<Item>();
 				foreach (ListViewItem listViewItem in lstInventory.SelectedItems)
 				{
-					result.Add(_controller.GetItemFromInventory(listViewItem.SubItems[0].Text));
+					result.Add(_controller.GetItemFromInventory(listViewItem.SubItems[1].Text));
 				}
 				return result;
 			}
@@ -39,8 +39,7 @@ namespace TreasureChestUI
 		{
 			lstInventory.Items.Clear();
 
-			for (int i = 0; i < _controller.GetInventorySize(); ++i)
-				AddListViewItem(i);
+			AddListViewItems();
 
 			lstInventory.Columns[0].Width = -1;
 			lstInventory.Columns[1].Width = -1;
@@ -62,19 +61,21 @@ namespace TreasureChestUI
 			txtProductName.Focus();
 		}
 
-		private void AddListViewItem(int index)
+		private void AddListViewItems()
 		{
-			Item item = _controller.GetItemFromInventory(index);
-
-			ListViewItem lvitem = new ListViewItem(new string[] { item.Name, item.UnitPrice.ToString(CultureInfo.InvariantCulture) });
-			lstInventory.Items.Add(lvitem);
+			Dictionary<KeyValuePair<string, float>, int> stacks = _controller.GetStacksFromInventory();
+			foreach (KeyValuePair<string, float> item in stacks.Keys)
+			{
+				ListViewItem lvitem = new ListViewItem(new string[] { stacks[item].ToString(CultureInfo.InvariantCulture), item.Key, item.Value.ToString(CultureInfo.InvariantCulture) });
+				lstInventory.Items.Add(lvitem);
+			}
 		}
 
 		private void DeleteItem(object sender, EventArgs e)
 		{
 			// Update list
 			foreach (ListViewItem item in lstInventory.SelectedItems)
-				_controller.RemoveItemFromInventory(item.Text);
+				_controller.RemoveItemFromInventory(item.SubItems[1].Text);
 
 			// Update interface
 			UpdateItems();
