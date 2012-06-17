@@ -47,7 +47,7 @@ namespace TreasureChestUI
 			_consumerPanel.Controls.Clear();
 			foreach (Consumer c in _controller.Consumers)
 			{
-				ConsumerControl consumerControl = new ConsumerControl(_controller) { Name = c.Name, Credit = c.Credit, Tag = c };
+				ConsumerControl consumerControl = new ConsumerControl(_controller) { ConsumerName = c.Name, Credit = c.Credit, Tag = c };
 				_consumerPanel.Controls.Add(consumerControl);
 				consumerControl.CheckChanged += ConsumerCheckChanged;
 			}

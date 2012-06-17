@@ -136,7 +136,7 @@
 			this.Controls.Add(this._deposit);
 			this.Controls.Add(this._credit);
 			this.Controls.Add(this._checkbox);
-			this.Name = "ConsumerControl";
+			this.ConsumerName = "ConsumerControl";
 			this.Size = new System.Drawing.Size(169, 16);
 			this._entryField.ResumeLayout(false);
 			this._entryField.PerformLayout();
