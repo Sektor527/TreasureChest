@@ -36,7 +36,7 @@ namespace TreasureChestUI
 				totalCost += item.UnitPrice;
 			}
 
-			_consumedTotal.Text = String.Format("Cost: {0}", totalCost.ToString("#.##"));
+			_consumedTotal.Text = String.Format("Cost: {0}", totalCost.ToString("#.00"));
 		}
 
 		internal List<Item> SelectedItems
