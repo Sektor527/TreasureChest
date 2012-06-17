@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using NUnit.Framework;
 using TreasureChestCore;
 
@@ -197,6 +198,35 @@ namespace TreasureChestUnitTests
 
 			Assert.AreNotEqual(item2, item3);
 			Assert.AreNotEqual(item3, item2);
+		}
+
+		[Test]
+		public void ItemStacks()
+		{
+			Inventory i = new Inventory();
+			Item item1a = new Item { Name = "Item1", UnitPrice = 1f }; i.Add(item1a);
+			Item item1b = new Item { Name = "Item1", UnitPrice = 1f }; i.Add(item1b);
+			Item item1c = new Item { Name = "Item1", UnitPrice = 1f }; i.Add(item1c);
+			Item item2a = new Item { Name = "Item2", UnitPrice = 1f }; i.Add(item2a);
+			Item item2b = new Item { Name = "Item2", UnitPrice = 1f }; i.Add(item2b);
+			Item item3a = new Item { Name = "Item1", UnitPrice = 2f }; i.Add(item3a);
+			Item item3b = new Item { Name = "Item1", UnitPrice = 2f }; i.Add(item3b);
+
+			Dictionary<KeyValuePair<string, float>, int> stacks = i.GetStacks();
+
+			Assert.AreEqual(3, stacks.Count);
+
+			KeyValuePair<string, float> pair1 = new KeyValuePair<string, float>("Item1", 1f);
+			Assert.Contains(pair1, stacks.Keys);
+			Assert.AreEqual(3, stacks[pair1]);
+
+			KeyValuePair<string, float> pair2 = new KeyValuePair<string, float>("Item2", 1f);
+			Assert.Contains(pair2, stacks.Keys);
+			Assert.AreEqual(2, stacks[pair2]);
+
+			KeyValuePair<string, float> pair3 = new KeyValuePair<string, float>("Item1", 2f);
+			Assert.Contains(pair3, stacks.Keys);
+			Assert.AreEqual(2, stacks[pair3]);
 		}
 
 		private bool AreEqualFloat(float expected, float actual)

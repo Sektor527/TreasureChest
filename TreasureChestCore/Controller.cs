@@ -57,6 +57,11 @@ namespace TreasureChestCore
 			return _inventory.Count(name);
 		}
 
+		public Dictionary<KeyValuePair<string, float>, int> GetStacksFromInventory()
+		{
+			return _inventory.GetStacks();
+		}
+
 		public void AddSession(Session session)
 		{
 			if (session == null) throw new ArgumentNullException("Invalid session");

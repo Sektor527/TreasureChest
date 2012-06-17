@@ -144,5 +144,19 @@ namespace TreasureChestCore
 
 			return 0f;
 		}
+
+		internal Dictionary<KeyValuePair<string, float>, int> GetStacks()
+		{
+			Dictionary<KeyValuePair<string, float>, int> stacks = new Dictionary<KeyValuePair<string, float>, int>();
+			foreach (Item item in _inventory)
+			{
+				KeyValuePair<string, float> key = new KeyValuePair<string, float>(item.Name, item.UnitPrice);
+				if (stacks.Keys.Contains(key))
+					stacks[key]++;
+				else
+					stacks.Add(key, 1);
+			}
+			return stacks;
+		}
 	}
 }
