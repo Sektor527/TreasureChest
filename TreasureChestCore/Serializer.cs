@@ -13,6 +13,8 @@ namespace TreasureChestCore
 
 		internal static void Serialize(List<Session> sessions, List<Consumer> consumers, Inventory inventory)
 		{
+			File.Copy("chest.dat", "chest.d00", true);
+
 			_document = new XmlDocument();
 			_document.AppendChild(_document.CreateXmlDeclaration("1.0", null, null));
 			XmlNode root = _document.AppendChild(_document.CreateElement("TreasureChest"));
