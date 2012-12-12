@@ -5,6 +5,7 @@ project(TreasureChest)
 set(core_dir ${PROJECT_SOURCE_DIR}/src/core)
 
 set(core_sources
+	${core_dir}/Consumer.cpp
 )
 
 # Build core library
