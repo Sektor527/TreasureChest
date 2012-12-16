@@ -7,6 +7,7 @@ set(core_dir ${PROJECT_SOURCE_DIR}/src/core)
 set(core_sources
 	${core_dir}/Consumer.cpp
 	${core_dir}/Inventory.cpp
+	${core_dir}/Session.cpp
 )
 
 # Build core library

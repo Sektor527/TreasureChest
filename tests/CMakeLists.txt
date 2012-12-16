@@ -4,6 +4,7 @@ project (tests)
 set(testfiles
 	ConsumerTests.cpp
 	InventoryTests.cpp
+	SessionTests.cpp
 )
 
 # Set gtest/gmock environment
