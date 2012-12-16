@@ -3,6 +3,7 @@ project (tests)
 # Define source files
 set(testfiles
 	ConsumerTests.cpp
+	InventoryTests.cpp
 )
 
 # Set gtest/gmock environment
