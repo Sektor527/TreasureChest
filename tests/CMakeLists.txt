@@ -5,6 +5,7 @@ set(testfiles
 	ConsumerTests.cpp
 	InventoryTests.cpp
 	SessionTests.cpp
+	ControllerTests.cpp
 )
 
 # Set gtest/gmock environment
