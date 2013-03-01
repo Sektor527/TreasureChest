@@ -71,4 +71,45 @@ TEST(ControllerSessionTests, GetSessionOnNonExistingInBetweenDate)
 	ASSERT_EQ(NULL, c.getSession(2000, 4, 27));
 }
 
+TEST(ControllerSessionTests, RemoveSession)
+{
+	Controller c;
+	c.addSession(new Session(2000, 1, 1));
+	c.addSession(new Session(1998, 1, 1));
 
+	c.removeSession(2000, 1, 1);
+
+	ASSERT_EQ(1, c.getSessionCount());
+	ASSERT_EQ(NULL, c.getSession(2000, 1, 1));
+}
+
+TEST(ControllerSessionTests, RemoveNonExistingEarlierSession)
+{
+	Controller c;
+	c.addSession(new Session(1998, 1, 1));
+
+	c.removeSession(1980, 1, 1);
+
+	ASSERT_EQ(1, c.getSessionCount());
+}
+
+TEST(ControllerSessionTests, RemoveNonExistingLaterSession)
+{
+	Controller c;
+	c.addSession(new Session(1998, 1, 1));
+
+	c.removeSession(2000, 1, 1);
+
+	ASSERT_EQ(1, c.getSessionCount());
+}
+
+TEST(ControllerSessionTests, RemoveNonExistingInBetweenSession)
+{
+	Controller c;
+	c.addSession(new Session(1998, 1, 1));
+	c.addSession(new Session(2013, 1, 1));
+
+	c.removeSession(2000, 1, 1);
+
+	ASSERT_EQ(2, c.getSessionCount());
+}

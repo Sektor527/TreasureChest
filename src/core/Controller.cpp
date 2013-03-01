@@ -18,6 +18,22 @@ void Controller::addSession(Session* session)
 		_sessions.push_back(session);
 }
 
+void Controller::removeSession(int year, int month, int day)
+{
+	Session target(year, month, day);
+
+	std::vector<Session*>::iterator it;
+	for (it = _sessions.begin(); it != _sessions.end(); ++it)
+	{
+		Session* session = *it;
+		if (session->isAfter(&target)) return;
+		if (session->isBefore(&target)) continue;
+
+		_sessions.erase(it);
+		break;
+	}
+}
+
 int Controller::getSessionCount() const
 {
 	return _sessions.size();
