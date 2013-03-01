@@ -28,3 +28,20 @@ Session* Controller::getSession(int index) const
 	assert(index >= 0 && index < _sessions.size());
 	return _sessions[index];
 }
+
+Session* Controller::getSession(int year, int month, int day) const
+{
+	Session target(year, month, day);
+
+	std::vector<Session*>::const_iterator it;
+	for (it = _sessions.begin(); it != _sessions.end(); ++it)
+	{
+		Session* session = *it;
+		if (session->isAfter(&target)) return NULL;
+		if (session->isBefore(&target)) continue;
+
+		return *it;
+	}
+	
+	return NULL;
+}
