@@ -1,6 +1,7 @@
 #include "gmock/gmock.h"
 #include "Controller.h"
 #include "Session.h"
+#include "Consumer.h"
 
 TEST(ControllerSessionTests, AddSession)
 {
@@ -112,4 +113,128 @@ TEST(ControllerSessionTests, RemoveNonExistingInBetweenSession)
 	c.removeSession(2000, 1, 1);
 
 	ASSERT_EQ(2, c.getSessionCount());
+}
+
+class ControllerInventoryTests : public ::testing::Test
+{
+public:
+	virtual void SetUp()
+	{
+		c.addItemToInventory(3, "item 1", 5.f);
+		c.addItemToInventory(2, "item 2", 4.f);
+		c.addItemToInventory(1, "item 3", 3.f, 3);
+	}
+	
+	Controller c;
+};
+
+TEST_F(ControllerInventoryTests, GetItemCount)
+{
+	ASSERT_EQ(8, c.getItemCount());
+}
+
+TEST_F(ControllerInventoryTests, GetItemGroupCount)
+{
+	ASSERT_EQ(3, c.getItemGroupCount());
+}
+
+TEST_F(ControllerInventoryTests, GetItemGroupName)
+{
+	ASSERT_EQ("item 1", c.getItemGroupName(0));
+	ASSERT_EQ("item 2", c.getItemGroupName(1));
+	ASSERT_EQ("item 3", c.getItemGroupName(2));
+}
+
+TEST_F(ControllerInventoryTests, GetItemCountsFromInventoryByName)
+{
+	ASSERT_EQ(3, c.getItemCount("item 1"));
+	ASSERT_EQ(2, c.getItemCount("item 2"));
+	ASSERT_EQ(3, c.getItemCount("item 3"));
+}
+
+TEST_F(ControllerInventoryTests, GetItemCountsFromInventoryByIndex)
+{
+	ASSERT_EQ(3, c.getItemCount(0));
+	ASSERT_EQ(2, c.getItemCount(1));
+	ASSERT_EQ(3, c.getItemCount(2));
+}
+
+class ControllerSessionInventoryTests : public ::testing::Test
+{
+public:
+	virtual void SetUp()
+	{
+		c.addSession(&s);
+
+		c.addItemToSession(&s, 3, "item 1", 5.f);
+		c.addItemToSession(&s, 2, "item 2", 4.f);
+		c.addItemToSession(&s, 1, "item 3", 3.f, 3);
+	}
+	
+	Controller c;
+	Session s;
+};
+
+TEST_F(ControllerSessionInventoryTests, GetItemCount)
+{
+	ASSERT_EQ(8, c.getItemCount(&s));
+}
+
+TEST_F(ControllerSessionInventoryTests, GetItemGroupCount)
+{
+	ASSERT_EQ(3, c.getItemGroupCount(&s));
+}
+
+TEST_F(ControllerSessionInventoryTests, GetItemGroupName)
+{
+	ASSERT_EQ("item 1", c.getItemGroupName(&s, 0));
+	ASSERT_EQ("item 2", c.getItemGroupName(&s, 1));
+	ASSERT_EQ("item 3", c.getItemGroupName(&s, 2));
+}
+
+TEST_F(ControllerSessionInventoryTests, GetItemCountsFromInventoryByName)
+{
+	ASSERT_EQ(3, c.getItemCount(&s, "item 1"));
+	ASSERT_EQ(2, c.getItemCount(&s, "item 2"));
+	ASSERT_EQ(3, c.getItemCount(&s, "item 3"));
+}
+
+TEST_F(ControllerSessionInventoryTests, GetItemCountsFromInventoryByIndex)
+{
+	ASSERT_EQ(3, c.getItemCount(&s, 0));
+	ASSERT_EQ(2, c.getItemCount(&s, 1));
+	ASSERT_EQ(3, c.getItemCount(&s, 2));
+}
+
+class ControllerConsumerTests : public ::testing::Test
+{
+public:
+	ControllerConsumerTests() : a("wim") {}
+
+	virtual void SetUp()
+	{
+		c.addSession(&s);
+		c.addConsumerToSession(&s, &a);
+	}
+
+	Controller c;
+	Session s;
+	Consumer a;
+};
+
+TEST_F(ControllerConsumerTests, AddConsumersToSession)
+{
+	ASSERT_EQ(1, c.getConsumerCount(&s));
+}
+
+TEST_F(ControllerConsumerTests, GetConsumerName)
+{
+	ASSERT_EQ("wim", c.getConsumerName(&s, 0));
+}
+
+TEST_F(ControllerConsumerTests, RemoveConsumersFromSession)
+{
+	c.removeConsumerFromSession(&s, 0);
+
+	ASSERT_EQ(0, c.getConsumerCount(&s));
 }

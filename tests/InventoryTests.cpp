@@ -95,6 +95,15 @@ TEST(InventoryTests, CountIndividualItemsWithDifferentPrices)
 	ASSERT_EQ(3, i.getItemCount("Chips"));
 }
 
+TEST(InventoryTests, CountItemCollections)
+{
+	Inventory i;
+	i.add(1, "Chips", 3.20f, 1);
+	i.add(2, "Cola", 3.00f, 1);
+
+	ASSERT_EQ(2, i.getItemGroupCount());
+}
+
 TEST(InventoryTests, GetHighestPriceOfSameItem)
 {
 	Inventory i;

@@ -56,10 +56,11 @@ void Session::addConsumer(Consumer* consumer)
 	}
 }
 
-void Session::removeConsumer(Consumer* consumer)
+void Session::removeConsumer(int index)
 {
-	consumers_t::iterator it = std::find(m_consumers.begin(), m_consumers.end(), consumer);
-	assert(it != m_consumers.end());
+	assert(index >= 0 && index < m_consumers.size());
+
+	consumers_t::iterator it = m_consumers.begin() + index;
 
 	// Unset credits
 	for (int i = 0; i < m_consumed->getAllCount(); ++i)
@@ -119,4 +120,9 @@ void Session::unconsumeTo(Inventory* inventory, const std::string& item)
 int Session::getConsumedCount() const
 {
 	return m_consumed->getAllCount();
+}
+
+Inventory* Session::getConsumed() const
+{
+	return m_consumed;
 }

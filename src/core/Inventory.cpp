@@ -1,6 +1,7 @@
 #include "Inventory.h"
 #include <cassert>
 #include <limits>
+#include <algorithm>
 
 void Inventory::add(int amount, const std::string& name, float price, int units)
 {
@@ -60,6 +61,43 @@ void Inventory::removeLowestPrice(const std::string& name)
 int Inventory::getAllCount() const
 {
 	return items.size();
+}
+
+int Inventory::getItemGroupCount() const
+{
+	std::vector<std::string> names;
+
+	items_t::const_iterator it;
+	for (it = items.begin(); it != items.end(); ++it)
+	{
+		if (std::find(names.begin(), names.end(), it->first) == names.end())
+		{
+			names.push_back(it->first);
+		}
+	}
+
+	return names.size();
+}
+
+std::string Inventory::getItemGroupName(int index) const
+{
+	std::vector<std::string> names;
+
+	items_t::const_iterator it;
+	for (it = items.begin(); it != items.end(); ++it)
+	{
+		if (std::find(names.begin(), names.end(), it->first) == names.end())
+		{
+			names.push_back(it->first);
+		}
+	}
+
+	return names[index];
+}
+
+int Inventory::getItemCount(int index) const
+{
+	return getItemCount(getItemGroupName(index));
 }
 
 int Inventory::getItemCount(const std::string& name) const

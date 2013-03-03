@@ -15,7 +15,7 @@ public:
 
 	// Consumers
 	void addConsumer(Consumer* consumer);
-	void removeConsumer(Consumer* consumer);
+	void removeConsumer(int index);
 
 	int getConsumerCount() const;
 	std::string getConsumerName(int index) const;
@@ -28,6 +28,8 @@ public:
 	void consumeFrom(Inventory* inventory, const std::string& item);
 	void unconsumeTo(Inventory* inventory, const std::string& item);
 	int getConsumedCount() const;
+
+	Inventory* getConsumed() const;
 
 private:
 	typedef std::vector<Consumer*> consumers_t;

@@ -25,10 +25,9 @@ TEST(SessionTests, GetConsumerName)
 TEST(SessionTests, RemoveConsumer)
 {
 	Session s;
-	Consumer c("Bart");
 
-	s.addConsumer(&c);
-	s.removeConsumer(&c);
+	s.addConsumer(new Consumer("Bart"));
+	s.removeConsumer(0);
 
 	ASSERT_EQ(0, s.getConsumerCount());
 }
@@ -140,7 +139,7 @@ TEST(SessionTests, CreditRedistributionRemoveConsumer)
 	s.addConsumer(&c1);
 	s.addConsumer(&c2);
 
-	s.removeConsumer(&c1);
+	s.removeConsumer(0);
 	ASSERT_EQ(10.f, c1.getCredit());
 	ASSERT_EQ(0.f, c2.getCredit());
 }

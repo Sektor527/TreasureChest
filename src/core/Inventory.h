@@ -10,6 +10,9 @@ public:
 	void removeLowestPrice(const std::string& name);
 
 	int getAllCount() const;
+	int getItemGroupCount() const;
+	std::string getItemGroupName(int index) const;
+	int getItemCount(int index) const;
 	int getItemCount(const std::string& name) const;
 	std::string getItemName(int index) const;
 	float getItemPrice(int index) const;
