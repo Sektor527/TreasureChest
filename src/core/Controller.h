@@ -14,10 +14,16 @@ public:
 	void removeSession(int session);
 	int getSession(int year, int month, int day) const;
 
-	void addConsumerToSession(int session, Consumer* consumer);
+	void addConsumer(const std::string& name);
+	int getConsumerCount() const;
+	void removeConsumer(int consumer);
+	int getConsumer(const std::string& name) const;
+	void depositCredit(int consumer, float credit);
+	float getConsumerCredit(int consumer) const;
+
+	void addConsumerToSession(int session, int consumer);
 	void removeConsumerFromSession(int session, int index);
-	int getConsumerCount(int session) const;
-	std::string getConsumerName(int session, int index) const;
+	bool isConsumerInSession(int session, int consumer) const;
 
 	void addItemToInventory(int count, const std::string& name, float value, int units = 1);
 	int getItemCount() const;
@@ -35,5 +41,6 @@ public:
 
 private:
 	std::vector<Session*> _sessions;
+	std::vector<Consumer*> _consumers;
 	Inventory _inventory;
 };

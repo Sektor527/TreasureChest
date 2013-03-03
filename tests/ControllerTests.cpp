@@ -61,6 +61,41 @@ TEST(ControllerSessionTests, RemoveSession)
 	ASSERT_EQ(0, c.getSession(1998, 1, 1));
 }
 
+TEST(ControllerConsumerTests, AddConsumer)
+{
+	Controller c;
+	c.addConsumer("wim");
+
+	ASSERT_EQ(1, c.getConsumerCount());
+}
+
+TEST(ControllerConsumerTests, GetConsumer)
+{
+	Controller c;
+	c.addConsumer("wim");
+
+	ASSERT_EQ(0, c.getConsumer("wim"));
+}
+
+TEST(ControllerConsumerTests, RemoveConsumer)
+{
+	Controller c;
+	c.addConsumer("wim");
+
+	c.removeConsumer(0);
+
+	ASSERT_EQ(0, c.getConsumerCount());
+}
+
+TEST(ControllerConsumerTests, DepositCredits)
+{
+	Controller c;
+	c.addConsumer("Wim");
+
+	c.depositCredit(0, 10.f);
+	ASSERT_EQ(10.f, c.getConsumerCredit(0));
+}
+
 class ControllerInventoryTests : public ::testing::Test
 {
 public:
@@ -151,34 +186,29 @@ TEST_F(ControllerSessionInventoryTests, GetItemCountsFromInventoryByIndex)
 	ASSERT_EQ(3, c.getSessionItemCount(0, 2));
 }
 
-class ControllerConsumerTests : public ::testing::Test
+class ControllerSessionConsumerTests : public ::testing::Test
 {
 public:
-	ControllerConsumerTests() : a("wim") {}
-
 	virtual void SetUp()
 	{
 		c.addSession(2000, 1, 1);
-		c.addConsumerToSession(0, &a);
+		c.addConsumer("a");
+		c.addConsumer("b");
+		c.addConsumerToSession(0, 1);
 	}
 
 	Controller c;
-	Consumer a;
 };
 
-TEST_F(ControllerConsumerTests, AddConsumersToSession)
+TEST_F(ControllerSessionConsumerTests, ConsumerInSession)
 {
-	ASSERT_EQ(1, c.getConsumerCount(0));
+	ASSERT_FALSE(c.isConsumerInSession(0, 0));
+	ASSERT_TRUE(c.isConsumerInSession(0, 1));
 }
 
-TEST_F(ControllerConsumerTests, GetConsumerName)
+TEST_F(ControllerSessionConsumerTests, RemoveConsumersFromSession)
 {
-	ASSERT_EQ("wim", c.getConsumerName(0, 0));
-}
+	c.removeConsumerFromSession(0, 1);
 
-TEST_F(ControllerConsumerTests, RemoveConsumersFromSession)
-{
-	c.removeConsumerFromSession(0, 0);
-
-	ASSERT_EQ(0, c.getConsumerCount(0));
+	ASSERT_FALSE(c.isConsumerInSession(0, 1));
 }

@@ -48,32 +48,89 @@ int Controller::getSession(int year, int month, int day) const
 	return -1;
 }
 
-void Controller::addConsumerToSession(int session, Consumer* consumer)
+void Controller::addConsumer(const std::string& name)
 {
-	assert(session >= 0 && session < _sessions.size());
-
-	_sessions[session]->addConsumer(consumer);
+	_consumers.push_back(new Consumer(name));
 }
 
-void Controller::removeConsumerFromSession(int session, int index)
+int Controller::getConsumerCount() const
 {
-	assert(session >= 0 && session < _sessions.size());
-
-	_sessions[session]->removeConsumer(index);
+	return _consumers.size();
 }
 
-int Controller::getConsumerCount(int session) const
+void Controller::removeConsumer(int consumer)
 {
-	assert(session >= 0 && session < _sessions.size());
+	assert(consumer >= 0 && consumer < _consumers.size());
 
-	return _sessions[session]->getConsumerCount();
+	_consumers.erase(_consumers.begin() + consumer);
 }
 
-std::string Controller::getConsumerName(int session, int index) const
+int Controller::getConsumer(const std::string& name) const
+{
+	std::vector<Consumer*>::const_iterator it;
+	for (it = _consumers.begin(); it != _consumers.end(); ++it)
+	{
+		Consumer* consumer = *it;
+		if (consumer->getName() == name) return std::distance(_consumers.begin(), it);
+	}
+
+	assert(false);
+	return -1;
+}
+
+void Controller::depositCredit(int consumer, float credit)
+{
+	assert(consumer >= 0 && consumer < _consumers.size());
+	
+	_consumers[consumer]->deposit(credit);
+}
+
+float Controller::getConsumerCredit(int consumer) const
+{
+	assert(consumer >= 0 && consumer < _consumers.size());
+	
+	return _consumers[consumer]->getCredit();
+}
+
+void Controller::addConsumerToSession(int session, int consumer)
 {
 	assert(session >= 0 && session < _sessions.size());
 
-	return _sessions[session]->getConsumerName(index);
+	_sessions[session]->addConsumer(_consumers[consumer]);
+}
+
+void Controller::removeConsumerFromSession(int session, int consumer)
+{
+	assert(session >= 0 && session < _sessions.size());
+
+	Session* s = _sessions[session];
+	Consumer* c = _consumers[consumer];
+	for (int i = 0; i < s->getConsumerCount(); ++i)
+	{
+		if (s->getConsumerName(i) == c->getName())
+		{
+			s->removeConsumer(i);
+			return;
+		}
+	}
+	
+	assert(false);
+}
+
+bool Controller::isConsumerInSession(int session, int consumer) const
+{
+	assert(session >= 0 && session < _sessions.size());
+	assert(consumer >= 0 && consumer < _consumers.size());
+
+	Consumer* c = _consumers[consumer];
+	Session* s = _sessions[session];
+
+	for (int i = 0; i < s->getConsumerCount(); ++i)
+	{
+		if (s->getConsumerName(i) == c->getName()) return true;
+	}
+
+	return false;
 }
 
 void Controller::addItemToInventory(int count, const std::string& name, float value, int units)
