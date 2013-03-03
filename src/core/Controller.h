@@ -12,8 +12,7 @@ public:
 	void addSession(int year, int month, int day);
 	int getSessionCount() const;
 	void removeSession(int session);
-	Session* getSession(int index) const;
-	Session* getSession(int year, int month, int day) const;
+	int getSession(int year, int month, int day) const;
 
 	void addConsumerToSession(int session, Consumer* consumer);
 	void removeConsumerFromSession(int session, int index);

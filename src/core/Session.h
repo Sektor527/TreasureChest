@@ -21,6 +21,7 @@ public:
 	std::string getConsumerName(int index) const;
 
 	// Date
+	bool isEqual(const Session* other) const;
 	bool isBefore(const Session* other) const;
 	bool isAfter(const Session* other) const;
 

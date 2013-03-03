@@ -93,6 +93,11 @@ std::string Session::getConsumerName(int index) const
 	return m_consumers[index]->getName();
 }
 
+bool Session::isEqual(const Session* other) const
+{
+	return m_time == other->m_time;
+}
+
 bool Session::isBefore(const Session* other) const
 {
 	return m_time < other->m_time;

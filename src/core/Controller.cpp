@@ -33,13 +33,7 @@ int Controller::getSessionCount() const
 	return _sessions.size();
 }
 
-Session* Controller::getSession(int index) const
-{
-	assert(index >= 0 && index < _sessions.size());
-	return _sessions[index];
-}
-
-Session* Controller::getSession(int year, int month, int day) const
+int Controller::getSession(int year, int month, int day) const
 {
 	Session target(year, month, day);
 
@@ -47,13 +41,11 @@ Session* Controller::getSession(int year, int month, int day) const
 	for (it = _sessions.begin(); it != _sessions.end(); ++it)
 	{
 		Session* session = *it;
-		if (session->isAfter(&target)) return NULL;
-		if (session->isBefore(&target)) continue;
-
-		return *it;
+		if (session->isEqual(&target)) return std::distance(_sessions.begin(), it);
 	}
 	
-	return NULL;
+	assert(false);
+	return -1;
 }
 
 void Controller::addConsumerToSession(int session, Consumer* consumer)
