@@ -65,6 +65,13 @@ void Controller::removeConsumer(int consumer)
 	_consumers.erase(_consumers.begin() + consumer);
 }
 
+std::string Controller::getConsumerName(int consumer) const
+{
+	assert(consumer >= 0 && consumer < _consumers.size());
+	
+	return _consumers[consumer]->getName();
+}
+
 int Controller::getConsumer(const std::string& name) const
 {
 	std::vector<Consumer*>::const_iterator it;

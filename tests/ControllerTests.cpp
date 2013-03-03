@@ -87,6 +87,14 @@ TEST(ControllerConsumerTests, RemoveConsumer)
 	ASSERT_EQ(0, c.getConsumerCount());
 }
 
+TEST(ControllerConsumerTests, GetConsumerName)
+{
+	Controller c;
+	c.addConsumer("Wim");
+
+	ASSERT_EQ("Wim", c.getConsumerName(0));
+}
+
 TEST(ControllerConsumerTests, DepositCredits)
 {
 	Controller c;

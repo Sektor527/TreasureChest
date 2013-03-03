@@ -17,6 +17,7 @@ public:
 	void addConsumer(const std::string& name);
 	int getConsumerCount() const;
 	void removeConsumer(int consumer);
+	std::string getConsumerName(int consumer) const;
 	int getConsumer(const std::string& name) const;
 	void depositCredit(int consumer, float credit);
 	float getConsumerCredit(int consumer) const;
