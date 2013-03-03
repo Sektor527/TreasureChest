@@ -21,20 +21,11 @@ void Controller::addSession(int year, int month, int day)
 		_sessions.push_back(session);
 }
 
-void Controller::removeSession(int year, int month, int day)
+void Controller::removeSession(int session)
 {
-	Session target(year, month, day);
+	assert(session >= 0 && session < _sessions.size());
 
-	std::vector<Session*>::iterator it;
-	for (it = _sessions.begin(); it != _sessions.end(); ++it)
-	{
-		Session* session = *it;
-		if (session->isAfter(&target)) return;
-		if (session->isBefore(&target)) continue;
-
-		_sessions.erase(it);
-		break;
-	}
+	_sessions.erase(_sessions.begin() + session);
 }
 
 int Controller::getSessionCount() const

@@ -10,8 +10,8 @@ class Controller
 {
 public:
 	void addSession(int year, int month, int day);
-	void removeSession(int year, int month, int day);
 	int getSessionCount() const;
+	void removeSession(int session);
 	Session* getSession(int index) const;
 	Session* getSession(int year, int month, int day) const;
 
