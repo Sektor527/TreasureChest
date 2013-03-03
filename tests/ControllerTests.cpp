@@ -69,14 +69,6 @@ TEST(ControllerConsumerTests, AddConsumer)
 	ASSERT_EQ(1, c.getConsumerCount());
 }
 
-TEST(ControllerConsumerTests, GetConsumer)
-{
-	Controller c;
-	c.addConsumer("wim");
-
-	ASSERT_EQ(0, c.getConsumer("wim"));
-}
-
 TEST(ControllerConsumerTests, RemoveConsumer)
 {
 	Controller c;
@@ -109,9 +101,9 @@ class ControllerInventoryTests : public ::testing::Test
 public:
 	virtual void SetUp()
 	{
-		c.addItemToInventory(3, "item 1", 5.f);
-		c.addItemToInventory(2, "item 2", 4.f);
-		c.addItemToInventory(1, "item 3", 3.f, 3);
+		c.addItem(3, "item 1", 5.f);
+		c.addItem(2, "item 2", 4.f);
+		c.addItem(1, "item 3", 3.f, 3);
 	}
 	
 	Controller c;
@@ -119,75 +111,63 @@ public:
 
 TEST_F(ControllerInventoryTests, GetItemCount)
 {
-	ASSERT_EQ(8, c.getItemCount());
+	ASSERT_EQ(3, c.getItemCount());
 }
 
-TEST_F(ControllerInventoryTests, GetItemGroupCount)
+TEST_F(ControllerInventoryTests, GetItemName)
 {
-	ASSERT_EQ(3, c.getItemGroupCount());
-}
-
-TEST_F(ControllerInventoryTests, GetItemGroupName)
-{
-	ASSERT_EQ("item 1", c.getItemGroupName(0));
-	ASSERT_EQ("item 2", c.getItemGroupName(1));
-	ASSERT_EQ("item 3", c.getItemGroupName(2));
-}
-
-TEST_F(ControllerInventoryTests, GetItemCountsFromInventoryByName)
-{
-	ASSERT_EQ(3, c.getItemCount("item 1"));
-	ASSERT_EQ(2, c.getItemCount("item 2"));
-	ASSERT_EQ(3, c.getItemCount("item 3"));
+	ASSERT_EQ("item 1", c.getItemName(0));
+	ASSERT_EQ("item 2", c.getItemName(1));
+	ASSERT_EQ("item 3", c.getItemName(2));
 }
 
 TEST_F(ControllerInventoryTests, GetItemCountsFromInventoryByIndex)
 {
-	ASSERT_EQ(3, c.getItemCount(0));
-	ASSERT_EQ(2, c.getItemCount(1));
-	ASSERT_EQ(3, c.getItemCount(2));
+	ASSERT_EQ(3, c.getItemUnits(0));
+	ASSERT_EQ(2, c.getItemUnits(1));
+	ASSERT_EQ(3, c.getItemUnits(2));
 }
 
 TEST_F(ControllerInventoryTests, RemoveItemFromInventory)
 {
-	c.removeItemFromInventory("item 1");
+	c.removeItem(0);
 
-	ASSERT_EQ(2, c.getItemCount("item 1"));
+	ASSERT_EQ(2, c.getItemUnits(0));
 }
 
 TEST(ControllerSessionInventoryTests, ConsumeItemGroupCount)
 {
 	Controller c;
 	c.addSession(2000, 1, 1);
-	c.addItemToInventory(3, "item 1", 5.f);
-	c.addItemToInventory(1, "item 2", 3.f);
+	c.addItem(3, "item 1", 5.f);
+	c.addItem(1, "item 2", 3.f);
 	c.consumeItem(0, 0);
 	c.consumeItem(0, 1);
 
-	ASSERT_EQ(2, c.getSessionItemGroupCount(0));
-	ASSERT_EQ(1, c.getItemGroupCount());
+	ASSERT_EQ(2, c.getSessionItemCount(0));
+	ASSERT_EQ(1, c.getItemCount());
 }
 
 TEST(ControllerSessionInventoryTests, ConsumeItemGroupName)
 {
 	Controller c;
 	c.addSession(2000, 1, 1);
-	c.addItemToInventory(3, "item 1", 5.f);
+	c.addItem(3, "item 1", 5.f);
 	c.consumeItem(0, 0);
 
-	ASSERT_EQ("item 1", c.getSessionItemGroupName(0, 0));
+	ASSERT_EQ("item 1", c.getSessionItemName(0, 0));
 }
 
 TEST(ControllerSessionInventoryTests, ConsumeItemCount)
 {
 	Controller c;
 	c.addSession(2000, 1, 1);
-	c.addItemToInventory(3, "item 1", 5.f);
+	c.addItem(3, "item 1", 5.f);
 	c.consumeItem(0, 0);
 	c.consumeItem(0, 0);
 
-	ASSERT_EQ(2, c.getSessionItemCount(0, 0));
-	ASSERT_EQ(1, c.getItemCount(0));
+	ASSERT_EQ(2, c.getSessionItemUnits(0, 0));
+	ASSERT_EQ(1, c.getItemUnits(0));
 }
 
 class ControllerSessionConsumerTests : public ::testing::Test
