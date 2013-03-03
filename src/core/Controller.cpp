@@ -145,6 +145,11 @@ void Controller::addItemToInventory(int count, const std::string& name, float va
 	_inventory.add(count, name, value, units);
 }
 
+void Controller::removeItemFromInventory(const std::string& name)
+{
+	_inventory.removeLowestPrice(name);
+}
+
 int Controller::getItemCount() const
 {
 	return _inventory.getAllCount();
@@ -170,18 +175,22 @@ int Controller::getItemCount(const std::string& name) const
 	return _inventory.getItemCount(name);
 }
 
-void Controller::addItemToSession(int session, int count, const std::string& name, float price, int units)
+void Controller::consumeItem(int session, int item)
 {
 	assert(session >= 0 && session < _sessions.size());
+	assert(item >= 0 && item < _inventory.getItemGroupCount());
 
-	_sessions[session]->getConsumed()->add(count, name, price, units);
+	Session* s = _sessions[session];
+	s->consumeFrom(&_inventory, getItemGroupName(item));
 }
 
-int Controller::getSessionItemCount(int session) const
+void Controller::unconsumeItem(int session, int item)
 {
 	assert(session >= 0 && session < _sessions.size());
+	assert(item >= 0 && item < _inventory.getItemGroupCount());
 
-	return _sessions[session]->getConsumed()->getAllCount();
+	Session* s = _sessions[session];
+	s->unconsumeTo(&_inventory, getItemGroupName(item));
 }
 
 int Controller::getSessionItemGroupCount(int session) const

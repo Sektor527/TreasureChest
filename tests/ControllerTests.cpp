@@ -148,50 +148,46 @@ TEST_F(ControllerInventoryTests, GetItemCountsFromInventoryByIndex)
 	ASSERT_EQ(3, c.getItemCount(2));
 }
 
-class ControllerSessionInventoryTests : public ::testing::Test
+TEST_F(ControllerInventoryTests, RemoveItemFromInventory)
 {
-public:
-	virtual void SetUp()
-	{
-		c.addSession(2000, 1, 1);
+	c.removeItemFromInventory("item 1");
 
-		c.addItemToSession(0, 3, "item 1", 5.f);
-		c.addItemToSession(0, 2, "item 2", 4.f);
-		c.addItemToSession(0, 1, "item 3", 3.f, 3);
-	}
-	
+	ASSERT_EQ(2, c.getItemCount("item 1"));
+}
+
+TEST(ControllerSessionInventoryTests, ConsumeItemGroupCount)
+{
 	Controller c;
-};
+	c.addSession(2000, 1, 1);
+	c.addItemToInventory(3, "item 1", 5.f);
+	c.addItemToInventory(1, "item 2", 3.f);
+	c.consumeItem(0, 0);
+	c.consumeItem(0, 1);
 
-TEST_F(ControllerSessionInventoryTests, GetItemCount)
-{
-	ASSERT_EQ(8, c.getSessionItemCount(0));
+	ASSERT_EQ(2, c.getSessionItemGroupCount(0));
+	ASSERT_EQ(1, c.getItemGroupCount());
 }
 
-TEST_F(ControllerSessionInventoryTests, GetItemGroupCount)
+TEST(ControllerSessionInventoryTests, ConsumeItemGroupName)
 {
-	ASSERT_EQ(3, c.getSessionItemGroupCount(0));
-}
+	Controller c;
+	c.addSession(2000, 1, 1);
+	c.addItemToInventory(3, "item 1", 5.f);
+	c.consumeItem(0, 0);
 
-TEST_F(ControllerSessionInventoryTests, GetItemGroupName)
-{
 	ASSERT_EQ("item 1", c.getSessionItemGroupName(0, 0));
-	ASSERT_EQ("item 2", c.getSessionItemGroupName(0, 1));
-	ASSERT_EQ("item 3", c.getSessionItemGroupName(0, 2));
 }
 
-TEST_F(ControllerSessionInventoryTests, GetItemCountsFromInventoryByName)
+TEST(ControllerSessionInventoryTests, ConsumeItemCount)
 {
-	ASSERT_EQ(3, c.getSessionItemCount(0, "item 1"));
-	ASSERT_EQ(2, c.getSessionItemCount(0, "item 2"));
-	ASSERT_EQ(3, c.getSessionItemCount(0, "item 3"));
-}
+	Controller c;
+	c.addSession(2000, 1, 1);
+	c.addItemToInventory(3, "item 1", 5.f);
+	c.consumeItem(0, 0);
+	c.consumeItem(0, 0);
 
-TEST_F(ControllerSessionInventoryTests, GetItemCountsFromInventoryByIndex)
-{
-	ASSERT_EQ(3, c.getSessionItemCount(0, 0));
-	ASSERT_EQ(2, c.getSessionItemCount(0, 1));
-	ASSERT_EQ(3, c.getSessionItemCount(0, 2));
+	ASSERT_EQ(2, c.getSessionItemCount(0, 0));
+	ASSERT_EQ(1, c.getItemCount(0));
 }
 
 class ControllerSessionConsumerTests : public ::testing::Test

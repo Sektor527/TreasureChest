@@ -27,14 +27,15 @@ public:
 	bool isConsumerInSession(int session, int consumer) const;
 
 	void addItemToInventory(int count, const std::string& name, float value, int units = 1);
+	void removeItemFromInventory(const std::string& name);
 	int getItemCount() const;
 	int getItemGroupCount() const;
 	std::string getItemGroupName(int index) const;
 	int getItemCount(int index) const;
 	int getItemCount(const std::string& name) const;
 
-	void addItemToSession(int session, int count, const std::string& name, float price, int units = 1);
-	int getSessionItemCount(int session) const;
+	void consumeItem(int session, int item);
+	void unconsumeItem(int session, int item);
 	int getSessionItemGroupCount(int session) const;
 	std::string getSessionItemGroupName(int session, int index) const;
 	int getSessionItemCount(int session, int index) const;
