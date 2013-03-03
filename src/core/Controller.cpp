@@ -3,8 +3,10 @@
 #include "Consumer.h"
 #include <cassert>
 
-void Controller::addSession(Session* session)
+void Controller::addSession(int year, int month, int day)
 {
+	Session* session = new Session(year, month, day);
+
 	std::vector<Session*>::iterator it;
 	for (it = _sessions.begin(); it != _sessions.end(); ++it)
 	{
@@ -63,24 +65,32 @@ Session* Controller::getSession(int year, int month, int day) const
 	return NULL;
 }
 
-void Controller::addConsumerToSession(Session* session, Consumer* consumer)
+void Controller::addConsumerToSession(int session, Consumer* consumer)
 {
-	session->addConsumer(consumer);
+	assert(session >= 0 && session < _sessions.size());
+
+	_sessions[session]->addConsumer(consumer);
 }
 
-void Controller::removeConsumerFromSession(Session* session, int index)
+void Controller::removeConsumerFromSession(int session, int index)
 {
-	session->removeConsumer(index);
+	assert(session >= 0 && session < _sessions.size());
+
+	_sessions[session]->removeConsumer(index);
 }
 
-int Controller::getConsumerCount(const Session* session) const
+int Controller::getConsumerCount(int session) const
 {
-	return session->getConsumerCount();
+	assert(session >= 0 && session < _sessions.size());
+
+	return _sessions[session]->getConsumerCount();
 }
 
-std::string Controller::getConsumerName(const Session* session, int index) const
+std::string Controller::getConsumerName(int session, int index) const
 {
-	return session->getConsumerName(index);
+	assert(session >= 0 && session < _sessions.size());
+
+	return _sessions[session]->getConsumerName(index);
 }
 
 void Controller::addItemToInventory(int count, const std::string& name, float value, int units)
@@ -113,32 +123,44 @@ int Controller::getItemCount(const std::string& name) const
 	return _inventory.getItemCount(name);
 }
 
-void Controller::addItemToSession(Session* session, int count, const std::string& name, float price, int units)
+void Controller::addItemToSession(int session, int count, const std::string& name, float price, int units)
 {
-	session->getConsumed()->add(count, name, price, units);
+	assert(session >= 0 && session < _sessions.size());
+
+	_sessions[session]->getConsumed()->add(count, name, price, units);
 }
 
-int Controller::getItemCount(const Session* session) const
+int Controller::getSessionItemCount(int session) const
 {
-	return session->getConsumed()->getAllCount();
+	assert(session >= 0 && session < _sessions.size());
+
+	return _sessions[session]->getConsumed()->getAllCount();
 }
 
-int Controller::getItemGroupCount(const Session* session) const
+int Controller::getSessionItemGroupCount(int session) const
 {
-	return session->getConsumed()->getItemGroupCount();
+	assert(session >= 0 && session < _sessions.size());
+
+	return _sessions[session]->getConsumed()->getItemGroupCount();
 }
 
-std::string Controller::getItemGroupName(const Session* session, int index) const
+std::string Controller::getSessionItemGroupName(int session, int index) const
 {
-	return session->getConsumed()->getItemGroupName(index);
+	assert(session >= 0 && session < _sessions.size());
+
+	return _sessions[session]->getConsumed()->getItemGroupName(index);
 }
 
-int Controller::getItemCount(const Session* session, int index) const
+int Controller::getSessionItemCount(int session, int index) const
 {
-	return session->getConsumed()->getItemCount(index);
+	assert(session >= 0 && session < _sessions.size());
+
+	return _sessions[session]->getConsumed()->getItemCount(index);
 }
 
-int Controller::getItemCount(const Session* session, const std::string& name) const
+int Controller::getSessionItemCount(int session, const std::string& name) const
 {
-	return session->getConsumed()->getItemCount(name);
+	assert(session >= 0 && session < _sessions.size());
+
+	return _sessions[session]->getConsumed()->getItemCount(name);
 }

@@ -9,16 +9,16 @@ class Consumer;
 class Controller
 {
 public:
-	void addSession(Session* session);
+	void addSession(int year, int month, int day);
 	void removeSession(int year, int month, int day);
 	int getSessionCount() const;
 	Session* getSession(int index) const;
 	Session* getSession(int year, int month, int day) const;
 
-	void addConsumerToSession(Session* session, Consumer* consumer);
-	void removeConsumerFromSession(Session* session, int index);
-	int getConsumerCount(const Session* session) const;
-	std::string getConsumerName(const Session* session, int index) const;
+	void addConsumerToSession(int session, Consumer* consumer);
+	void removeConsumerFromSession(int session, int index);
+	int getConsumerCount(int session) const;
+	std::string getConsumerName(int session, int index) const;
 
 	void addItemToInventory(int count, const std::string& name, float value, int units = 1);
 	int getItemCount() const;
@@ -27,12 +27,12 @@ public:
 	int getItemCount(int index) const;
 	int getItemCount(const std::string& name) const;
 
-	void addItemToSession(Session* session, int count, const std::string& name, float price, int units = 1);
-	int getItemCount(const Session* session) const;
-	int getItemGroupCount(const Session* session) const;
-	std::string getItemGroupName(const Session* session, int index) const;
-	int getItemCount(const Session* session, int index) const;
-	int getItemCount(const Session* session, const std::string& name) const;
+	void addItemToSession(int session, int count, const std::string& name, float price, int units = 1);
+	int getSessionItemCount(int session) const;
+	int getSessionItemGroupCount(int session) const;
+	std::string getSessionItemGroupName(int session, int index) const;
+	int getSessionItemCount(int session, int index) const;
+	int getSessionItemCount(int session, const std::string& name) const;
 
 private:
 	std::vector<Session*> _sessions;
